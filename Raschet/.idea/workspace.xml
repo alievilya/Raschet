@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3bfdeded-f26b-4f60-9242-5f3cbc2ccefa" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1UZBB3pteh3wCyskZD5DHPTqO0G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Ras" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\part3" />
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\Ras\part3" />
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet" />
+      <recent name="X:\Prog\Web\Raschet\Raschet\Ras\templates\part4" />
+      <recent name="X:\Prog\Web\Raschet\Raschet\Ras\templates\part4\Page1" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\Ras" />
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\Ras\part3\src\components" />
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\Ras\part3" />
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\Ras\part3\src" />
+      <recent name="X:\Prog\Web\RAS_MPA\Raschet\Ras\part4" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="mainmenu.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Raschet/Ras/templates/mainmenu/mainmenu.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.mainmenu.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3bfdeded-f26b-4f60-9242-5f3cbc2ccefa" name="Default Changelist" comment="" />
+      <created>1575144640456</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575144640456</updated>
+      <workItem from="1575144642049" duration="32000" />
+      <workItem from="1576153509168" duration="12777000" />
+      <workItem from="1576166509411" duration="122000" />
+      <workItem from="1576167845970" duration="1248000" />
+      <workItem from="1576739203879" duration="14000" />
+      <workItem from="1576739472156" duration="413000" />
+      <workItem from="1580478382857" duration="7259000" />
+      <workItem from="1581011021638" duration="2476000" />
+      <workItem from="1581023120324" duration="1179000" />
+      <workItem from="1581318001664" duration="2500000" />
+      <workItem from="1581599845528" duration="689000" />
+      <workItem from="1581611124646" duration="99000" />
+      <workItem from="1581611490319" duration="6229000" />
+      <workItem from="1581618286151" duration="4733000" />
+      <workItem from="1581623725264" duration="3133000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576165445991">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1576165445991" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581616676471">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1581616676471" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1581318014495">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581318014495" />
+  </component>
+</project>

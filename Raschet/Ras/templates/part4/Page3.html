@@ -1,0 +1,80 @@
+{% extends 'part4/mainframe.html' %}
+
+{% block content %}
+<!-- Значение Тмарша -->
+<div class="container text-left">
+    <div class="row">
+        <div class="col-lg-3">
+            <h2>Тмарша = </h2>
+        </div>
+        <div class="col-lg-2">
+            <form role="form">
+                <input class="form-control" placeholder="0">
+            </form>
+        </div>
+        <div class="col-lg-2">
+            <h3>(мин)</h3>
+        </div>
+    </div>
+</div>
+<!-- Список Тразв -->
+<div class="container text-left">
+    <div class="row">
+        <div class="col-lg-3">
+                <h2>Тразв = </h2>
+        </div>
+        <div class="col-lg-7">
+            <select class="form-control">
+                <option>Передающий узел Р-161У на антенны: две V-образные (70 мин.)</option>
+                <option>Приемный узел Р-161ПУ на антенны: всех типов (90 мин.)</option>
+                <option>Радиостанция Р-166 на две мачты (72 мин.)</option>
+                <option>Передающая часть радиостанции Р-161-5 на антенны: двойной вертикальный ромб (145 мин.)</option>
+                <option>Приемная часть радиостанции Р-161-5 на антенны: все типы антенн (105 мин.)</option>
+                <option>Тропосферная станция Р-423АМ (35 мин.)</option>
+                <option>Радиорелейная станция Р-416ГМ (85 мин.)</option>
+                <option>Радиорелейная станция Р-431АМ (антенный модуль) (47 мин.)</option>
+                <option>Радиорелейная станция Р-419Л1 на два полукомплекта (30 мин.)</option>
+                <option>Станция спутниковой связи Р-441-Л на выносную антенну (40 мин.)</option>
+                <option>Комплексная аппаратная П-260-Т (70 мин.)</option>
+                <option>Комплексная аппаратная П-260-О (75 мин.)</option>
+                <option>Комплексная аппаратная П-260-У (80 мин.)</option>
+                <option>Аппаратная П-266 (45 мин.)</option>
+                <option>Станция спутниковой связи Р-441-УВ (Р-441-У, Р-440-У) (110 мин.)</option>
+                <option>Аппаратная ШАС П-244И(П-244И-4) (80 мин.)</option>
+                <option>Аппаратная ШАС П-238ТК(П-238ТК1) (55 мин.)</option>
+                <option>Аппаратная ШАС К-8М (50 мин.)</option>
+                <option>Аппаратная КАС П-240И(П240И4) (70 мин.)</option>
+                <option>83Т588 (МК ЗВКС) (25 мин.)</option>
+                <option>Аппаратная ФПС П-391П1М (П-391ПМ) (25 мин.)</option>
+                <option>Аппаратная ФПС П-392ПМ (23 мин.)</option>
+                <option>Передающий узел Р-176У на антенны: две V-образные (80 мин.)</option>
+                <option>Приемный узел Р-176ПУ на антенны: всех типов (100 мин.)</option>
+                <option>Радиостанция Р-176 -1А на две мачты (80 мин.)</option>
+                <option>Передающая часть радиостанции Р-171-5 на антенны двойной вертикальный ромб (160 мин.)</option>
+                <option>Приемная часть радиостанции Р-171-5 на антенны: все типы антенн (115 мин.)</option>
+                <option>П-243Т (МТК) (60 мин.)</option>
+                <option>Аппаратная 83Т212 (54 мин.)</option>
+                <option>Аппаратная 83Т104 (40 мин)</option>
+                <option>Аппаратная П-261 (30 мин.)</option>
+                <option>Электропитающая станция ЭД 2х30 (35 мин.)</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Место для вывода результата -->
+<div class="container text-left">
+    <div class="row">
+        <div class="col-lg-3">
+            <h2>Результат = </h2>
+        </div>
+    </div>
+</div>
+
+
+<!-- Кнопки "Назад" и "Далее" -->
+<div class="container text-right">
+    <a href="/mainmenu/part4/page2" class="btn btn-danger">Назад</a>
+    <a href="/mainmenu/part4/page4" class="btn btn-success">Далее</a>
+</div>
+{% endblock %}
