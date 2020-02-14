@@ -26,10 +26,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('part4/', TemplateView.as_view(template_name='part4.html')),
     path('part3/', TemplateView.as_view(template_name='part3.html')),
-    path('', TemplateView.as_view(template_name='part3.html')),
-
+    path(r'', include('start.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
-#path('part4/', TemplateView.as_view(template_name='part4.html')),
-#path('', TemplateView.as_view(template_name='part3.html')),
+#path('', TemplateView.as_view(template_name='start.html')),

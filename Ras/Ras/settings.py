@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'part3',
     'part4',
+    'mainmenu',
+    'start',
     'rest_framework',
 
 

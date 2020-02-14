@@ -11,3 +11,6 @@ router = routers.DefaultRouter()
 
 router.register(r'part3', Part3ViewSet)
 router.register(r'part4', Part4ViewSet)
+#router.register(r'', MainmenuViewSet)
+
+

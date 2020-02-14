@@ -16,12 +16,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/part4/migrations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mainmenu/templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\part4\migrations" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\mainmenu\templates" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\start\templates" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\start" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\mainmenu" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\Ras" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -46,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581696348267</updated>
-      <workItem from="1581696351211" duration="4224000" />
+      <workItem from="1581696351211" duration="9538000" />
     </task>
     <servers />
   </component>
