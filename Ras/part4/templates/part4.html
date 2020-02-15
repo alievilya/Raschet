@@ -30,13 +30,15 @@
       </div>
       <div class="col-lg-7">
 
-        <select class="form-control" v-model="line_selected">
+        <select class="form-control"
+                id = "line_selected"
+                v-model="currentArticle.line_selected">
           <option v-for="line in lines" v-bind:value="line.value">
             ${ line.text }
           </option>
 
         </select>
-        <span>Tnr = ${ line_selected } </span>
+        <span>Tnr = ${ currentArticle.line_selected } </span>
 
       </div>
     </div>
@@ -47,13 +49,15 @@
       </div>
       <div class="col-lg-7">
 
-        <select class="form-control" v-model="canal_selected">
+        <select class="form-control"
+                id = "canal_selected"
+                v-model="currentArticle.canal_selected">
           <option v-for="canal in canals" v-bind:value="canal.value">
             ${ canal.text }
           </option>
 
         </select>
-        <span>Tsau = ${ canal_selected } </span>
+        <span>Tsau = ${ currentArticle.canal_selected } </span>
 
       </div>
     </div>
@@ -71,8 +75,10 @@
       <div class="col-lg-2">
 
           <form role="form">
-            <input class="form-control" v-model="number_val" placeholder="введите значение">
-            <p>Ktc: ${ number_val } </p>
+            <input class="form-control"
+                   id = "number_val"
+                   v-model="currentArticle.number_val" placeholder="введите значение">
+            <p> Ktc: ${ currentArticle.number_val } </p>
           </form>
       </div>
     </div>
@@ -123,7 +129,7 @@
       loading: true,
       currentArticle: {},
       message: null,
-      newArticle: { 'part4_id': null, 'part4_line': null, 'part4_canal': null, 'part4_number_val': null },
+      newArticle: { 'part4_id': null, 'line_selected': null, 'canal_selected': null, 'number_val': null },
       search_term: '',
     },
     mounted: function() {
@@ -161,7 +167,7 @@
       },
       addLine: function() {
         this.loading = true;
-        this.$http.post('/api/part4/',this.line_selected)
+        this.$http.post('/api/part4/',this.newArticle)
                 .then((response) => {
                   this.loading = true;
                   this.getLines();
@@ -171,31 +177,31 @@
                   console.log(err);
                 })
       },
-      // updateArticle: function() {
-      //   this.loading = true;
-      //   this.$http.put(`/api/part4/${this.currentArticle.part4_id}/`, this.currentArticle)
-      //           .then((response) => {
-      //             this.loading = false;
-      //             this.currentArticle = response.data;
-      //             this.getArticles();
-      //           })
-      //           .catch((err) => {
-      //             this.loading = false;
-      //             console.log(err);
-      //           })
-      // },
-      // deleteArticle: function(id) {
-      //   this.loading = true;
-      //   this.$http.delete(`/api/part4/${id}/`)
-      //           .then((response) => {
-      //             this.loading = false;
-      //             this.getArticles();
-      //           })
-      //           .catch((err) => {
-      //             this.loading = false;
-      //             console.log(err);
-      //           })
-      // }
+      updateArticle: function() {
+        this.loading = true;
+        this.$http.put(`/api/part4/${this.currentArticle.part4_id}/`, this.currentArticle)
+                .then((response) => {
+                  this.loading = false;
+                  this.currentArticle = response.data;
+                  this.getArticles();
+                })
+                .catch((err) => {
+                  this.loading = false;
+                  console.log(err);
+                })
+      },
+      deleteArticle: function(id) {
+        this.loading = true;
+        this.$http.delete(`/api/part4/${id}/`)
+                .then((response) => {
+                  this.loading = false;
+                  this.getArticles();
+                })
+                .catch((err) => {
+                  this.loading = false;
+                  console.log(err);
+                })
+      }
     }
   });
 </script>
