@@ -12,4 +12,4 @@ class Part4ViewSet(viewsets.ModelViewSet):
     queryset = Part4.objects.all()
     serializer_class = Part4Serializer
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('part4_id', 'line_selected', 'canal_selected', 'number_val')
+    search_fields = ('part4_id', 'line_selected', 'canal_selected', 'number_val', 'cur')

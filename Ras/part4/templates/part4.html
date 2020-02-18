@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Расчёт времени на развёртывание много интервальной радиолинейной линии связи</title>
@@ -7,9 +7,9 @@
   {% load staticfiles %}
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
-
+<!--  <script src="Page1.js"></script>-->
 </head>
 <body style="background-color: forestgreen">
 
@@ -36,17 +36,22 @@
 
         <select class="form-control"
                 id = "line_selected"
-                v-model="currentArticle.line_selected">
+                v-model="currentDictionary.line_selected">
           <option v-for="line in lines" v-bind:value="line.value">
             ${ line.text }
           </option>
 
         </select>
-        <span>Tnr = ${ currentArticle.line_selected } </span>
+
+        <span>Tnr = ${ currentDictionary.line_selected }
+<!--          <span> line_selected = ${results[1].line_selected} </span>-->
+        </span>
 
       </div>
     </div>
+  </div>
 
+  <div class="container text-left">
     <div class="row">
       <div class="col-lg-3">
         <h2>Тип канала = </h2>
@@ -55,21 +60,18 @@
 
         <select class="form-control"
                 id = "canal_selected"
-                v-model="currentArticle.canal_selected">
+                v-model="currentDictionary.canal_selected">
           <option v-for="canal in canals" v-bind:value="canal.value">
             ${ canal.text }
           </option>
 
         </select>
-        <span>Tsau = ${ currentArticle.canal_selected } </span>
+        <span>Tsau = ${ currentDictionary.canal_selected } </span>
+<!--        canal_selected = ${results[1].canal_selected}-->
 
       </div>
     </div>
   </div>
-
-
-  <!— Список каналов —>
-
 
   <div class="container text-left">
     <div class="row">
@@ -81,155 +83,37 @@
           <form role="form">
             <input class="form-control"
                    id = "number_val"
-                   v-model="currentArticle.number_val" placeholder="введите значение">
-            <p> Ktc: ${ currentArticle.number_val } </p>
+                   v-model="currentDictionary.number_val" placeholder="введите значение">
+            <p> Ktc: ${ currentDictionary.number_val } </p>
           </form>
       </div>
     </div>
   </div>
 
 
-
-
-
-
-
-
-
-
-  <div class="container">
-    <div class="row">
-      <h1>List of Articles
-        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#addArticleModal">ADD ARTICLE</button>
-      </h1>
-      &emsp;
-      <div class="form-inline my-2 my-lg-0" style="margin-left: 40%;">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="search_term" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" v-on:click.prevent="getLines()">Search</button>
-      </div>
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Heading</th>
-          <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="part4 in articles">
-          <th scope="row">${part4.part4_id}</th>
-          <td>${part4.line_selected}</td>
-          <td>
-            <button class="btn btn-info" v-on:click="getLine(part4.part4_id)">Edit</button>
-            <button class="btn btn-danger" v-on:click="deleteLine(part4.part4_id)">Delete</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <!-- Add Article Modal -->
-      <div class="modal fade" id="addArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">ADD ARTICLE</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form v-on:submit.prevent="addLine()">
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="line_selected">Article Heading</label>
-                  <input
-                          type="text"
-                          class="form-control"
-                          id="line_selected"
-                          placeholder="Enter Article Heading"
-                          v-model="newArticle.line_selected"
-                          required="required" >
-                </div>
-                <div class="form-group">
-                  <label for="canal_selected">Article Body</label>
-                  <textarea
-                          class="form-control"
-                          id="canal_selected"
-                          placeholder="Enter Article Body"
-                          v-model="newArticle.canal_selected"
-                          required="required"
-                          rows="3"></textarea>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="loading" v-if="loading===true">Loading&#8230;</div>
-      </div>
-      <!-- End of add article modal -->
-      <!-- Edit Article Modal -->
-      <div class="modal fade" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">EDIT ARTICLE</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <form v-on:submit.prevent="updateLine()">
-              <div class="modal-body">
-                <div class="form-group">
-                  <label for="line_selected">Article Heading</label>
-                  <input
-                          type="text"
-                          class="form-control"
-                          id="line_selected"
-                          placeholder="Enter Article Heading"
-                          v-model="currentArticle.line_selected"
-                          required="required" >
-                </div>
-                <div class="form-group">
-                  <label for="canal_selected">Article Body</label>
-                  <textarea
-                          class="form-control"
-                          id="canal_selected"
-                          placeholder="Enter Article Body"
-                          v-model="currentArticle.canal_selected"
-                          required="required"
-                          rows="3"></textarea>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="loading" v-if="loading===true">Loading&#8230;</div>
-      </div>
-      <!-- End of edit article modal -->
-
-    </div>
-  </div>
-  <div class="loading" v-if="loading===true">Loading&#8230;</div>
-
-
-
+  <ul >
+    <li v-for="(cur, index, id) in currentDictionary">
+      cur = ${cur}
+      index = ${index}
+      id = ${id}
+    </li>
+    <a href="/mainmenu/part4/page2" class="btn btn-success" v-on:click="setPost(currentDictionary, id)">Обновить</a>
+  </ul>
 
 
 
   <!-- Кнопки "Назад" и "Далее" -->
   <div class="container text-right">
     <a href="/mainmenu" class="btn btn-danger">Назад</a>
-    <a href="/mainmenu/part4/page2" class="btn btn-success">Далее</a>
+
+    <a href="/mainmenu/part4/page2" class="btn btn-success" v-on:click="setPost(currentDictionary, id)">Далее</a>
+
   </div>
 
 </div>
 </div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -238,109 +122,119 @@
 <!-- vue.js files -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--<script src="vueApp.js"></script>-->
+
 <script type="text/javascript">
-  Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
-  new Vue({
-    el: '#part4_1',
-    delimiters: ['${','}'],
-    data: {
 
-      lines: [
-        { text: 'Р-409, З-419П1, З-419МП', value: '6' },
-        { text: 'З-416ГМ', value: '3' },
-        { text: 'Р-431АМ', value: '4' },
-        { text: 'Р-423АМ', value: '4' },
+  const url = "http://127.0.0.1:8000/api/part4/"
+  // const url = "https://api.coindesk.com/v1/bpi/currentprice.json"
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
-      ],
-      line_selected: '',
-      canals: [
-        { text: 'ТГ', value: '2' },
-        { text: 'ТЧ', value: '2' },
-        { text: 'Цифровой поток (канал)', value: '1.4' },
-        {selected: ''},
-      ],
-      canal_selected: '',
+    new Vue({
+      el: '#part4_1',
+      delimiters: ['${','}'],
+      data : {
+        lines: [
+          {text: 'Р-409, З-419П1, З-419МП', value: '6'},
+          {text: 'З-416ГМ', value: '3'},
+          {text: 'Р-431АМ', value: '4'},
+          {text: 'Р-423АМ', value: '4'},
 
-      number_val: '',
+        ],
+        line_selected: '',
+        canals: [
+          {text: 'ТГ', value: '2'},
+          {text: 'ТЧ', value: '2'},
+          {text: 'Цифровой поток (канал)', value: '1.4'},
 
-      loading: true,
-      currentArticle: {},
-      message: null,
-      newArticle: { 'part4_id': null, 'line_selected': null, 'canal_selected': null, 'number_val': null },
-      search_term: '',
-    },
-    mounted: function() {
-      this.getLines();
-    },
-    methods: {
-      getLines: function() {
-        let api_url = '/api/part4/';
-        if(this.search_term!==''||this.search_term!==null) {
-          api_url = `/api/part4/?search=${this.search_term}`
-        }
-        this.loading = true;
-        this.$http.get(api_url)
-                .then((response) => {
-                  this.articles = response.data;
-                  this.loading = false;
-                })
-                .catch((err) => {
-                  this.loading = false;
-                  console.log(err);
-                })
+        ],
+        canal_selected: '',
+        number_val: '',
+        loading: true,
+        currentDictionary: {},
+        results: [],
+        cur: [],
+        search_term: '',
+
       },
-      getLine: function(id) {
-        this.loading = true;
-        this.$http.get(`/api/part4/${id}/`)
-                .then((response) => {
-                  this.currentArticle = response.data;
-                  $("#editArticleModal").modal('show');
-                  this.loading = false;
-                })
-                .catch((err) => {
-                  this.loading = false;
-                  console.log(err);
-                })
+      methods: {
+        async setPost(cur, i) {
+          try {
+            let data = await axios.post(url, cur);
+
+            if (data.status == 'success') {
+
+            } else {
+              throw new Error(data.status);
+            }
+
+          } catch (e) {
+            this.error = e;
+          }
+        },
+        async loadDictionarysPreviewLinks(){
+          axios
+                  .get(url )
+                  .then(response => {
+                    this.cur = response.data;
+                  })
+                  .catch(function(e){
+                    this.error = e;
+                  });
+        },
+
       },
-      addLine: function() {
-        this.loading = true;
-        this.$http.post('/api/part4/',this.newArticle)
-                .then((response) => {
-                  this.loading = true;
-                  this.getLines();
-                })
-                .catch((err) => {
-                  this.loading = true;
-                  console.log(err);
-                })
+      mounted: function() {
+        this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
       },
-      updateLine: function() {
-        this.loading = true;
-        this.$http.put(`/api/part4/${this.currentArticle.part4_id}/`, this.currentArticle)
-                .then((response) => {
-                  this.loading = false;
-                  this.currentArticle = response.data;
-                  this.getArticles();
-                })
-                .catch((err) => {
-                  this.loading = false;
-                  console.log(err);
-                })
-      },
-      deleteLine: function(id) {
-        this.loading = true;
-        this.$http.delete(`/api/part4/${id}/`)
-                .then((response) => {
-                  this.loading = false;
-                  this.getArticles();
-                })
-                .catch((err) => {
-                  this.loading = false;
-                  console.log(err);
-                })
-      }
-    }
+      // mounted() {
+      //   axios.get(url).then(response => (this.cur = response.data));
+      // },
+
+
+
+
   });
+
+    // const app = new Vue({
+    //   el: "#app",
+    //   data: {
+    //     editFriend: null,
+    //     friends: [],
+    //   },
+    //   methods: {
+    //     deleteFriend(id, i) {
+    //       fetch("http://127.0.0.1:8000/api/part4/" + id, {
+    //         method: "DELETE"
+    //       })
+    //               .then(() => {
+    //                 this.friends.splice(i, 1);
+    //               })
+    //     },
+    //     updateFriend(friend) {
+    //       fetch("http://127.0.0.1:8000/api/part4/" + friend.id, {
+    //         body: JSON.stringify(friend),
+    //         method: "PUT",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //       })
+    //               .then(() => {
+    //                 this.editFriend = null;
+    //               })
+    //     }
+    //   },
+    //   mounted() {
+    //     fetch("http://127.0.0.1:8000/api/part4/")
+    //             .then(response => response.json())
+    //             .then((data) => {
+    //               this.friends = data;
+    //             })
+    //   },
+    // });
+
 </script>
 </body>
 
