@@ -24,8 +24,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('part4/', TemplateView.as_view(template_name='part4.html')),
-    path('part3/', TemplateView.as_view(template_name='part3.html')),
+
     path(r'', include('start.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

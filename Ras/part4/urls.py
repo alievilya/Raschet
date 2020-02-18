@@ -12,4 +12,3 @@ urlpatterns = [
     path('page4/', TemplateView.as_view(template_name='Page4.html')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-#path(r'', views.mainmenu, name='mainmenu'),

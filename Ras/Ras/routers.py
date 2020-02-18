@@ -5,12 +5,14 @@
 # @Last Modified time: 2018-02-04 23:25:39
 from rest_framework import routers
 from part3.viewsets import Part3ViewSet
-from part4.viewsets import Part4ViewSet
+from part4.viewsets import Part4ViewSet, Part4_2ViewSet, Part4_3ViewSet
 
 router = routers.DefaultRouter()
 
 router.register(r'part3', Part3ViewSet)
 router.register(r'part4', Part4ViewSet)
+router.register(r'part4_2', Part4_2ViewSet)
+router.register(r'part4_3', Part4_3ViewSet)
 #router.register(r'', MainmenuViewSet)
 
 
