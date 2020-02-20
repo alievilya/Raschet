@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Результат расчёта времени на развёртывание много интервальной радиолинейной линии связи</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    {% load staticfiles %}
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" >
+
+
+</head>
+<body style="background-color: #812390">
+<!--<body style="background-color: forestgreen">-->
+<div id = "part4_4">
+    <div class="container text-center" style="background-color: white; margin-top: 60px">
+    <h1>Расчет времени на развертывание много интервальной радиорелейной линии связи</h1>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+                xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+                xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+                xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"></script>
+
+
+<h1 style="color: #812390">
+    Выбранные параметры
+</h1>
+
+        <ul>
+            <li>
+                линия = ${ Tnr = cur[cur.length-1]["line_selected"] }
+            </li>
+            <li>
+                канал = ${ Tsau = cur[cur.length-1]["canal_selected"] }
+            </li>
+            <li>
+                число = ${ Ktc = cur[cur.length-1]["number_val"] }
+            </li>
+            <li>
+                местность = ${ Mst = all[all.length-1]["mestnost_selected"] }
+            </li>
+            <li>
+                температура = ${ T = all[all.length-1]["temp_val"] }
+            </li>
+            <li>
+                кол-во снега = ${ Sneg = all[all.length-1]["snow_val"] }
+            </li>
+            <li>
+                скорость ветра = ${ Wind = all[all.length-1]["snow_val"] }
+            </li>
+            <li>
+                станция = ${ Tr = full[full.length-1]["stanciya_selected"] }
+            </li>
+            <li>
+                время марша = ${ Tm = full[full.length-1]["marsh_val"] }
+            </li>
+
+        </ul>
+
+
+
+    <div v-if="Mst = 1">
+<!--        T-->
+        <div v-if="T >= -7 && T <= 35">
+            Коэффициент К1 = ${K1 = 0}
+        </div>
+        <div v-else-if="T > 35">
+            Коэффициент К1 = ${K1 = 0.1}
+        </div>
+        <div v-else-if="T >= -20 && T < -7">
+            Коэффициент К1 = ${K1 = 0.2}
+        </div>
+        <div v-else-if="T < -20">
+            Коэффициент К1 = ${K1 = 0.25}
+        </div>
+<!--        Sneg-->
+        <div v-if="Sneg >= 1 && Sneg <30">
+            Коэффициент К2 = ${K2 = 0.1}
+        </div>
+        <div v-else-if="Sneg > 31 && Sneg < 80">
+            Коэффициент К2 = ${K2 = 0.2}
+        </div>
+        <div v-else-if="Sneg > 80">
+            Коэффициент К2 = ${K2 = 0.25}
+        </div>
+        <div v-else>
+            Коэффициент К2 = ${K2 = 0}
+        </div>
+<!--        Wind-->
+        <div v-if="Wind >= 10 && Wind <= 20">
+            Коэффициент К3 = ${K3 = 0.2}
+        </div>
+        <div v-else-if="Wind > 20">
+            Коэффициент К3 = ${K3 = 0.3}
+        </div>
+        <div v-else>
+            Коэффициент К3 = ${K3 = 0}
+        </div>
+
+    </div>
+    <div v-else-if="Mst = 2">
+        <div v-if="T >= -7 && T <= 35">
+            Коэффициент К1 = ${K1 = 0.1}
+        </div>
+        <div v-else-if="T > 35">
+            Коэффициент К1 = ${K1 = 0.2}
+        </div>
+        <div v-else-if="T >= -20 && T < -7">
+            Коэффициент К1 = ${K1 = 0.25}
+        </div>
+        <div v-else-if="T < -20">
+            Коэффициент К1 = ${K1 = 0.3}
+        </div>
+        <!--        Sneg-->
+        <div v-if="Sneg >= 1 && Sneg <30">
+            Коэффициент К2 = ${K2 = 0.2}
+        </div>
+        <div v-else-if="Sneg > 31 && Sneg < 80">
+            Коэффициент К2 = ${K2 = 0.25}
+        </div>
+        <div v-else-if="Sneg > 80">
+            Коэффициент К2 = ${K2 = 0.3}
+        </div>
+        <div v-else>
+            Коэффициент К2 = ${K2 = 0}
+        </div>
+        <!--        Wind-->
+        <div v-if="Wind >= 10 && Wind <= 20">
+            Коэффициент К3 = ${K3 = 0.3}
+        </div>
+        <div v-else-if="Wind > 20">
+            Коэффициент К3 = ${K3 = 0.3}
+        </div>
+        <div v-else>
+            Коэффициент К3 = ${K3 = 0}
+        </div>
+    </div>
+    <div v-else-if="Mst = 3">
+        <div v-if="T >= -7 && T <= 35">
+            Коэффициент К1 = ${K1 = 0.2}
+        </div>
+        <div v-else-if="T > 35">
+            Коэффициент К1 = ${K1 = 0.3}
+        </div>
+        <div v-else-if="T >= -20 && T < -7">
+            Коэффициент К1 = ${K1 = 0.25}
+        </div>
+        <div v-else-if="T < -20">
+            Коэффициент К1 = ${K1 = 0.3}
+        </div>
+        <!--        Sneg-->
+        <div v-if="Sneg >= 1 && Sneg <30">
+            Коэффициент К2 = ${K2 = 0.2}
+        </div>
+        <div v-else-if="Sneg > 31 && Sneg < 80">
+            Коэффициент К2 = ${K2 = 0.25}
+        </div>
+        <div v-else-if="Sneg > 80">
+            Коэффициент К2 = ${K2 = 0.3}
+        </div>
+        <div v-else>
+            Коэффициент К2 = ${K2 = 0}
+        </div>
+        <!--        Wind-->
+        <div v-if="Wind >= 10 && Wind <= 20">
+            Коэффициент К3 = ${K3 = 0.25}
+        </div>
+        <div v-else-if="Wind > 20">
+            Коэффициент К3 = ${K3 = 0.35}
+        </div>
+        <div v-else>
+            Коэффициент К3 = ${K3 = 0}
+        </div>
+    </div>
+    <div v-else-if="Mst = 4">
+        <div v-if="T >= -7 && T <= 35">
+            Коэффициент К1 = ${K1 = 0.3}
+        </div>
+        <div v-else-if="T > 35">
+            Коэффициент К1 = ${K1 = 0.3}
+        </div>
+        <div v-else-if="T >= -20 && T < -7">
+            Коэффициент К1 = ${K1 = 0.35}
+        </div>
+        <div v-else-if="T < -20">
+            Коэффициент К1 = ${K1 = 0.4}
+        </div>
+        <!--        Sneg-->
+        <div v-if="Sneg >= 1 && Sneg <30">
+            Коэффициент К2 = ${K2 = 0.35}
+        </div>
+        <div v-else-if="Sneg > 31 && Sneg < 80">
+            Коэффициент К2 = ${K2 = 0.35}
+        </div>
+        <div v-else-if="Sneg > 80">
+            Коэффициент К2 = ${K2 = 0.4}
+        </div>
+        <div v-else>
+            Коэффициент К2 = ${K2 = 0}
+        </div>
+        <!--        Wind-->
+        <div v-if="Wind >= 10 && Wind <= 20">
+            Коэффициент К3 = ${K3 = 0.25}
+        </div>
+        <div v-else-if="Wind > 20">
+            Коэффициент К3 = ${K3 = 0.35}
+        </div>
+        <div v-else>
+            Коэффициент К3 = ${K3 = 0}
+        </div>
+    </div>
+
+
+        <h2 style="color: #812390">
+    Результат = ${(Tnr*(1 + Ktc) + Tsau*(1 + Ktc) + Tm + Tr)*(1+K1+K2+K3)} минут
+</h2>
+
+        <div class="text-center">
+            <a href="/mainmenu" class="btn btn-primary">Главное меню</a>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- vue.js files -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    const url = "http://127.0.0.1:8000/api/part4_4/";
+    const url1 = "http://127.0.0.1:8000/api/part4/";
+    const url2 = "http://127.0.0.1:8000/api/part4_2/";
+    const url3 = "http://127.0.0.1:8000/api/part4_3/";
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+
+    new Vue({
+        el: '#part4_4',
+        delimiters: ['${','}'],
+        data : {
+
+            loading: true,
+            Dictionary3: {},
+            full: [],
+            all: [],
+            cur: [],
+
+            search_term: '',
+        },
+        methods: {
+            async setPost(full, i) {
+                try {
+                    let data = await axios.post(url, full);
+                    if (data.status == 'success') {
+                    } else {
+                        throw new Error(data.status);
+                    }
+                } catch (e) {
+                    this.error = e;
+                }
+            },
+            async loadDictionarysPreviewLinks(){
+                axios
+                    .get(url )
+                    .then(response => {
+                        this.full = response.data;
+                    })
+                    .catch(function(e){
+                        this.error = e;
+                    });
+            },
+
+        },
+        // mounted: function() {
+        //     this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        // },
+        mounted() {
+          axios.get(url1).then(response => (this.cur = response.data));
+          axios.get(url2).then(response => (this.all = response.data));
+          axios.get(url3).then(response => (this.full = response.data));
+        },
+    });
+
+
+</script>
+</body>
+
+</body>
+
+
+</html>
+

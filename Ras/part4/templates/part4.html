@@ -43,7 +43,7 @@
 
         </select>
 
-        <span>Tnr = ${ currentDictionary.line_selected }
+<!--        <span> Tnr = ${currentDictionary.line_selected }-->
 <!--          <span> line_selected = ${results[1].line_selected} </span>-->
         </span>
 
@@ -66,7 +66,7 @@
           </option>
 
         </select>
-        <span>Tsau = ${ currentDictionary.canal_selected } </span>
+<!--        <span>Tsau = ${ currentDictionary.canal_selected } </span>-->
 <!--        canal_selected = ${results[1].canal_selected}-->
 
       </div>
@@ -84,7 +84,7 @@
             <input class="form-control"
                    id = "number_val"
                    v-model="currentDictionary.number_val" placeholder="введите значение">
-            <p> Ktc: ${ currentDictionary.number_val } </p>
+<!--            <p> Ktc: ${ currentDictionary.number_val } </p>-->
           </form>
       </div>
     </div>
@@ -175,7 +175,7 @@
         },
         async loadDictionarysPreviewLinks(){
           axios
-                  .get(url )
+                  .get(url)
                   .then(response => {
                     this.cur = response.data;
                   })

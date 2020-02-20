@@ -37,8 +37,8 @@
 
                 </select>
 
-                <span>место : ${ Dictionary2.mestnost_selected }
-                </span>
+<!--                <span>место : ${ Dictionary2.mestnost_selected }-->
+<!--                </span>-->
 
             </div>
         </div>
@@ -54,7 +54,7 @@
                 <form role="form">
                     <input class="form-control"
                            id = "temp_val" v-model="Dictionary2.temp_val" placeholder="введите значение">
-                    <p> температура: ${ Dictionary2.temp_val } </p>
+<!--                    <p> температура: ${ Dictionary2.temp_val } </p>-->
                 </form>
             </div>
         </div>
@@ -70,7 +70,7 @@
                 <form role="form">
                 <input class="form-control"
                        id = "snow_val" v-model="Dictionary2.snow_val" placeholder="введите значение">
-                <p> значение снега: ${ Dictionary2.snow_val } </p>
+<!--                <p> значение снега: ${ Dictionary2.snow_val } </p>-->
                 </form>
             </div>
         </div>
@@ -89,23 +89,21 @@
                 <input class="form-control"
                        id = "wind_val"
                        v-model="Dictionary2.wind_val" placeholder="введите значение">
-                <p> значение ветра: ${ Dictionary2.wind_val } </p>
+<!--                <p> значение ветра: ${ Dictionary2.wind_val } </p>-->
                 </form>
 
             </div>
         </div>
     </div>
 
-    <ul >
-        <li v-for="(all, index, id) in Dictionary2">
-            all = ${all}
-            index = ${index}
-            id = ${id}
-        </li>
-    </ul>
+<!--    <ul >-->
+<!--        <li v-for="(all, index, id) in Dictionary2">-->
+<!--            all = ${all}-->
+<!--            index = ${index}-->
+<!--            id = ${id}-->
+<!--        </li>-->
+<!--    </ul>-->
 
-
-    Dictionary2  = ${Dictionary2}
     <!-- Кнопки "Назад" и "Далее" -->
     <div class="container text-right">
         <a href="/mainmenu/part4" class="btn btn-danger">Назад</a>

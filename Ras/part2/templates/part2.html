@@ -1,0 +1,32 @@
+{% extends 'mainframe.html' %}
+
+{% block content %}
+
+
+<div id="part2" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<div class="container text-center">
+    <div class="container text-left">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Количество вскрытых противником элементов (модулей) в составе УС (ПУ): </h2>
+            </div>
+
+            <div class="col-lg-4">
+                <form role="form">
+                    <input class="form-control"
+                           id = "Nel" v-model="Dictionary1.Nel" placeholder="введите значение">
+                    <p> Nel = ${ Dictionary1.Nel } </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container text-right">
+        <a href="/mainmenu" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part2/page2" v-on:click="setPost(Dictionary1)">Далее</a>
+
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

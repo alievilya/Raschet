@@ -1,0 +1,61 @@
+{% extends 'mainframe.html' %}
+
+{% block content %}
+<h4 style="color: #634290" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+    xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">Nвскр.апп - количество вскрытых противником аппаратных (странций, КШМ, ШМ, АПЕ);
+    Nапп - общее количество аппаратных (станций, КШМ, ШМ, АПЕ), входящих в состав элеменета (модуля).</h4>
+
+
+<div id="part2_2">
+    <div class="container text-center">
+
+        Число элементов = ${Nel = res1[res1.length-1]["Nel"]}
+
+        <div v-for="N, id in Nel">
+
+            <div class="container text-left">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Элемент номер ${N} </h2>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <form role="form">
+                            <input class="form-control"
+                                   id = "Dictionary2.Nvskrap[id]" v-model="Dictionary2.Nvskrap" placeholder="введите значение">
+<!--                            <p> Nvskrap= ${ Nvskrap[N] = Dictionary2.Nvskrap, res2.push("Nvskrap")} </p>-->
+
+                        </form>
+                    </div>
+                    <div class="col-lg-2">
+                        <form role="form">
+                            <input class="form-control"
+                                   id = "Dictionary2.Napp[id]" v-model="Dictionary2.Napp" placeholder="введите значение">
+<!--                            <p> Napp = ${ Dictionary2.Napp } </p>-->
+
+                        </form>
+                    </div>
+                    <div class="col-lg-2">
+                        <a class="btn btn-success" v-on:click="setPost(Dictionary2, id)">Добавить</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="container text-right">
+            <a href="/mainmenu/part2" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part2/page3" v-on:click="setPost(Dictionary2)">Далее</a>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}
