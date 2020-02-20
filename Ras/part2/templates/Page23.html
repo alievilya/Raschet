@@ -9,12 +9,11 @@
 
 <ul>
 
-    Nel = ${ Nel = res1[res1.length-1]["Nel"] }
+    Число элементов = ${ Nel = res1[res1.length-1]["Nel"] }
     <div v-for="N, id in Nel">
 
-        P = ${P[id] = 1 - Math.exp((-1)*res2[res2.length-N]["Nvskrap"]/res2[res2.length-N]["Napp"])}
+        P${id}= ${P[id] = 1 - Math.exp((-1)*res2[res2.length-N]["Nvskrap"]/res2[res2.length-N]["Napp"])}
     </div>
-${P}
 
 <!--    Napp = ${ res2[Nel-1]["Napp"] }-->
 <!--    Nvskrap = ${ res2[Nel-1]["Nvskrap"] }-->
