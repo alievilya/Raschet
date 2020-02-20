@@ -22,48 +22,62 @@
                 xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"></script>
 
 
-<!--        len = ${ full.length },-->
-<!--        pop = ${cur.pop()},-->
-<!--        full = ${full.length}-->
 <h1 style="color: #812390">
     Выбранные параметры
 </h1>
+
         <ul>
             <li>
-                линия = ${ cur[cur.length-1]["line_selected"] }
+                линия = ${ Tnr = cur[cur.length-1]["line_selected"] }
             </li>
             <li>
-                канал = ${ cur[cur.length-1]["canal_selected"] }
+                канал = ${ Tsau = cur[cur.length-1]["canal_selected"] }
             </li>
             <li>
-                число = ${ cur[cur.length-1]["number_val"] }
+                число = ${ Ktc = cur[cur.length-1]["number_val"] }
             </li>
-        </ul> </p>
+            <li>
+                местность = ${ all[all.length-1]["mestnost_selected"] }
+            </li>
+            <li>
+                температура = ${ all[all.length-1]["temp_val"] }
+            </li>
+            <li>
+                кол-во снега = ${ all[all.length-1]["snow_val"] }
+            </li>
+            <li>
+                скорость ветра = ${ all[all.length-1]["snow_val"] }
+            </li>
+            <li>
+                станция = ${ full[full.length-1]["stanciya_selected"] }
+            </li>
+            <li>
+                время марша = ${ full[full.length-1]["marsh_val"] }
+            </li>
 
-        <ul >
-            <div v-if="id===0">
-            </div>
-            <div v-for="(al, index, id) in all[all.length-1]">
-                <li v-if="id!==0">
-                    ${index} = ${al}
-                </li>
-            </div>
-
-            <div v-for="(ful, index, id) in full[full.length-1]">
-                <li v-if="id!==0">
-                    ${index} = ${ful}
-                </li>
-            </div>
         </ul>
-<!--        <p> местность = ${ all[all.length-1]["mestnost_selected"] }</p>-->
-<!--        <p> температура = ${ all[all.length-1]["temp_val"] } </p>-->
-<!--        <p> кол-во снега = ${ all[all.length-1]["snow_val"] } </p>-->
-<!--        <p> скорость ветра = ${ all[all.length-1]["snow_val"] } </p>-->
-<!--        <p> станция = ${ full[full.length-1]["stanciya_selected"] }</p>-->
-<!--        <p> время марша = ${ full[full.length-1]["marsh_val"] } </p>-->
+
+
+        <!--        <ul >-->
+<!--            <div v-if="id===0">-->
+<!--            </div>-->
+<!--            <div v-for="(al, index, id) in all[all.length-1]">-->
+<!--                <li v-if="id!==0">-->
+<!--                    ${index} = ${al}-->
+<!--                </li>-->
+<!--            </div>-->
+
+<!--            <div v-for="(ful, index, id) in full[full.length-1]">-->
+<!--                <li v-if="id!==0">-->
+<!--                    ${index} = ${ful}-->
+<!--                </li>-->
+<!--            </div>-->
+<!--        </ul>-->
+
+
 
 <h2 style="color: #812390">
-    Результат
+    Результат = res1 = ${(Tnr + Tsau)*Ktc}
 </h2>
 
         <div class="text-center">
