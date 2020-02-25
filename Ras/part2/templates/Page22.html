@@ -11,7 +11,7 @@
 
         Число элементов = ${Nel = res1[res1.length-1]["Nel"]}
 
-        <div v-for="N, id in Nel">
+        <div v-for="N, i in Nel">
 
             <div class="container text-left">
                 <div class="row">
@@ -23,23 +23,31 @@
                         <form role="form">
                             <input class="form-control"
                                    id = "Dictionary2.Nvskrap[id]" v-model="Dictionary2.Nvskrap" placeholder="введите значение">
-<!--                            <p> Nvskrap= ${ Nvskrap[N] = Dictionary2.Nvskrap, res2.push("Nvskrap")} </p>-->
+                            <p> Nvskrap= ${ Nvskrap[id] = Dictionary2.Nvskrap} </p>
 
                         </form>
                     </div>
                     <div class="col-lg-2">
                         <form role="form">
                             <input class="form-control"
-                                   id = "Dictionary2.Napp[id]" v-model="Dictionary2.Napp" placeholder="введите значение">
+
+                                   id = "Napp" v-model="Dictionary2.Napp" placeholder="введите значение">
 <!--                            <p> Napp = ${ Dictionary2.Napp } </p>-->
 
                         </form>
+<!--                        dic = ${Dictionary2}-->
+
                     </div>
                     <div class="col-lg-2">
                         <a class="btn btn-primary" style="color: #ffffff" v-on:click="setPost(Dictionary2, id)">Добавить</a>
-                    </div>
+<!--                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="poppush(result, Dictionary2.Napp)">пушить</a>-->
 
+
+                    </div>
+<!--                    ${result[id]}-->
+<!--                    ${pushing(res2, )}-->
                 </div>
+                res 2 =${Dictionary2}
             </div>
 
 

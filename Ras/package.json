@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "vue-svg-charts": "^0.0.6"
+  }
+}

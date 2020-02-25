@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ee85f07-ebf9-41fa-bf28-f96f71cedd0b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part2/templates/Page23.html" beforeDir="false" afterPath="$PROJECT_DIR$/part2/templates/Page23.html" afterDir="false" />
-    </list>
+    <list default="true" id="1ee85f07-ebf9-41fa-bf28-f96f71cedd0b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,10 +14,8 @@
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
   <component name="ProjectId" id="1XnyqytFHlTef57Ua7FzCGDFzsF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -29,7 +24,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/part2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/css" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
@@ -37,22 +34,22 @@
       <recent name="X:\Prog\Web\RAS_MPA\Ras\part2\templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\static\css" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\start" />
       <recent name="X:\Prog\Web\RAS_MPA\Ras\part2" />
       <recent name="X:\Prog\Web\RAS_MPA\Ras\part3\templates" />
       <recent name="X:\Prog\Web\RAS_MPA\Ras\part3" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\static\css" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras" />
     </key>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+  <component name="RunDashboard">
+    <option name="ruleStates">
       <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
       </list>
     </option>
   </component>
@@ -73,7 +70,9 @@
       <workItem from="1582051230674" duration="3560000" />
       <workItem from="1582197644084" duration="26927000" />
       <workItem from="1582227691384" duration="466000" />
-      <workItem from="1582228601151" duration="238000" />
+      <workItem from="1582319547896" duration="9036000" />
+      <workItem from="1582328602978" duration="3113000" />
+      <workItem from="1582636612571" duration="722000" />
     </task>
     <servers />
   </component>
@@ -89,10 +88,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="449" y="148" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1582051055058" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1582228601112">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1582331718107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582228601112" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582331718107" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1582331718107">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1582331718107" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1582331718107">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1582331718107" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1582331718107">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1582331718107" />
+    <state x="277" y="55" key="SettingsEditor" timestamp="1582636832274">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582636832274" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1582636616497">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582636616497" />
     <state x="431" y="145" key="search.everywhere.popup" timestamp="1582216023300">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -17,5 +17,4 @@ class Part2_2ViewSet(viewsets.ModelViewSet):
     search_fields = ('part2_2_id', 'Nvskrap', 'Napp', 'res2')
 
 
-
-
+#
