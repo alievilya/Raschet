@@ -10,4 +10,3 @@ urlpatterns = [
     path('page2/', TemplateView.as_view(template_name='Page22.html')),
     path('page3/', TemplateView.as_view(template_name='Page23.html')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

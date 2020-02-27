@@ -1,0 +1,70 @@
+{% extends 'mainframe2.html' %}
+
+{% block content %}
+
+<div id = "part3_4" >
+    <h1 style="color: #812390">
+        Результаты расчёта коэффициентов живучести
+    </h1>
+
+    <ul>
+    <div v-show="!visible">
+        VsegoElements = ${VsegoElements = Out1[Out1.length-1]["Elements"]}
+        Smax = ${Smax = Out2[Out2.length-1]["Smax"]}
+
+    </div>
+        <div v-for="N, id in VsegoElements">
+            <div v-show="!visible">
+            Sci = ${Sci[id] = Out2[Out2.length-VsegoElements-1+N]["Sc"]}
+            <div v-if="Smax < Sci[id]">
+                Pporazh${id} = ${Pporazh[id] = Smax/Sci[id]}
+            </div>
+            <div v-else>
+                Pporazh${id} = ${Pporazh[id] = 1}
+            </div>
+
+            Pvskrel${id} = ${Pvskrel[id] = 1 - Math.exp((-1)*Out3[Out3.length-VsegoElements-1+N]["Nvapp"]/Out3[Out3.length-VsegoElements-1+N]["Nap"])}
+            Pdost${id} = ${Pdost[id] = (1- Out3[Out3.length-VsegoElements-1+N]["Peffpvo"])*(1 - Out3[Out3.length-VsegoElements-1+N]["Peffreb"])}
+
+            Pzhivel${id} = ${Pzhivel[id] = 1 - (Pvskrel[id]*Pporazh[id]*Pdost[id])}
+
+
+            ${Pfixed[id] = Math.floor(Pzhivel[id] * 1000) / 1000 }
+            ${ind[id] = id+1}
+            ${ann[id] = 'Эл-т №'+ (id+1).toFixed(0) + ': P=' + Pfixed[id]}
+            </div>
+
+            <li>для ${id+1}-го узла связи = ${Pfixed[id]}
+            </li>
+        </div>
+
+
+    </ul>
+    <div v-if="VsegoElements == 1 || VsegoElements == 21 || VsegoElements == 31 || VsegoElements == 41">
+        <h1 style="color: #812390">
+            Гистограмма распределения для ${VsegoElements}-го элемента
+        </h1>
+    </div>
+    <div v-else>
+        <h1 style="color: #812390">
+            Гистограмма распределения для ${VsegoElements}-х элементов
+        </h1>
+    </div>
+
+    <graph-bar
+            :width="700"
+            :height="380"
+            :axis-min="0"
+            :axis-max="1"
+            :labels="ann"
+            :values="Pfixed">
+        <!--        <note :text="'Результат гистограмм'"></note>-->
+        <!--        <tooltip :names="ann" :position="'left'"></tooltip>-->
+        <!--        <legends :names="ann" :filter="true"></legends>-->
+    </graph-bar>
+    <div class="text-center">
+        <a href="/mainmenu" class="btn btn-primary">Главное меню</a>
+    </div>
+</div>
+
+{% endblock %}

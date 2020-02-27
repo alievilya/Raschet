@@ -3,27 +3,48 @@
 {% block content %}
 
 <div id = "part2_3" >
-<h1 style="color: #812390">
-    Результат
-</h1>
+
+
 
 <ul>
-    ${res2}
+    <div v-show="visible">
     Число элементов = ${ Nel = res1[res1.length-1]["Nel"] }
+
     <div v-for="N, id in Nel">
 
-        P${id}= ${P[id] = 1 - Math.exp((-1)*res2[res2.length-N]["Nvskrap"]/res2[res2.length-N]["Napp"])}
+        P${id}= ${P[id] = 1 - Math.exp((-1)*res2[res2.length-Nel-1+N]["Nvskrap"]/res2[res2.length-Nel-1+N]["Napp"])}
+        ${Pfixed[id] = Math.floor(P[id] * 1000) / 1000 }
+        ${ind[id] = id+1}
+        ${ann[id] = 'Эл-т №'+ id.toFixed(0)}
 
     </div>
-    ${P }
 
-
-<!--    <bar-graph :points="P"/>-->
-
+    </div>
 
 
 </ul>
-
+    <h1 style="color: #812390">
+        Гистограмма распределения для ${Nel} элементов
+    </h1>
+    <graph-bar
+            :width="700"
+            :height="400"
+            :axis-min="0"
+            :axis-max="1"
+            :labels="ann"
+            :values="Pfixed">
+<!--        <note :text="'Результат гистограмм'"></note>-->
+<!--        <tooltip :names="ann" :position="'left'"></tooltip>-->
+<!--        <legends :names="ann" :filter="true"></legends>-->
+    </graph-bar>
+    <div class="text-center">
+        <a href="/mainmenu" class="btn btn-primary">Главное меню</a>
+    </div>
 </div>
+
+
+<!--<div id="diagram">-->
+<!--    <div id="chart" ref="barchart"></div>-->
+<!--</div>-->
 
 {% endblock %}

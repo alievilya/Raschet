@@ -1,14 +1,32 @@
-{% extends 'mainframe.html' %}
+{% extends 'mainframe2.html' %}
 
 {% block content %}
-<div id="part3">
-Страница находится в разработке...
 
-    ${message}
-<div class="container text-right">
-    <a href="/mainmenu" class="btn btn-danger">Назад</a>
-    <!--    <a href="/mainmenu/part2/page22" class="btn btn-success">Далее</a>-->
-</div>
+
+<div id="part3" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <div class="container text-center">
+        <div class="container text-left">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Введите количество элементов, входящих в состав УС (ПУ): </h2>
+                </div>
+
+                <div class="col-lg-4">
+                    <form role="form">
+                        <input class="form-control"
+                               id = "Elements" v-model="Dictionary1.Elements" placeholder="введите значение">
+                        <p> Elements = ${ Dictionary1.Elements } </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container text-right">
+            <a href="/mainmenu" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part3/page2" v-on:click="setPost(Dictionary1)">Далее</a>
+
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

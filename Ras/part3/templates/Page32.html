@@ -1,0 +1,77 @@
+{% extends 'mainframe2.html' %}
+
+{% block content %}
+<h4 style="color: #634290" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+    xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">Sц - площадь цели;
+    Smax - максимальная площадь поражения боеприпасами.</h4>
+
+
+<div id="part3_2">
+    <div class="container text-center">
+
+        Число элементов = ${Elements = Out1[Out1.length-1]["Elements"]}
+
+        <div v-for="N, i in Elements">
+
+            <div class="container text-left">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Элемент номер ${N} </h2>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <form role="form">
+                            <input class="form-control"
+                                   id = "Dictionary2.Sc[id]" v-model="Dictionary2.Sc" placeholder="введите значение">
+                            <p> Sc= ${ Sc[id] = Dictionary2.Sc} </p>
+
+                        </form>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="setPost(Dictionary2, id)">Добавить</a>
+                        <!--                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="poppush(result, Dictionary2.Napp)">пушить</a>-->
+
+
+                    </div>
+                    <!--                    ${result[id]}-->
+                    <!--                    ${pushing(res2, )}-->
+                </div>
+                Out 2 =${Dictionary2}
+            </div>
+
+
+        </div>
+
+        <div class="container text-center">
+            <div class="container text-left">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Smax =</h2>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <form role="form">
+                            <input class="form-control"
+                                   id = "Smax" v-model="Dictionary2.Smax" placeholder="введите значение">
+                            <p> Smax = ${ Dictionary2.Smax } </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container text-right">
+            <a href="/mainmenu/part3" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part3/Page3" >Далее</a>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}

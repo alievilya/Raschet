@@ -124,8 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-#STATIC_ROOT = os.path.join(BASE_DIR, '.staticfiles')
-STATIC_ROOT = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = '/static/'
 
 # URL that handles the static files served from STATIC_ROOT.
 # Example: 'http://example.com/static/', 'http://static.example.com/'
@@ -134,5 +134,5 @@ STATIC_URL = '/static/'
 
 # A list of locations of additional static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "staticfiles"),
 ]

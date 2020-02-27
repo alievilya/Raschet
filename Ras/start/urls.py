@@ -1,4 +1,6 @@
 from django.urls import path, include
+from django.shortcuts import render
+
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
