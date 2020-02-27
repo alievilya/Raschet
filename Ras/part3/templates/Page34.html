@@ -3,9 +3,9 @@
 {% block content %}
 
 <div id = "part3_4" >
-    <h1 style="color: #812390">
+    <h3 style="color: #812390">
         Результаты расчёта коэффициентов живучести
-    </h1>
+    </h3>
 
     <ul>
     <div v-show="!visible">
@@ -46,14 +46,13 @@
         </h1>
     </div>
     <div v-else>
-        <h1 style="color: #812390">
+        <h3 style="color: #812390">
             Гистограмма распределения для ${VsegoElements}-х элементов
-        </h1>
+        </h3>
     </div>
-
     <graph-bar
-            :width="700"
-            :height="380"
+            :width="800"
+            :height="400"
             :axis-min="0"
             :axis-max="1"
             :labels="ann"

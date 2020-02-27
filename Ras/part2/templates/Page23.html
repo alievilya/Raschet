@@ -9,25 +9,40 @@
 <ul>
     <div v-show="visible">
     Число элементов = ${ Nel = res1[res1.length-1]["Nel"] }
-
+    </div>
+    <h3 style="color: #812390">
+        Результаты расчёта коэффициентов разведзащищённости
+    </h3>
     <div v-for="N, id in Nel">
+        <div v-show="visible">
 
         P${id}= ${P[id] = 1 - Math.exp((-1)*res2[res2.length-Nel-1+N]["Nvskrap"]/res2[res2.length-Nel-1+N]["Napp"])}
         ${Pfixed[id] = Math.floor(P[id] * 1000) / 1000 }
         ${ind[id] = id+1}
-        ${ann[id] = 'Эл-т №'+ id.toFixed(0)}
+        ${ann[id] = 'Эл-т №'+ (id+1).toFixed(0) +': P=' + Pfixed[id]}
 
+        </div>
+
+        <li>для ${id+1}-го узла связи = ${Pfixed[id]}
+        </li>
     </div>
 
-    </div>
+
 
 
 </ul>
-    <h1 style="color: #812390">
-        Гистограмма распределения для ${Nel} элементов
-    </h1>
+    <div v-if="Nel == 1 || Nel == 21 || Nel == 31 || Nel == 41">
+        <h3 style="color: #812390">
+            Гистограмма распределения для ${Nel}-го элемента
+        </h3>
+    </div>
+    <div v-else>
+        <h3 style="color: #812390">
+            Гистограмма распределения для ${Nel}-х элементов
+        </h3>
+    </div>
     <graph-bar
-            :width="700"
+            :width="800"
             :height="400"
             :axis-min="0"
             :axis-max="1"
