@@ -19,9 +19,9 @@
     </h1>
     <div class="container text-left">
     </div>
-    <div id="Page1BezSostav">
+    <div id="Page1RazCoupleSostav">
         <div class="container text-left">
-<!--            Kir = ${BezRazdelKir[BezRazdelKir.length-1].Kir}-->
+            Kir = ${cs2Kir[cs2Kir.length-1].Kir}
         </div>
 
     </div>
@@ -38,23 +38,23 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
-    const url_br = "http://127.0.0.1:8000/api/page1_br/";
-    const url_bs = "http://127.0.0.1:8000/api/page1_bs/";
+    const url_cw1 = "http://127.0.0.1:8000/api/page1_cw1/";
+    const url_cw2 = "http://127.0.0.1:8000/api/page1_cw2/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
-        el: '#Page1BezSostav',
+        el: '#Page1RazCoupleSostav',
         delimiters: ['${','}'],
         data : {
             Raschet: '',
             Kir: 0,
-            BezRazdelKir:{},
+            cs2Kir:{},
             visible: false,
         },
         methods: {
             async setPost(cur) {
                 try {
-                    let data = await axios.post(url_bs, cur);
+                    let data = await axios.post(url_cw2, cur);
                     if (data.status == 'success') {
                     } else {
                         throw new Error(data.status);
@@ -65,9 +65,9 @@
             },
             async loadDictionarysPreviewLinks(){
                 axios
-                    .get(url_br)
+                    .get(url_cw2)
                     .then(response => {
-                        this.BezRazdelKir = response.data;
+                        this.cs2Kir = response.data;
                     })
                     .catch(function(e){
                         this.error = e;
