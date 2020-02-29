@@ -43,9 +43,6 @@
 
         </select>
 
-<!--        <span> Tnr = ${currentDictionary.line_selected }-->
-<!--          <span> line_selected = ${results[1].line_selected} </span>-->
-        </span>
 
       </div>
     </div>
@@ -188,51 +185,9 @@
       mounted: function() {
         this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
       },
-      // mounted() {
-      //   axios.get(url).then(response => (this.cur = response.data));
-      // },
-
-
-
 
   });
 
-    // const app = new Vue({
-    //   el: "#app",
-    //   data: {
-    //     editFriend: null,
-    //     friends: [],
-    //   },
-    //   methods: {
-    //     deleteFriend(id, i) {
-    //       fetch("http://127.0.0.1:8000/api/part4/" + id, {
-    //         method: "DELETE"
-    //       })
-    //               .then(() => {
-    //                 this.friends.splice(i, 1);
-    //               })
-    //     },
-    //     updateFriend(friend) {
-    //       fetch("http://127.0.0.1:8000/api/part4/" + friend.id, {
-    //         body: JSON.stringify(friend),
-    //         method: "PUT",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //       })
-    //               .then(() => {
-    //                 this.editFriend = null;
-    //               })
-    //     }
-    //   },
-    //   mounted() {
-    //     fetch("http://127.0.0.1:8000/api/part4/")
-    //             .then(response => response.json())
-    //             .then((data) => {
-    //               this.friends = data;
-    //             })
-    //   },
-    // });
 
 </script>
 </body>

@@ -1,13 +1,15 @@
-# -*- coding: utf-8 -*-
-# @Author: shubhambansal
-# @Date:   2018-02-04 23:08:11
-# @Last Modified by:   shubhambansal
-# @Last Modified time: 2018-02-04 23:25:39
+
 from rest_framework import routers
+from part1.viewsets import Part1ViewSet, Part1_2ViewSet, Part1_3ViewSet
+from part2.viewsets import Part2ViewSet, Part2_2ViewSet
 from part3.viewsets import Part3ViewSet, Part3_2ViewSet, Part3_3ViewSet
 from part4.viewsets import Part4ViewSet, Part4_2ViewSet, Part4_3ViewSet
-from part2.viewsets import Part2ViewSet, Part2_2ViewSet
+
 router = routers.DefaultRouter()
+
+router.register(r'part1_Page1', Part1ViewSet)
+router.register(r'part1_2', Part1_2ViewSet)
+router.register(r'part1_3', Part1_3ViewSet)
 
 router.register(r'part2', Part2ViewSet)
 router.register(r'part2_2', Part2_2ViewSet)

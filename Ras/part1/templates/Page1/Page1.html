@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Расчёт времени на развёртывание много интервальной радиолинейной линии связи</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!--  <script src="Page1.js"></script>-->
+</head>
+<body style="background-color: forestgreen">
+<div class="container text-center" style="background-color: white; margin-top:7% ">
+
+    <h1 style="color:#812390">
+        Расчет времени выполнения задач полевым узлом связи
+    </h1>
+    <div class="container text-left">
+    <h5 style="color:#676968">
+        Выберите действие
+    </h5>
+    </div>
+<div id="Page1">
+    <div class="container text-left">
+    <input type="radio" id="Rastrue" value=1 v-model="Raschet">
+    <label for="Rastrue">
+        <h3 style="color: #0c5460">
+            Расчет выполнения задач полевым узлом связи
+        </h3>
+    </label>
+        <div v-show="Raschet==1">
+            <div class="container text-left" style="background-color:rgba(253,241,239,0.73); margin-top:1%; margin-left:2.5%">
+                <h5 style="color:#676968">
+                    Вариант структуры узла связи
+                </h5>
+                <input type="radio" id="BezRazdel" value=0 v-model="ifRazdel">
+                <label for="BezRazdel">
+                    <h3 style="color: #0c5460">
+                    Без разделения на мобильную и основную части
+                    </h3>
+                </label>
+                <br>
+                <input type="radio" id="WithRazdel" value=1 v-model="ifRazdel">
+                <label for="WithRazdel">
+                    <h3 style="color: #0c5460">
+                    С разделением на мобильную и основную части
+                    </h3>
+                </label>
+                <br>
+                <input type="radio" id="NumRazdel" value=2 v-model="ifRazdel">
+                <label for="NumRazdel">
+                    <h3 style="color: #0c5460">
+                        Несколько частей
+                    </h3>
+                </label>
+                <div v-if="ifRazdel==2">
+                    <div class="container text-left" style="margin-top:1%; margin-left:2.5%">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2 style="color: rgba(36,33,203,0.78)">Введите количество </h2>
+                        </div>
+                        <div class="stepper stepper--style-2 js-spinner">
+
+                            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                               id = "NumChastey" v-model="Dictionary.NumChastey" placeholder="введите значение">
+                            <p> NumChastey: ${ Dictionary.NumChastey } </p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
+    <input type="radio" id="Rasfalse" value=2 v-model="Raschet">
+    <label for="Rasfalse">
+        <h3 style="color: #0c5460">
+        Изменение базы данных структуры аппаратных
+        </h3>
+    </label>
+    <br>
+
+    <span>Выбрано: ${ Raschet }</span>
+
+    </div>
+    <div v-if="Raschet==1 && ifRazdel==0" class="container text-right" style="margin-bottom:1%">
+        <a href="/mainmenu/part1" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1BezRazdel/" >Далее</a>
+    </div>
+    <div v-else-if="Raschet==1 && ifRazdel==1" class="container text-right" style="margin-bottom:1%">
+        <a href="/mainmenu/part1" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/" >Далее</a>
+    </div>
+    <div v-else-if="Raschet==1 && ifRazdel==2" class="container text-right" style="margin-bottom:1%">
+        <a href="/mainmenu/part1" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1Lots/" v-on:click="setPost(Dictionary)">Далее</a>
+    </div>
+    <div v-else-if="Raschet==2 " class="container text-right" style="margin-bottom:1%">
+        <a href="/mainmenu/part1" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1ChangeBD/" >Далее</a>
+    </div>
+    <div v-else class="container text-right" style="margin-bottom:1%">
+        <a href="/mainmenu/part1" class="btn btn-danger">Назад</a>
+    </div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="js/stepper.min.js"></script>
+<!-- vue.js files -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script type="text/javascript">
+
+    const url = "http://127.0.0.1:8000/api/part1_Page1/"
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+
+    new Vue({
+        el: '#Page1',
+        delimiters: ['${','}'],
+        data : {
+            Raschet: '',
+            ifRazdel: '',
+            NumChastey:'',
+            Dictionary: {},
+            cur:[],
+        },
+        methods: {
+            async setPost(cur) {
+                try {
+                    let data = await axios.post(url, cur);
+
+                    if (data.status == 'success') {
+
+                    } else {
+                        throw new Error(data.status);
+                    }
+
+                } catch (e) {
+                    this.error = e;
+                }
+            },
+            async loadDictionarysPreviewLinks(){
+                axios
+                    .get(url)
+                    .then(response => {
+                        this.cur = response.data;
+                    })
+                    .catch(function(e){
+                        this.error = e;
+                    });
+            },
+
+        },
+        mounted: function() {
+            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        },
+
+    });
+
+
+</script>
+</body>
+
+
+</html>
+

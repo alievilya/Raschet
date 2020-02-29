@@ -14,6 +14,11 @@ apexcharts@^3.15.6:
     svg.resize.js "^1.4.3"
     svg.select.js "^2.1.2"
 
+jquery@^3.1.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
 juijs-chart@2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/juijs-chart/-/juijs-chart-2.6.9.tgz#9f5e4759ee0c12101765c0b1af6870360e8116b5"
@@ -25,6 +30,13 @@ juijs-graph@1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/juijs-graph/-/juijs-graph-1.1.4.tgz#36931cc0f79c406a08e5db9f1ff81de7bc4f26eb"
   integrity sha512-97LnBbwTrqbKBi2nS4nfvsHXKAArwcVxmGHkoXx9X7GT1uGXdRONmdLhjYc87UkWWQr5p91sSWlwA0qXvQg7/Q==
+
+stepper.js@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/stepper.js/-/stepper.js-1.0.4.tgz#3e34caa3bffce1ba3d76333d97e65e65dbe7e533"
+  integrity sha1-PjTKo7/84bo9djM9l+ZeZdvn5TM=
+  dependencies:
+    jquery "^3.1.1"
 
 svg.draggable.js@^2.2.2:
   version "2.2.2"

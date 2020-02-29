@@ -2,10 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ee85f07-ebf9-41fa-bf28-f96f71cedd0b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/part1/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1BezRazdel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1ChangeBD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1Lots.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1Razdel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page12.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page13.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page14.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/mainframe1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/part1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/viewsets.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part2/templates/Page23.html" beforeDir="false" afterPath="$PROJECT_DIR$/part2/templates/Page23.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part2/templates/mainframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/part2/templates/mainframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part3/templates/Page34.html" beforeDir="false" afterPath="$PROJECT_DIR$/part3/templates/Page34.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ras/routers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ras/routers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ras/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ras/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainmenu/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainmenu/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.yarn-integrity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0002_article.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0003_auto_20200214_1932.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0004_auto_20200227_1606.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0005_auto_20200227_1620.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0006_part3_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part3/migrations/0007_part3_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part4/templates/part4.html" beforeDir="false" afterPath="$PROJECT_DIR$/part4/templates/part4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +56,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1XnyqytFHlTef57Ua7FzCGDFzsF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -32,7 +67,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/part1/templates/Page1" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -44,18 +79,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aliev\Documents\GitHub\Raschet\Ras\part1\templates\Page1" />
+      <recent name="C:\Users\aliev\Documents\GitHub\Raschet\Ras\part1\templates" />
+      <recent name="C:\Users\aliev\Documents\GitHub\Raschet\Ras" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras" />
+      <recent name="X:\Prog\Web\RAS_MPA\Ras\mainmenu" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aliev\Documents\GitHub\Raschet\Ras\part1\templates\Page1" />
+      <recent name="C:\Users\aliev\Documents\GitHub\Raschet\Ras\part1\templates" />
       <recent name="X:\Prog\Web\RAS_MPA\Ras\Ras" />
       <recent name="X:\Prog\Web\RAS_MPA\Ras\part2\templates" />
       <recent name="X:\Prog\Web\RAS_MPA\Ras\static\js" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\static" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="X:\Prog\Web\RAS_MPA\Ras" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\mainmenu" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\part2\templates" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\part2\templates\js" />
-      <recent name="X:\Prog\Web\RAS_MPA\Ras\Ras" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -82,6 +118,7 @@
       <workItem from="1582807032564" duration="8939000" />
       <workItem from="1582816059839" duration="21558000" />
       <workItem from="1582841418483" duration="788000" />
+      <workItem from="1582925304925" duration="12412000" />
     </task>
     <servers />
   </component>
@@ -121,10 +158,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582655019383" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1582841418316">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1582925355262">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582841418316" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582925355262" />
     <state x="431" y="145" key="search.everywhere.popup" timestamp="1582216023300">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
