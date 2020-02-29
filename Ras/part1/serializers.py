@@ -29,7 +29,7 @@ class Page1CoupleWays1Serializer(serializers.ModelSerializer):
 
 class Page1CoupleWays2Serializer(serializers.ModelSerializer):
     class Meta:
-        model = Page1BezRazdel
+        model = Page1CoupleWays2
         fields = '__all__'
 
 class Part1_3Serializer(serializers.ModelSerializer):
