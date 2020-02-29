@@ -12,7 +12,7 @@
 </head>
 <body style="background-color: forestgreen">
 
-<div id ="Page1BezRazdel">
+<div id ="Page1OneWay2">
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
@@ -133,7 +133,6 @@
         </div>
         <p> Kir3= ${ Kir3 = Math.floor(TgZasUps.Kir * 1000) / 1000  } </p>
     </div>
-
     <div class="row">
         <div class="col-lg-6">
             <h2 style="color: rgba(36,33,203,0.78)">Аб. устройства АТС-Р + ТЛФ ЗАС</h2>
@@ -289,13 +288,13 @@
 
 <!--    mul = ${mul = [Kir1, Kir2, Kir3].reduce((a,b)=>a*b) }-->
     <div v-show="visible">
-    ${BezRazdelKir.Kir = [Kir1, Kir2, Kir3, Kir4, Kir5, Kir6, Kir7].reduce((a,b)=>a+b) }
+    ${OneWay2Kir.Kir = [Kir1, Kir2, Kir3, Kir4, Kir5, Kir6, Kir7].reduce((a,b)=>a+b) }
     </div>
-    Коэффициент использования ресурса Kir = ${BezRazdelKir.Kir  = Math.floor(BezRazdelKir.Kir * 1000) / 1000 }
+    Коэффициент использования ресурса Kir = ${OneWay2Kir.Kir  = Math.floor(OneWay2Kir.Kir * 1000) / 1000 }
 </div>
     <div class="container text-right" style="margin-bottom:1%">
-        <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
-        <a class="btn btn-success" href="/mainmenu/part1/Page1BezSostav/" v-on:click="setPost(BezRazdelKir)">Далее</a>
+        <a href="/mainmenu/part1/Page1OneWay1/" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1RazOneSostav/" v-on:click="setPost(OneWay2Kir)">Далее</a>
     </div>
 </div>
 
@@ -316,11 +315,11 @@
 </html>
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/page1_br/"
+    const url = "http://127.0.0.1:8000/api/page1_ow2/"
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
-        el: '#Page1BezRazdel',
+        el: '#Page1OneWay2',
         delimiters: ['${','}'],
         data : {
             Raschet: '',
@@ -336,7 +335,7 @@
             Arm: {Kbi: 0.2, value: 0, Kirj: 0, Kir: 0 },
             TlgZas: {Kbi: 0.1, value: 0, Kirj: 0, Kir: 0 },
             Kir: 0,
-            BezRazdelKir:{},
+            OneWay2Kir:{},
             visible: false,
         },
         methods: {

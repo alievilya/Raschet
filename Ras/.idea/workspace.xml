@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ee85f07-ebf9-41fa-bf28-f96f71cedd0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1BezSostav.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/part2/templates/tmp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1CoupleWays1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1CoupleWays2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1OneWay1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1OneWay2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1RazCoupleSostav.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1RazOneSostav.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ras/routers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ras/routers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part1/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1/admin.py" afterDir="false" />
@@ -11,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/part1/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part1/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Page1BezRazdel.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1BezRazdel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Page1Razdel.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Page1Razdel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/part1/viewsets.py" beforeDir="false" afterPath="$PROJECT_DIR$/part1/viewsets.py" afterDir="false" />
     </list>
@@ -95,7 +100,7 @@
       <workItem from="1582816059839" duration="21558000" />
       <workItem from="1582841418483" duration="788000" />
       <workItem from="1582925304925" duration="12412000" />
-      <workItem from="1582980221411" duration="9100000" />
+      <workItem from="1582980221411" duration="15235000" />
     </task>
     <servers />
   </component>

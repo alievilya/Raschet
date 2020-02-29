@@ -2,7 +2,7 @@
 <html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Расчет времени выполнения задач узлом связи (выполнение требований по мобильности узла связи)</title>
+    <title>Расчет времени выполнения задач узлом связи (выполнение требований по мобильности узла связи) </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
@@ -12,7 +12,7 @@
 </head>
 <body style="background-color: forestgreen">
 
-<div id ="Page1BezRazdel">
+<div id ="Page1CoupleWays2">
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
@@ -289,13 +289,13 @@
 
 <!--    mul = ${mul = [Kir1, Kir2, Kir3].reduce((a,b)=>a*b) }-->
     <div v-show="visible">
-    ${BezRazdelKir.Kir = [Kir1, Kir2, Kir3, Kir4, Kir5, Kir6, Kir7].reduce((a,b)=>a+b) }
+    ${CoupleWays2Kir.Kir = [Kir1, Kir2, Kir3, Kir4, Kir5, Kir6, Kir7].reduce((a,b)=>a+b) }
     </div>
-    Коэффициент использования ресурса Kir = ${BezRazdelKir.Kir  = Math.floor(BezRazdelKir.Kir * 1000) / 1000 }
+    Коэффициент использования ресурса Kir = ${CoupleWays2Kir.Kir  = Math.floor(CoupleWays2Kir.Kir * 1000) / 1000 }
 </div>
     <div class="container text-right" style="margin-bottom:1%">
-        <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
-        <a class="btn btn-success" href="/mainmenu/part1/Page1BezSostav/" v-on:click="setPost(BezRazdelKir)">Далее</a>
+        <a href="/mainmenu/part1/Page1CoupleWays1/" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1CoupleWays2/" v-on:click="setPost(CoupleWays2Kir)">Далее</a>
     </div>
 </div>
 
@@ -316,11 +316,11 @@
 </html>
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/page1_br/"
+    const url = "http://127.0.0.1:8000/api/page1_cw2/"
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
-        el: '#Page1BezRazdel',
+        el: '#Page1CoupleWays2',
         delimiters: ['${','}'],
         data : {
             Raschet: '',
@@ -336,7 +336,7 @@
             Arm: {Kbi: 0.2, value: 0, Kirj: 0, Kir: 0 },
             TlgZas: {Kbi: 0.1, value: 0, Kirj: 0, Kir: 0 },
             Kir: 0,
-            BezRazdelKir:{},
+            CoupleWays2Kir:{},
             visible: false,
         },
         methods: {

@@ -12,6 +12,25 @@ class Page1BezRazdel(models.Model):
     Kir = models.FloatField(default = 0)
     BezRazdelKir = {"Page1BezRazdel_id": Page1BezRazdel_id, "Kir": Kir }
 
+class Page1OneWay1(models.Model):
+    Page1OneWay1_id = models.AutoField(primary_key=True)
+    Kir = models.FloatField(default = 0)
+    OneWay1Kir = {"Page1OneWay1_id": Page1OneWay1_id, "Kir": Kir }
+class Page1OneWay2(models.Model):
+    Page1OneWay2_id = models.AutoField(primary_key=True)
+    Kir = models.FloatField(default = 0)
+    OneWay2Kir = {"Page1OneWay2_id": Page1OneWay2_id, "Kir": Kir }
+
+class Page1CoupleWays1(models.Model):
+    Page1CoupleWays1_id = models.AutoField(primary_key=True)
+    Kir = models.FloatField(default = 0)
+    CoupleWays1Kir = {"Page1CoupleWays1_id": Page1CoupleWays1_id, "Kir": Kir }
+
+class Page1CoupleWays2(models.Model):
+    Page1CoupleWays2_id = models.AutoField(primary_key=True)
+    Kir = models.FloatField(default = 0)
+    CoupleWays2Kir = {"Page1CoupleWays2_id": Page1CoupleWays2_id, "Kir": Kir }
+
 class Part1_3(models.Model):
     part1_3_id = models.AutoField(primary_key=True)
     Nvapp = models.FloatField(default = 1)

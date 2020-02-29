@@ -2,7 +2,7 @@
 <html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>С разделением на мобильную и основную части</title>
+    <title>Расчёт времени на развёртывание много интервальной радиолинейной линии связи</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
@@ -15,47 +15,15 @@
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Укажите вариант перемещения основной и мобильной части полевого УС:
+        Расчет времени выполнения задач полевым узлом связи
     </h1>
     <div class="container text-left">
-        <h5 style="color:#676968">
-            Мобильная и основная часть полевого узла связи пункта управления объединения могут перемещаться как по одному
-            маршруту, так и разными путями
-        </h5>
     </div>
-    <div id="Page1Razdel">
+    <div id="Page1BezSostav">
         <div class="container text-left">
-            <input type="radio" id="OneWay" value=1 v-model="OneWay">
-            <label for="OneWay">
-                <h3 style="color: #0c5460">
-                    Один путь совершения марша для УС
-                </h3>
-            </label>
-
-            <br>
-            <input type="radio" id="CoupleWays" value=2 v-model="OneWay">
-            <label for="CoupleWays">
-                <h3 style="color: #0c5460">
-                    Различные пути совершения марша для мобильной и основной частей УС
-                </h3>
-            </label>
-            <br>
-
-            <span>Выбрано: ${ OneWay }</span>
-
-        </div>
-        <div v-if="OneWay == 1" class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
-            <a class="btn btn-success" href="/mainmenu/part1/Page1OneWay1/" >Далее</a>
-        </div>
-        <div v-else-if="OneWay == 2" class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
-            <a class="btn btn-success" href="/mainmenu/part1/Page1CoupleWays1/" >Далее</a>
+            Kir = ${BezRazdelKir[BezRazdelKir.length-1].Kir}
         </div>
 
-        <div v-else class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
-        </div>
     </div>
 </div>
 
@@ -69,48 +37,42 @@
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-
 <script type="text/javascript">
-
-    const url = "http://127.0.0.1:8000/api/part1_Page1/"
+    const url_br = "http://127.0.0.1:8000/api/page1_br/";
+    const url_bs = "http://127.0.0.1:8000/api/page1_bs/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
-        el: '#Page1Razdel',
+        el: '#Page1BezSostav',
         delimiters: ['${','}'],
         data : {
-            OneWay: 0,
-            ifRazdel: '',
-            NumChastey:'',
-            Dictionary: {},
-            cur:[],
+            Raschet: '',
+            Kir: 0,
+            BezRazdelKir:{},
+            visible: false,
         },
         methods: {
             async setPost(cur) {
                 try {
-                    let data = await axios.post(url, cur);
-
+                    let data = await axios.post(url_bs, cur);
                     if (data.status == 'success') {
-
                     } else {
                         throw new Error(data.status);
                     }
-
                 } catch (e) {
                     this.error = e;
                 }
             },
             async loadDictionarysPreviewLinks(){
                 axios
-                    .get(url)
+                    .get(url_br)
                     .then(response => {
-                        this.cur = response.data;
+                        this.BezRazdelKir = response.data;
                     })
                     .catch(function(e){
                         this.error = e;
                     });
             },
-
         },
         mounted: function() {
             this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
@@ -118,10 +80,9 @@
 
     });
 
-
 </script>
+
 </body>
 
 
 </html>
-
