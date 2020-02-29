@@ -12,6 +12,295 @@
 </head>
 <body style="background-color: forestgreen">
 
+<div id ="Page1BezRazdel">
+<div class="container text-center" style="background-color: white; margin-top:7% ">
+
+    <h1 style="color:#812390">
+        Введите количество связей и количество абонентов полевого узла связи
+    </h1>
+
+<div class="container text-left" style="margin-top:1%; margin-left:2.5%">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">Количество ТФ ЗАС</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+
+            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                   id = "TfZas.value" v-model="TfZas.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+        <div v-if="TfZas.value<=0">
+            ${TfZas.Kirj = 0}
+        </div>
+        <div v-else-if="TfZas.value<=6 && TfZas.value>0">
+            ${TfZas.Kirj = 0.75}
+        </div>
+        <div v-else-if="TfZas.value<=12 && TfZas.value>6">
+            ${TfZas.Kirj = 0.7}
+        </div>
+        <div v-else-if="TfZas.value<=18 && TfZas.value>12">
+            ${TfZas.Kirj = 0.65}
+        </div>
+        <div v-else-if="TfZas.value<=24 && TfZas.value>18">
+            ${TfZas.Kirj = 0.45}
+        </div>
+        <div v-else-if="TfZas.value<=30 && TfZas.value>24">
+            ${TfZas.Kirj = 0.43}
+        </div>
+        <div v-else-if="TfZas.value<=36 && TfZas.value>30">
+            ${TfZas.Kirj = 0.4}
+        </div>
+        <div v-else-if="TfZas.value>36">
+            ${TfZas.Kirj = 0.38}
+        </div>
+        ${TfZas.Kir = TfZas.Kirj*TfZas.Kbi}
+        </div>
+        <p> Kir1= ${ Kir1 = Math.floor(TfZas.Kir * 1000) / 1000  } </p>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">Количество ТГ ЗАС ПД</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                   id = "TgZasPd.value" v-model="TgZasPd.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+            <div v-if="TgZasPd.value<=0">
+                ${TgZasPd.Kirj = 0}
+            </div>
+            <div v-else-if="TgZasPd.value<=5 && TgZasPd.value> 0">
+                ${TgZasPd.Kirj = 0.75}
+            </div>
+            <div v-else-if="TgZasPd.value<=10 && TgZasPd.value>5">
+                ${TgZasPd.Kirj = 0.7}
+            </div>
+            <div v-else-if="TgZasPd.value<=16 && TgZasPd.value>10">
+                ${TgZasPd.Kirj = 0.65}
+            </div>
+            <div v-else-if="TgZasPd.value<=20 && TgZasPd.value>16">
+                ${TgZasPd.Kirj = 0.45}
+            </div>
+            <div v-else-if="TgZasPd.value<=25 && TgZasPd.value>20">
+                ${TgZasPd.Kirj = 0.43}
+            </div>
+            <div v-else-if="TgZasPd.value<=30 && TgZasPd.value>25">
+                ${TgZasPd.Kirj = 0.4}
+            </div>
+            <div v-else-if="TgZasPd.value>30">
+                ${TgZasPd.Kirj = 0.38}
+            </div>
+            ${TgZasPd.Kir = TgZasPd.Kirj*TgZasPd.Kbi}
+        </div>
+        <p> Kir2= ${ Kir2 = Math.floor(TgZasPd.Kir * 1000) / 1000  } </p>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">Количество ТГ ЗАС УПС</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+
+            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                   id = "TgZasUps.value" v-model="TgZasUps.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+            <div v-if="TgZasUps.value<=0">
+                ${TgZasUps.Kirj = 0}
+            </div>
+            <div v-else-if="TgZasUps.value<=4 && TgZasUps.value>0">
+                ${TgZasUps.Kirj = 0.75}
+            </div>
+            <div v-else-if="TgZasUps.value<=6 && TgZasUps.value>4">
+                ${TgZasUps.Kirj = 0.7}
+            </div>
+            <div v-else-if="TgZasUps.value<=8 && TgZasUps.value>6">
+                ${TgZasUps.Kirj = 0.65}
+            </div>
+            <div v-else-if="TgZasUps.value<=9 && TgZasUps.value>8">
+                ${TgZasUps.Kirj = 0.45}
+            </div>
+            <div v-else-if="TgZasUps.value<=10 && TgZasUps.value>9">
+                ${TgZasUps.Kirj = 0.43}
+            </div>
+            <div v-else-if="TgZasUps.value<=11 && TgZasUps.value>10">
+                ${TgZasUps.Kirj = 0.4}
+            </div>
+            <div v-else-if="TgZasUps.value>11">
+                ${TgZasUps.Kirj = 0.38}
+            </div>
+            ${TgZasUps.Kir = TgZasUps.Kirj*TgZasUps.Kbi}
+        </div>
+        <p> Kir3= ${ Kir3 = Math.floor(TgZasUps.Kir * 1000) / 1000  } </p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">Аб. устройства АТС-Р + ТЛФ ЗАС</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                   id = "AtsR.value" v-model="AtsR.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+            <div v-if="AtsR.value<=0">
+                ${AtsR.Kirj = 0}
+            </div>
+            <div v-else-if="AtsR.value<=20 && AtsR.value> 0">
+                ${AtsR.Kirj = 0.75}
+            </div>
+            <div v-else-if="AtsR.value<=30 && AtsR.value>20">
+                ${AtsR.Kirj = 0.7}
+            </div>
+            <div v-else-if="AtsR.value<=40 && AtsR.value>30">
+                ${AtsR.Kirj = 0.65}
+            </div>
+            <div v-else-if="AtsR.value<=50 && AtsR.value>40">
+                ${AtsR.Kirj = 0.45}
+            </div>
+            <div v-else-if="AtsR.value<=60 && AtsR.value>50">
+                ${AtsR.Kirj = 0.43}
+            </div>
+            <div v-else-if="AtsR.value<=75 && AtsR.value>60">
+                ${AtsR.Kirj = 0.4}
+            </div>
+            <div v-else-if="AtsR.value>75">
+                ${AtsR.Kirj = 0.38}
+            </div>
+            ${AtsR.Kir = AtsR.Kirj*AtsR.Kbi}
+        </div>
+        <p> Kir4= ${ Kir4 = Math.floor(AtsR.Kir * 1000) / 1000  } </p>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">Аб. устройства АТС-О</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+            <input autofocus type="number" min="0" max="250" step="1" value="0" class="stepper__input"
+                   id = "AtsO.value" v-model="AtsO.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+            <div v-if="AtsO.value<=0">
+                ${AtsO.Kirj = 0}
+            </div>
+            <div v-else-if="AtsO.value<=20 && AtsO.value> 0">
+                ${AtsO.Kirj = 0.75}
+            </div>
+            <div v-else-if="AtsO.value<=30 && AtsO.value>20">
+                ${AtsO.Kirj = 0.7}
+            </div>
+            <div v-else-if="AtsO.value<=40 && AtsO.value>30">
+                ${AtsO.Kirj = 0.65}
+            </div>
+            <div v-else-if="AtsO.value<=80 && AtsO.value>40">
+                ${AtsO.Kirj = 0.45}
+            </div>
+            <div v-else-if="AtsO.value<=100 && AtsO.value>80">
+                ${AtsO.Kirj = 0.43}
+            </div>
+            <div v-else-if="AtsO.value<=150 && AtsO.value>100">
+                ${AtsO.Kirj = 0.4}
+            </div>
+            <div v-else-if="AtsO.value>150">
+                ${AtsO.Kirj = 0.38}
+            </div>
+            ${AtsO.Kir = AtsO.Kirj*AtsO.Kbi}
+        </div>
+        <p> Kir5= ${ Kir5 = Math.floor(AtsO.Kir * 1000) / 1000  } </p>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">ЗВКС (АРМ)</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                   id = "Arm.value" v-model="Arm.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+            <div v-if="Arm.value<=0">
+                ${Arm.Kirj = 0}
+            </div>
+            <div v-else-if="Arm.value<=1 && Arm.value> 0">
+                ${Arm.Kirj = 0.75}
+            </div>
+            <div v-else-if="Arm.value<=2 && Arm.value>1">
+                ${Arm.Kirj = 0.7}
+            </div>
+            <div v-else-if="Arm.value<=4 && Arm.value>2">
+                ${Arm.Kirj = 0.65}
+            </div>
+            <div v-else-if="Arm.value<=6 && Arm.value>4">
+                ${Arm.Kirj = 0.45}
+            </div>
+            <div v-else-if="Arm.value<=8 && Arm.value>6">
+                ${Arm.Kirj = 0.43}
+            </div>
+            <div v-else-if="Arm.value<=12 && Arm.value>8">
+                ${Arm.Kirj = 0.4}
+            </div>
+            <div v-else-if="Arm.value>12">
+                ${Arm.Kirj = 0.38}
+            </div>
+            ${Arm.Kir = Arm.Kirj*Arm.Kbi}
+        </div>
+        <p> Kir6= ${ Kir6= Math.floor(Arm.Kir * 1000) / 1000  } </p>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2 style="color: rgba(36,33,203,0.78)">ТЛГ ЗАС</h2>
+        </div>
+        <div class="stepper stepper--style-2 js-spinner">
+            <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                   id = "TlgZas.value" v-model="TlgZas.value" placeholder="введите значение">
+        </div>
+        <div v-show="visible">
+            <div v-if="TlgZas.value<=0">
+                ${TlgZas.Kirj = 0}
+            </div>
+            <div v-else-if="TlgZas.value<=4 && TlgZas.value> 0">
+                ${TlgZas.Kirj = 0.75}
+            </div>
+            <div v-else-if="TlgZas.value<=6 && TlgZas.value>4">
+                ${TlgZas.Kirj = 0.7}
+            </div>
+            <div v-else-if="TlgZas.value<=8 && TlgZas.value>6">
+                ${TlgZas.Kirj = 0.65}
+            </div>
+            <div v-else-if="TlgZas.value<=10 && TlgZas.value>8">
+                ${TlgZas.Kirj = 0.45}
+            </div>
+            <div v-else-if="TlgZas.value<=12 && TlgZas.value>10">
+                ${TlgZas.Kirj = 0.43}
+            </div>
+            <div v-else-if="TlgZas.value<=14 && TlgZas.value>12">
+                ${TlgZas.Kirj = 0.4}
+            </div>
+            <div v-else-if="TlgZas.value>14">
+                ${TlgZas.Kirj = 0.38}
+            </div>
+            ${TlgZas.Kir = TlgZas.Kirj*TlgZas.Kbi}
+        </div>
+        <p> Kir7= ${ Kir7 = Math.floor(TlgZas.Kir * 1000) / 1000  } </p>
+
+    </div>
+
+<!--    mul = ${mul = [Kir1, Kir2, Kir3].reduce((a,b)=>a*b) }-->
+    <div v-show="visible">
+    ${BezRazdelKir.Kir = [Kir1, Kir2, Kir3, Kir4, Kir5, Kir6, Kir7].reduce((a,b)=>a+b) }
+    </div>
+    Коэффициент использования ресурса Kir = ${BezRazdelKir.Kir  = Math.floor(BezRazdelKir.Kir * 1000) / 1000 }
+</div>
+    <div class="container text-right" style="margin-bottom:1%">
+        <a href="/mainmenu/part1" class="btn btn-danger">Назад</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1BezSostav/" v-on:click="setPost(BezRazdelKir)">Далее</a>
+    </div>
+</div>
+
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -25,5 +314,65 @@
 </body>
 
 </html>
+<script type="text/javascript">
 
+    const url = "http://127.0.0.1:8000/api/page1_br/"
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+
+    new Vue({
+        el: '#Page1BezRazdel',
+        delimiters: ['${','}'],
+        data : {
+            Raschet: '',
+            ifRazdel: '',
+            NumChastey:'',
+            Dictionary: {},
+            cur:[],
+            TfZas: {Kbi: 0.4, value: 0, Kirj: 0, Kir: 0 },
+            TgZasPd:{Kbi: 0.15, value: 0, Kirj: 0, Kir: 0 },
+            TgZasUps: {Kbi: 0.15, value: 0, Kirj: 0, Kir: 0 },
+            AtsR: {Kbi: 0.2, value: 0, Kirj: 0, Kir: 0 },
+            AtsO: {Kbi: 0.1, value: 0, Kirj: 0, Kir: 0 },
+            Arm: {Kbi: 0.2, value: 0, Kirj: 0, Kir: 0 },
+            TlgZas: {Kbi: 0.1, value: 0, Kirj: 0, Kir: 0 },
+            Kir: 0,
+            BezRazdelKir:{},
+            visible: false,
+        },
+        methods: {
+            async setPost(cur) {
+                try {
+                    let data = await axios.post(url, cur);
+
+                    if (data.status == 'success') {
+
+                    } else {
+                        throw new Error(data.status);
+                    }
+
+                } catch (e) {
+                    this.error = e;
+                }
+            },
+
+            async loadDictionarysPreviewLinks(){
+                axios
+                    .get(url)
+                    .then(response => {
+                        this.cur = response.data;
+                    })
+                    .catch(function(e){
+                        this.error = e;
+                    });
+            },
+
+        },
+        mounted: function() {
+            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        },
+
+    });
+
+
+</script>
 

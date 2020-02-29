@@ -7,12 +7,10 @@ class Part1(models.Model):
     NumChastey = models.FloatField(default = 1)
     Out1 = {part1_id : "part1_id", NumChastey: "NumChastey"}
 
-class Part1_2(models.Model):
-    part1_2_id = models.AutoField(primary_key=True)
-    Sc = models.FloatField(default = 1)
-    Smax = models.FloatField(default = 1)
-    result = models.CharField(max_length = 4, default = "")
-    Out2 = {"part1_2_id": part1_2_id, "Sc": Sc, "Smax": Smax, "result": result }
+class Page1BezRazdel(models.Model):
+    Page1BezRazdel_id = models.AutoField(primary_key=True)
+    Kir = models.FloatField(default = 0)
+    BezRazdelKir = {"Page1BezRazdel_id": Page1BezRazdel_id, "Kir": Kir }
 
 class Part1_3(models.Model):
     part1_3_id = models.AutoField(primary_key=True)

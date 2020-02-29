@@ -9,6 +9,8 @@ urlpatterns = [
     path(r'', TemplateView.as_view(template_name='part1.html')),
     path('Page1/',  TemplateView.as_view(template_name='Page1/Page1.html')),
     path('Page1BezRazdel/', TemplateView.as_view(template_name='Page1/Page1BezRazdel.html')),
+    path('Page1BezSostav/', TemplateView.as_view(template_name='Page1/Page1BezSostav.html')),
+
     path('Page1Razdel/', TemplateView.as_view(template_name='Page1/Page1Razdel.html')),
     path('Page1Lots/', TemplateView.as_view(template_name='Page1/Page1Lots.html')),
     path('Page1ChangeBD/', TemplateView.as_view(template_name='Page1/Page1ChangeBD.html')),
