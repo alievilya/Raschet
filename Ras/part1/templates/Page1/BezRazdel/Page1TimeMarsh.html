@@ -2,7 +2,7 @@
 <html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Расчёт времени на развёртывание много интервальной радиолинейной линии связи</title>
+    <title>Время марша </title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
@@ -12,16 +12,25 @@
     <!--  <script src="Page1.js"></script>-->
 </head>
 <body style="background-color: forestgreen">
+<div id="Page1TimeMarsh">
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Расчет времени выполнения задач полевым узлом связи
+        Время марша
     </h1>
-    <div class="container text-left">
-    </div>
-    <div id="Page1BezSostav">
+
+    <div id="Page1Recogn">
         <div class="container text-left">
-            Kir = ${BezRazdelKir[BezRazdelKir.length-1].Kir}
+
+
+
+        </div>
+    </div>
+
+        <div class="container text-right" style="margin-bottom:1%">
+            <a href="/mainmenu/part1/Page1Recogn/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1TimeRazv/" >Далее</a>
+<!--            v-on:click="setPost(Trecogn)"-->
         </div>
 
     </div>
@@ -38,41 +47,48 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
-    const url_br = "http://127.0.0.1:8000/api/page1_br/";
-    const url_bs = "http://127.0.0.1:8000/api/page1_bs/";
+
+    const url = "http://127.0.0.1:8000/api/part1_Page1/"
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
-        el: '#Page1BezSostav',
+        el: '#Page1TimeMarsh',
         delimiters: ['${','}'],
         data : {
-            Raschet: '',
-            Kir: 0,
-            BezRazdelKir:{},
-            visible: false,
+            RasRec:1,
+            Trecogn: {chasov:0, mins: 15},
+            OneWay: 0,
+            ifRazdel: '',
+            NumChastey:'',
+            Dictionary: {},
+            cur:[],
         },
         methods: {
             async setPost(cur) {
                 try {
-                    let data = await axios.post(url_bs, cur);
+                    let data = await axios.post(url, cur);
+
                     if (data.status == 'success') {
+
                     } else {
                         throw new Error(data.status);
                     }
+
                 } catch (e) {
                     this.error = e;
                 }
             },
             async loadDictionarysPreviewLinks(){
                 axios
-                    .get(url_br)
+                    .get(url)
                     .then(response => {
-                        this.BezRazdelKir = response.data;
+                        this.cur = response.data;
                     })
                     .catch(function(e){
                         this.error = e;
                     });
             },
+
         },
         mounted: function() {
             this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
@@ -80,9 +96,10 @@
 
     });
 
-</script>
 
+</script>
 </body>
 
 
 </html>
+

@@ -7,6 +7,11 @@ class Part1Config(AppConfig):
 class Page1BezRazdelConfig(AppConfig):
     name = 'Page1BezRazdel'
 
+class Page1RecognConfig(AppConfig):
+    name = 'Page1Recogn'
+class Page1TimeMarsh(AppConfig):
+    name = 'Page1TimeMarsh'
+
 class Page1OneWay1Config(AppConfig):
     name = 'Page1OneWay1'
 

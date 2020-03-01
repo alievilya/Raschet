@@ -1,8 +1,9 @@
 from rest_framework import viewsets, filters
 from .models import Part1, Page1BezRazdel, Page1OneWay1,Page1OneWay2,Page1CoupleWays1, Page1CoupleWays2, Part1_3
+from .models import Page1TimeMarsh, Page1Recogn
 from .serializers import Part1Serializer, Page1BezRazdelSerializer, Page1OneWay1Serializer, Page1OneWay2Serializer
 from .serializers import Page1CoupleWays1Serializer, Page1CoupleWays2Serializer, Part1_3Serializer
-
+from .serializers import Page1TimeMarshSerializer, Page1RecognSerializer
 
 class Part1ViewSet(viewsets.ModelViewSet):
     queryset = Part1.objects.all()
@@ -15,6 +16,19 @@ class Page1BezRazdelViewSet(viewsets.ModelViewSet):
     serializer_class = Page1BezRazdelSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('Page1BezRazdel_id', 'Kir', 'BezRazdelKir')
+
+
+class Page1RecognViewSet(viewsets.ModelViewSet):
+    queryset = Page1Recogn.objects.all()
+    serializer_class = Page1RecognSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('Page1Recogn_id', 'chasov', 'mins', 'Trecogn')
+
+class Page1TimeMarshViewSet(viewsets.ModelViewSet):
+    queryset = Page1TimeMarsh.objects.all()
+    serializer_class = Page1TimeMarshSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('Page1OneWay1_id', 'Tr', 'Trazv')
 
 class Page1OneWay1ViewSet(viewsets.ModelViewSet):
     queryset = Page1OneWay1.objects.all()

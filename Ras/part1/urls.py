@@ -8,20 +8,24 @@ from django.conf import settings
 urlpatterns = [
     path(r'', TemplateView.as_view(template_name='part1.html')),
     path('Page1/',  TemplateView.as_view(template_name='Page1/Page1.html')),
-    path('Page1BezRazdel/', TemplateView.as_view(template_name='Page1/Page1BezRazdel.html')),
-    path('Page1BezSostav/', TemplateView.as_view(template_name='Page1/Page1BezSostav.html')),
+    path('Page1BezRazdel/', TemplateView.as_view(template_name='Page1/BezRazdel/Page1BezRazdel.html')),
+    path('Page1BezSostav/', TemplateView.as_view(template_name='Page1/BezRazdel/Page1BezSostav.html')),
+    path('Page1Recogn/', TemplateView.as_view(template_name='Page1/BezRazdel/Page1Recogn.html')),
+    path('Page1TimeMarsh/', TemplateView.as_view(template_name='Page1/BezRazdel/Page1TimeMarsh.html')),
+    path('Page1TimeRazv/', TemplateView.as_view(template_name='Page1/BezRazdel/Page1TimeRazv.html')),
+    path('Page1Final/', TemplateView.as_view(template_name='Page1/BezRazdel/Page1Final.html')),
 
     path('Page1Razdel/', TemplateView.as_view(template_name='Page1/Page1Razdel.html')),
     path('Page1Lots/', TemplateView.as_view(template_name='Page1/Page1Lots.html')),
     path('Page1ChangeBD/', TemplateView.as_view(template_name='Page1/Page1ChangeBD.html')),
 
-    path('Page1OneWay1/', TemplateView.as_view(template_name='Page1/Page1OneWay1.html')),
-    path('Page1OneWay2/', TemplateView.as_view(template_name='Page1/Page1OneWay2.html')),
-    path('Page1RazOneSostav/', TemplateView.as_view(template_name='Page1/Page1RazOneSostav.html')),
+    path('Page1OneWay1/', TemplateView.as_view(template_name='Page1/Razdel1/Page1OneWay1.html')),
+    path('Page1OneWay2/', TemplateView.as_view(template_name='Page1/Razdel1/Page1OneWay2.html')),
+    path('Page1RazOneSostav/', TemplateView.as_view(template_name='Page1/Razdel1/Page1RazOneSostav.html')),
 
-    path('Page1CoupleWays1/', TemplateView.as_view(template_name='Page1/Page1CoupleWays1.html')),
-    path('Page1CoupleWays2/', TemplateView.as_view(template_name='Page1/Page1CoupleWays2.html')),
-    path('Page1RazCoupleSostav/', TemplateView.as_view(template_name='Page1/Page1RazCoupleSostav.html')),
+    path('Page1CoupleWays1/', TemplateView.as_view(template_name='Page1/RazdelCouple/Page1CoupleWays1.html')),
+    path('Page1CoupleWays2/', TemplateView.as_view(template_name='Page1/RazdelCouple/Page1CoupleWays2.html')),
+    path('Page1RazCoupleSostav/', TemplateView.as_view(template_name='Page1/RazdelCouple/Page1RazCoupleSostav.html')),
 
     path('Page2/', TemplateView.as_view(template_name='Page2.html')),
     path('Page3/', TemplateView.as_view(template_name='Page13.html')),

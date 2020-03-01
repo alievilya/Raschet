@@ -12,6 +12,17 @@ class Page1BezRazdel(models.Model):
     Kir = models.FloatField(default = 0)
     BezRazdelKir = {"Page1BezRazdel_id": Page1BezRazdel_id, "Kir": Kir }
 
+class Page1Recogn(models.Model):
+    Page1Recogn_id = models.AutoField(primary_key=True)
+    chasov = models.FloatField(default = 0)
+    mins = models.FloatField(default = 0)
+    Trecogn = {"Page1Recogn_id": Page1Recogn_id, "chasov": chasov ,"mins": mins }
+
+class Page1TimeMarsh(models.Model):
+    Page1TimeMarsh_id = models.AutoField(primary_key=True)
+    Tr = models.FloatField(default = 0)
+    Trazv = {"Page1TimeMarsh_id": Page1TimeMarsh_id, "Tr": Tr }
+
 class Page1OneWay1(models.Model):
     Page1OneWay1_id = models.AutoField(primary_key=True)
     Kir = models.FloatField(default = 0)
