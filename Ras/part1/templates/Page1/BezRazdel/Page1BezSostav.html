@@ -57,25 +57,11 @@
                 <div class="col-sm">
                     <div v-for="Stanc in AllStanc ">
                         <div v-for="El in Stanc" style="margin-top:1%">
-<!--                            <div v-show="visible">-->
-<!--                            ${El_name = El.name}-->
-<!--                            ${El_id = El.id}-->
-<!--                            </div>-->
 
                             <input type="checkbox" id="El_name" value={{El_id}} v-model="ind">
                             <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
                                 ${El_name = El.name}
                             </button>
-                            <label for="El_name">
-                                <h5 style="color: #0c5460">
-
-                                </h5>
-
-                                <div v-for="j in El">
-
-                                </div>
-                            </label>
-
                         </div>
                     </div>
                 </div>
@@ -85,15 +71,15 @@
                             ${Stanc = AllStanc[typeVal-1]}
                         </div>
                         <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
-                            Название: ${El.name}<br>
-                            Кол-во машин: ${El.NumMachines}<br>
-                            Трудозатраты День: ${El.TrudDay}<br>
-                            Трудозатраты Ночь: ${El.TrudNight}<br>
+                            Название: ${Dict.name = El.name}<br>
+                            Кол-во машин: ${Dict.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict.TrudNight = El.TrudNight}<br>
 
                             <div class="stepper stepper--style-2 js-spinner" >
                                 Количество аппаратных:
                             <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
-                                   id = "El.NumAppar" v-model="El.NumAppar" style="margin-right:0px" placeholder="введите значение">
+                                   id = "El.NumAppar" v-model="El.NumAppar" placeholder="введите значение">
 
                             </div>
                             <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
@@ -101,13 +87,19 @@
                                 <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
                                        id = "El.NumLS" v-model="El.NumLS" placeholder="введите значение">
                             </div>
+                            <div v-show="visible">
+                            ${Dict.NumAppar = El.NumAppar}
+                            ${Dict.NumLS = El.NumLS}
+                            </div>
                         </div>
 
                     </div>
 
                 </div>
+
+
                 </div>
-                ${typeVal}
+                ${Dict}
                 </div>
                 <div class="col-lg-6">
 
@@ -167,6 +159,7 @@
             ind:'',
             values:[],
             Dict:{},
+            El:{},
             AllStanc:[
                 [{name:'П-260-Т',
                     id:1,
