@@ -49,24 +49,21 @@
             <br>
 
             <div v-if="NumGroups==2">
-
-
                 <button class="btn btn-secondary" style="margin-left:2%" v-on:click=NomerGrupp=1> Гр 1 </button>
                 <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=2> Гр 2 </button>
                 <div class="row">
-                <div class="col-sm">
-                    <div v-for="Stanc in AllStanc ">
-                        <div v-for="El in Stanc" style="margin-top:1%">
-
-                            <input type="checkbox" id="El_name" value={{El_id}} v-model="ind">
-                            <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
-                                ${El_name = El.name}
-                            </button>
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStanc ">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div class="col-sm" >
-
                         <div v-show="visible">
                             ${Stanc = AllStanc[typeVal-1]}
                         </div>
@@ -75,12 +72,10 @@
                             Кол-во машин: ${Dict.NumMachines = El.NumMachines}<br>
                             Трудозатраты День: ${Dict.TrudDay = El.TrudDay}<br>
                             Трудозатраты Ночь: ${Dict.TrudNight = El.TrudNight}<br>
-
                             <div class="stepper stepper--style-2 js-spinner" >
                                 Количество аппаратных:
                             <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
                                    id = "El.NumAppar" v-model="El.NumAppar" placeholder="введите значение">
-
                             </div>
                             <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
                                 Количество л/с в аппаратных:
@@ -90,15 +85,20 @@
                             <div v-show="visible">
                             ${Dict.NumAppar = El.NumAppar}
                             ${Dict.NumLS = El.NumLS}
+                            ${Dict.boolPicked = El.boolPicked}
+                            ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                            </div>
+                            <div v-if="Dict.boolPicked==true">
+<!--                                ${BezRazdelKir.Kir = [Kir1, Kir2, Kir3, Kir4, Kir5, Kir6, Kir7].reduce((a,b)=>a+b) }-->
+                                ${Dict.sumQ = Dict.boolPicked}
                             </div>
                         </div>
-
                     </div>
-
                 </div>
 
 
-                </div>
+<!--                <div v-for="El in Dict" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >-->
+<!--                </div>-->
                 ${Dict}
                 </div>
                 <div class="col-lg-6">
@@ -162,7 +162,8 @@
             El:{},
             AllStanc:[
                 [{name:'П-260-Т',
-                    id:1,
+                id:1,
+                boolPicked:false,
                 NumMachines:1,
                 TrudDay: 280,
                 TrudNight: 330,
@@ -171,6 +172,7 @@
                 }],
                 [{name:'Р-441УВ',
                     id:2,
+                    boolPicked: false,
                     NumMachines:1,
                     TrudDay: 440,
                     TrudNight: 480,
@@ -179,6 +181,7 @@
                 }],
                 [{name:'Р-419П1',
                     id:3,
+                    boolPicked:false,
                     NumMachines:1,
                     TrudDay: 360,
                     TrudNight: 410,
@@ -187,6 +190,7 @@
                 }],
                 [{name:'Р-423-АМ',
                     id:4,
+                    boolPicked:false,
                     NumMachines:1,
                     TrudDay: 150,
                     TrudNight: 190,
@@ -195,6 +199,7 @@
                 }],
                 [{name:'П-266К',
                     id:5,
+                    boolPicked:false,
                     NumMachines:1,
                     TrudDay: 420,
                     TrudNight: 525,
@@ -203,6 +208,7 @@
                 }],
                 [{name:'Р-416ГМ',
                     id:6,
+                    boolPicked:false,
                     NumMachines:1,
                     TrudDay: 180,
                     TrudNight: 230,
@@ -211,6 +217,7 @@
                 }],
                 [{name:'Р-431-АМ',
                     id:7,
+                    boolPicked:false,
                     NumMachines:1,
                     TrudDay: 150,
                     TrudNight: 190,
