@@ -13,45 +13,314 @@
 </head>
 <body style="background-color: forestgreen">
 <div id="Page1TimeRazv">
-    <div class="container text-center" style="background-color: white; margin-top:7% ">
+    <div class="container text-center" style="background-color: white; margin-top:4.5% ">
 
-    <h1 style="color:#812390">
-        Время развертывания
-    </h1>
+        <h1 style="color:#812390">
+            Расчёт времени развертывания полевого узла связи
+        </h1>
 
-    <div class="container text-right" style="margin-bottom:1%">
-        <a href="/mainmenu/part1/Page1TimeMarsh/" class="btn btn-danger">Назад</a>
-        <a class="btn btn-success" href="/mainmenu/part1/Page1Final/" v-on:click="setPost()">Далее</a>
+        <div class="container text-left">
+            <div class="row">
+                <div class="col-sm" style="background-color: #f5f8f3">
+                    <h3 style="color:#c34b56; text-align: center">
+                        Характеристика района развертывания
+                    </h3>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">Местность </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "mestnost_selected"
+                                        v-model="Dictionary.mestnost_sel">
+                                    <option v-for="mesto in mestnost" v-bind:value="mesto.value">
+                                        ${ mesto.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">Время суток </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "vremya_sutok"
+                                        v-model="Dictionary.vremya_sutok_sel">
+                                    <option v-for="vremya in vremya_sutok" v-bind:value="vremya.value">
+                                        ${ vremya.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460"> РХБ обстановка </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "Rhb_sel"
+                                        v-model="Dictionary.Rhb_sel">
+                                    <option v-for="rhb in RhbObst" v-bind:value="rhb.value">
+                                        ${ rhb.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460"> Температура воздуха: </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2%">
+                                    <input autofocus type="number" min="-60" max="60" step="1" value="0" class="stepper__input"
+                                           id = "Pogoda.temperatura" v-model="Pogoda.temperatura" placeholder="введите значение"> °С
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">
+                                    Скорость ветра: </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                                    <input autofocus type="number" min="0" max="80" step="1" value="0" class="stepper__input"
+                                           id = "Pogoda.wind" v-model="Pogoda.wind" placeholder="введите значение"> м/с
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">
+                                    Глубина снежного покрова: </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                                    <input autofocus type="number" min="0" max="400" step="1" value="0" class="stepper__input"
+                                           id = "Pogoda.sneg" v-model="Pogoda.sneg" placeholder="введите значение"> см
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-show="visible">
+                        ${Dictionary.temp_sel = Pogoda.temperatura}
+                        ${Dictionary.sneg_sel = Pogoda.sneg}
+                        ${Dictionary.wind_sel = Pogoda.wind}
+                    </div>
+                            ${Dictionary}
+                </div>
+            </div>
+        </div>
+
+        <div v-show="!visible">
+
+            <div v-if="Dictionary.mestnost_sel=='1'">
+                <!--        снег-->
+                <div v-if="Dictionary.temp_sel >= -7 || Dictionary.temp_sel <= 35">
+                    ${Kt =0}
+                </div>
+                <div v-else-if="Dictionary.temp_sel > 35">
+                    ${Kt =0.1}
+                </div>
+                <!--        темпа and sneg-->
+                <div v-else-if=" (Dictionary.temp_sel <= -8 &&  Dictionary.temp_sel >= -20) || (Dictionary.sneg_sel >= 31 &&
+                            Dictionary.sneg_sel <= 80)">
+                    ${Kt =0.2}
+                </div>
+                <div v-else-if="Dictionary.temp_sel < -20 || Dictionary.sneg_sel > 80">
+                    ${Kt =0.25}
+                </div>
+<!--                sneg-->
+                <div v-if="Dictionary.sneg_sel >= 1 && Dictionary.sneg_sel < 31">
+                    ${Ks = 0.1}
+                </div>
+                <div v-if="Dictionary.wind_sel > 20">
+                    ${Kw =0.3}
+                </div>
+                <div v-else-if="Dictionary.wind_sel <= 20 && Dictionary.wind_sel > 10">
+                    ${Kw=0.2}
+                </div>
+            </div>
+
+            <div v-else-if="Dictionary.mestnost_sel=='2'">
+
+                <!--        снег-->
+                <div v-if="Dictionary.temp_sel >= -7 && Dictionary.temp_sel <= 35">
+                    Kt = ${Kt = 0.1}
+                </div>
+                <div v-else-if="Dictionary.temp_sel > 35">
+                    ${Kt =0.2}
+                </div>
+                <!--        темпа and sneg-->
+                <div v-if="Dictionary.sneg_sel==0">
+                    ${Ks = 0}
+                </div>
+                <div v-else-if=" (Dictionary.temp_sel <= -8 &&  Dictionary.temp_sel >= -20) || (Dictionary.sneg_sel >= 31 &&
+                        Dictionary.sneg_sel <= 80)">
+                    ${Ks =0.25}
+                </div>
+                <div v-else-if="Dictionary.temp_sel < -20 || Dictionary.sneg_sel > 80">
+                    Ks = ${Ks =0.3}
+                </div>
+                <!--                sneg-->
+                <div v-if="Dictionary.sneg_sel >= 1 && Dictionary.sneg_sel < 31">
+                    ${Ks = 0.2}
+                </div>
+                <div v-if="Dictionary.wind_sel > 20">
+                    ${Kw =0.3}
+                </div>
+                <div v-else-if="Dictionary.wind_sel <= 20 && Dictionary.wind_sel > 10">
+                    ${Kw=0.3}
+                </div>
+            </div>
+
+            <div v-else-if="Dictionary.mestnost_sel=='3'">
+
+                <!--        снег-->
+                <div v-if="Dictionary.temp_sel >= -7 || Dictionary.temp_sel <= 35">
+                    ${Kt = 0.2}
+                </div>
+                <div v-else-if="Dictionary.temp_sel > 35">
+                    ${Kt =0.3}
+                </div>
+                <!--        темпа and sneg-->
+                <div v-else-if=" (Dictionary.temp_sel <= -8 &&  Dictionary.temp_sel >= -20) || (Dictionary.sneg_sel >= 31 &&
+                        Dictionary.sneg_sel <= 80)">
+                    ${Kt =0.25}
+                </div>
+                <div v-else-if="Dictionary.temp_sel < -20 || Dictionary.sneg_sel > 80">
+                    ${Kt =0.3}
+                </div>
+                <!--                sneg-->
+                <div v-if="Dictionary.sneg_sel >= 1 && Dictionary.sneg_sel < 31">
+                    ${Ks = 0.2}
+                </div>
+                <div v-if="Dictionary.wind_sel > 20">
+                    ${Kw =0.35}
+                </div>
+                <div v-else-if="Dictionary.wind_sel <= 20 && Dictionary.wind_sel > 10">
+                    ${Kw=0.25}
+                </div>
+            </div>
+
+            <div v-else-if="Dictionary.mestnost_sel=='4'">
+
+                <!--        снег-->
+                <div v-if="Dictionary.temp_sel >= -7 || Dictionary.temp_sel <= 35">
+                    ${Kt = 0.3}
+                </div>
+                <div v-else-if="Dictionary.temp_sel > 35">
+                    ${Kt =0.3}
+                </div>
+                <!--        темпа and sneg-->
+                <div v-else-if=" (Dictionary.temp_sel <= -8 &&  Dictionary.temp_sel >= -20) || (Dictionary.sneg_sel >= 31 &&
+                        Dictionary.sneg_sel <= 80)">
+                    ${Kt =0.35}
+                </div>
+                <div v-else-if="Dictionary.temp_sel < -20 || Dictionary.sneg_sel > 80">
+                    ${Kt =0.4}
+                </div>
+                <!--                sneg-->
+                <div v-if="Dictionary.sneg_sel >= 1 && Dictionary.sneg_sel < 31">
+                    ${Ks = 0.35}
+                </div>
+                <div v-if="Dictionary.wind_sel > 20">
+                    ${Kw =0.35}
+                </div>
+                <div v-else-if="Dictionary.wind_sel <= 20 && Dictionary.wind_sel > 10">
+                    ${Kw=0.25}
+                </div>
+            </div>
+
+
+        </div>
+        K = ${K = [Ks, Kt, Kw].reduce((a,b)=>a+b) }
+
+        <p> K= ${ K = Math.floor(K * 1000) / 1000  } </p>
+
+        <div class="container text-right" style="margin-bottom:1%">
+            <a href="/mainmenu/part1/Page1Recogn/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Final/" >Далее</a>
+            <!--            v-on:click="setPost(Trecogn)"-->
+        </div>
     </div>
 
-    </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="js/stepper.min.js"></script>
-<!-- vue.js files -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <script src="js/stepper.min.js"></script>
+    <!-- vue.js files -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</div>
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/part1_Page1/"
+    const url = "http://127.0.0.1:8000/api/part1_Page1/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
         el: '#Page1TimeRazv',
         delimiters: ['${','}'],
         data : {
-            RasRec:1,
-            Trecogn: {chasov:0, mins: 15},
+            mestnost: [
+                {text:"Равнинная и ср. пересечённая", value:"1"},
+                {text:"Лесисто-болотистая (Р. Крайнего севера)", value:"2"},
+                {text:"Пустынно-песчаная", value:"3"},
+                {text:"Гористая (грунт 4 категории)", value:"4"},
+            ],
+            vremya_sutok:[
+                { text:"День", value:"1"},
+                { text:"Ночь", value:"2"},
+            ],
+            RhbObst:[
+                {text:"л/с без ИСЗ", value:"1"},
+                {text:"л/с с ИСЗ", value:"2"}
+            ],
+            Pogoda: {temperatura:0, wind:0, sneg:0},
+            Trazv:{chas:0, min:0},
+            mestnost_sel: '',
+            vremya_sutok_sel:'',
+            Rhb_sel:'',
+            temp_sel:0,
+            sneg_sel:0,
+            wind_sel:0,
+            Kw:0, Kt:0, Ks:0, mins:0, chasov: 0, chasovbez:0, minsbez:0,
+            K: 0,
+            num_privalov:1,
+            Dictionary: {},
+            visible:false,
+            Tm:0, Tmbez:0,
             OneWay: 0,
             ifRazdel: '',
             NumChastey:'',
-            Dictionary: {},
+
             cur:[],
         },
         methods: {
