@@ -123,25 +123,15 @@
                         this.error = e;
                     });
             },
-            // async poppush(mas, elem){
-            //     mas.push(elem)
-            //     mas.pop(elem)
-            // },
+
         },
         computed:{
             result: function(){
                 return [this.Dictionary2.Sc, this.Dictionary2.Smax];
             },
 
-            // Dictionary2: function () {
-            //     return {this.res2}   ;
-            // },
-
         },
 
-        // mounted: function() {
-        //     this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
-        // },
         mounted() {
             axios.get(url1).then(response => (this.Out1 = response.data));
             axios.get(url2).then(response => (this.Out2 = response.data));
