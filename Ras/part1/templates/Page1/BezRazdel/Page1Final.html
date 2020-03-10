@@ -10,53 +10,136 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.rawgit.com/juijs/vue-graph/2216ae2f/dist/vue-graph.js"></script>
 
-
-    <!--  <script src="Page1.js"></script>-->
 </head>
 <body style="background-color: forestgreen">
-<div id="Page1TimeRazv">
+<div id="Page1Final">
     <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Финал
+        Расчет времени выполнения задач узлом связи
     </h1>
+        <div v-show="visible">
+
+
+        TimeMarsh = ${Tm = TimeMarsh[TimeMarsh.length-1]["Tm"]}
+        TimeMarsh = ${Tmbez = TimeMarsh[TimeMarsh.length-1]["Tmbez"]}
+            TimeMarsh = ${Tmfull = Tm*60 }
+            TimeMarsh = ${Tmfullbez = Tmbez*60 }
+
+        Trecogn = ${rec_chasov = Trecogn[Trecogn.length-1]["chasov"]}
+        Trecogn = ${rec_mins = Trecogn[Trecogn.length-1]["mins"]}
+            Trecogn = ${Trec = rec_chasov*60 + rec_mins}
+
+        TimeRazv = ${Trazv = TimeRazv[TimeRazv.length-1]["Trazv"]}
+        TimeRazv = ${Tsvert = TimeRazv[TimeRazv.length-1]["Tsvert"]}
+
+
+
+        </div>
+
+
+
+
+    <div class="row">
+
+            Время функционирования УС:
+            ${Tfunc.hours} ч. ${Tfunc.mins} мин.
+
+        <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+            <input autofocus type="number" min="0" max="1000" step="1" value="0" class="stepper__input"
+                   id = "Tfunc.hours" v-model="Tfunc.hours" placeholder="введите значение"> ч.
+        </div>
+        <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+            <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                   id = "Tfunc.mins" v-model="Tfunc.mins" placeholder="введите значение"> мин.
+        </div>
+        <div v-show="visible">
+            ${Tf_hours = Tfunc.hours}
+            ${Tf_mins = Tfunc.mins}
+        Tf = ${Tf = Tf_hours*60 + Math.floor(Tf_mins)}
+        </div>
+    </div>
+        <div v-show="visible">
+            ${vals = [Tmfull, Tmfullbez, Trec, Trazv, Tf, Tsvert]}
+        </div>
+
+    Время марша с учетом привалов: ${marsh_chasov = Math.floor(Tm) } ч. ${ marsh_mins = Math.round((Tm - marsh_chasov)*60) } мин.
+    <br>
+    Время марша без учета привалов: ${marsh_chasovbez = Math.floor(Tmbez) } ч. ${ marsh_minsbez = Math.round((Tmbez - marsh_chasovbez)*60) } мин.
+    <br>
+    Время рекогносцировки:
+    ${ rec_chasov } ч. ${rec_mins } мин.
+    <br>
+    Время развертывания: ${chasovrazv = Math.floor(Trazv/60) } ч. ${ minsrazv = Math.round(Trazv- chasovrazv*60) } мин.
+    <br>
+    Время свертывания: ${chasovsvert = Math.floor(Tsvert/60) } ч. ${ minssvert = Math.round(Tsvert- chasovsvert*60) } мин.
+
+    <br>
+    Время функционирования:${Tfunc.hours} ч. ${Tfunc.mins } мин.
+
+
+        <graph-bar
+                :width="800"
+                :height="400"
+                :axis-min="0"
+                :axis-max="1000"
+                :labels="['Тмарша', 'Тмбез', 'Трек', 'Тразв', 'Тфунк','Тсверт']"
+                :values="vals"> мин.
+
+        </graph-bar>
+
+
 
     <div class="container text-right" style="margin-bottom:1%">
-        <a href="/mainmenu/part1/Page1TimeMarsh/" class="btn btn-danger">Назад</a>
-        <a class="btn btn-outline-dark" href="/mainmenu/" v-on:click="setPost()">Главное меню</a>
+        <a href="/mainmenu/part1/Page1TimeRazv/" class="btn btn-danger">Назад</a>
+        <a class="btn btn-outline-dark" href="/mainmenu/" >Главное меню</a>
     </div>
 
     </div>
+
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="js/stepper.min.js"></script>
-<!-- vue.js files -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/stepper.min.js"></script>
+    <!-- vue.js files -->
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>-->
+<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+
+</div>
 
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/part1_Page1/"
+    const url1 = "http://127.0.0.1:8000/api/page1_btm/";
+    const url2 = "http://127.0.0.1:8000/api/page1_btrec/";
+    const url3 = "http://127.0.0.1:8000/api/page1_btraz/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
-        el: '#Page1TimeRazv',
+        el: '#Page1Final',
         delimiters: ['${','}'],
         data : {
-            RasRec:1,
-            Trecogn: {chasov:0, mins: 15},
-            OneWay: 0,
-            ifRazdel: '',
-            NumChastey:'',
-            Dictionary: {},
-            cur:[],
+            marsh_chasov:0, marsh_mins:0, Tm: 0, Tmbez:0, Tmfull:0, Tmfullbez: 0, Trazv:0, Tsvert:0,
+            marsh_chasovbez:0, marsh_minsbez: 0,
+            chasovrazv: 0, chasovsvert:0,
+            minsrazv: 0, minssvert:0,
+            rec_mins: 0, rec_chasov:0,
+            Trec:0,
+            Tf_mins:0, Tf_hours:0,
+            Tf:0,
+            Trecogn:{},
+            TimeMarsh:{},
+            TimeRazv:{},
+            Tfunc:{hours:0, mins:0},
+            vals:[],
         },
         methods: {
             async setPost(cur) {
@@ -73,21 +156,13 @@
                     this.error = e;
                 }
             },
-            async loadDictionarysPreviewLinks(){
-                axios
-                    .get(url)
-                    .then(response => {
-                        this.cur = response.data;
-                    })
-                    .catch(function(e){
-                        this.error = e;
-                    });
-            },
 
         },
-        mounted: function() {
-            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
-        },
+        mounted() {
+            axios.get(url1).then(response => (this.TimeMarsh = response.data));
+            axios.get(url2).then(response => (this.Trecogn = response.data));
+            axios.get(url3).then(response => (this.TimeRazv = response.data));
+        }
 
     });
 

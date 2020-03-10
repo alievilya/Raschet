@@ -12,6 +12,12 @@ class Page1BezRazdel(models.Model):
     Kir = models.FloatField(default = 0)
     BezRazdelKir = {"Page1BezRazdel_id": Page1BezRazdel_id, "Kir": Kir }
 
+class Page1BezSostav(models.Model):
+    Page1BezSostav_id = models.AutoField(primary_key=True)
+    SumTimeDay = models.FloatField(default = 0)
+    SumTimeNight = models.FloatField(default = 0)
+    BezSostav = {"Page1BezSostav_id": Page1BezSostav_id, "SumTimeDay": SumTimeDay, "SumTimeNight":SumTimeNight }
+
 class Page1Recogn(models.Model):
     Page1Recogn_id = models.AutoField(primary_key=True)
     chasov = models.FloatField(default = 0)
@@ -20,8 +26,15 @@ class Page1Recogn(models.Model):
 
 class Page1TimeMarsh(models.Model):
     Page1TimeMarsh_id = models.AutoField(primary_key=True)
-    Tr = models.FloatField(default = 0)
-    Trazv = {"Page1TimeMarsh_id": Page1TimeMarsh_id, "Tr": Tr }
+    Tmbez = models.FloatField(default = 0)
+    Tm = models.FloatField(default = 0)
+    TimeMarsh = {"Page1TimeMarsh_id": Page1TimeMarsh_id, "Tmbez": Tmbez, "Tm": Tm }
+
+class Page1TimeRazv(models.Model):
+    Page1TimeRazv_id = models.AutoField(primary_key=True)
+    Trazv = models.FloatField(default = 0)
+    Tsvert = models.FloatField(default = 0)
+    TimeRazv = {"Page1TimeRazv_id": Page1TimeRazv_id, "Trazv": Trazv, "Tsvert": Tsvert }
 
 class Page1OneWay1(models.Model):
     Page1OneWay1_id = models.AutoField(primary_key=True)

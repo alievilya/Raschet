@@ -1,7 +1,7 @@
 
 from rest_framework import routers
-from part1.viewsets import Part1ViewSet, Page1BezRazdelViewSet, Page1OneWay2ViewSet
-from part1.viewsets import Page1TimeMarshViewSet, Page1RecognViewSet
+from part1.viewsets import Part1ViewSet, Page1BezRazdelViewSet, Page1OneWay2ViewSet, Page1BezSostavViewSet
+from part1.viewsets import Page1TimeMarshViewSet, Page1RecognViewSet, Page1TimeRazvViewSet
 from part1.viewsets import Page1OneWay1ViewSet, Page1CoupleWays1ViewSet, Page1CoupleWays2ViewSet, Part1_3ViewSet
 from part2.viewsets import Part2ViewSet, Part2_2ViewSet
 from part3.viewsets import Part3ViewSet, Part3_2ViewSet, Part3_3ViewSet
@@ -11,8 +11,10 @@ router = routers.DefaultRouter()
 
 router.register(r'part1_Page1', Part1ViewSet)
 router.register(r'page1_br', Page1BezRazdelViewSet)
+router.register(r'page1_bs', Page1BezSostavViewSet)
 router.register(r'page1_btrec', Page1RecognViewSet)
 router.register(r'page1_btm', Page1TimeMarshViewSet)
+router.register(r'page1_btraz', Page1TimeRazvViewSet)
 
 router.register(r'page1_ow1', Page1OneWay1ViewSet)
 router.register(r'page1_ow2', Page1OneWay2ViewSet)

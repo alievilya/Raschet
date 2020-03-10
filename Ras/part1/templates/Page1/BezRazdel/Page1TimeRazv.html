@@ -131,7 +131,7 @@
                         ${Dictionary.sneg_sel = Pogoda.sneg}
                         ${Dictionary.wind_sel = Pogoda.wind}
                     </div>
-                            ${Dictionary}
+<!--                            ${Dictionary}-->
                 </div>
             </div>
         </div>
@@ -293,9 +293,33 @@
 
         <p> K= ${ K = Math.floor(K * 1000) / 1000  } </p>
 
+        <div v-show="visible">
+
+            <div v-if="Dictionary.vremya_sutok_sel==1">
+                Tr = ${Tr = BezSostav[BezSostav.length-1]["SumTimeDay"]}
+            </div>
+            <div v-else-if="Dictionary.vremya_sutok_sel==2">
+                Tr = ${Tr = BezSostav[BezSostav.length-1]["SumTimeNight"]}
+            </div>
+            <div v-else>
+                Tr = ${Tr = 0}
+            </div>
+            Trazvitog = ${Trazvitog = Tr*(1 + K)}
+            ${Tsvert = Math.floor(Trazvitog*0.9)}
+            ${ Trazvitog = Math.floor(Trazvitog)  }
+
+            ${TimeRazv.Trazv = Trazvitog}
+            ${TimeRazv.Tsvert = Tsvert}
+        </div>
+
+
+
+        Время развертывания: ${chasovrazv = Math.floor(Trazvitog/60) } ч. ${ minsrazv = Math.round(Trazvitog- chasovrazv*60) } мин.
+        <br>
+        Время свертывания: ${chasovsvert = Math.floor(Tsvert/60) } ч. ${ minssvert = Math.round(Tsvert- chasovsvert*60) } мин.
         <div class="container text-right" style="margin-bottom:1%">
             <a href="/mainmenu/part1/Page1Recogn/" class="btn btn-danger">Назад</a>
-            <a class="btn btn-success" href="/mainmenu/part1/Page1Final/" >Далее</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Final/" v-on:click="setPost(TimeRazv)">Далее</a>
             <!--            v-on:click="setPost(Trecogn)"-->
         </div>
     </div>
@@ -316,13 +340,16 @@
 </div>
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/part1_Page1/";
+    const url1 = "http://127.0.0.1:8000/api/page1_bs/";
+    const url2 = "http://127.0.0.1:8000/api/page1_btraz/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
         el: '#Page1TimeRazv',
         delimiters: ['${','}'],
         data : {
+            Trazvitog: 0, Tr:0, Tsvert:0, chasovrazv: 0, minsrazv: 0, TimeRazv:{},
+            chasovsvert:0, minssvert:0,
             mestnost: [
                 {text:"Равнинная и ср. пересечённая", value:"1"},
                 {text:"Лесисто-болотистая (Р. Крайнего севера)", value:"2"},
@@ -354,13 +381,14 @@
             OneWay: 0,
             ifRazdel: '',
             NumChastey:'',
+            BezSostav:{},
 
             cur:[],
         },
         methods: {
             async setPost(cur) {
                 try {
-                    let data = await axios.post(url, cur);
+                    let data = await axios.post(url2, cur);
 
                     if (data.status == 'success') {
 
@@ -384,10 +412,14 @@
             },
 
         },
-        mounted: function() {
-            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
-        },
+        // mounted: function() {
+        //     this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        // },
+        mounted() {
+            axios.get(url1).then(response => (this.BezSostav = response.data));
 
+
+        },
     });
 
 

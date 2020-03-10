@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Part1, Page1BezRazdel, Page1OneWay1,Page1OneWay2, Page1CoupleWays1, Page1CoupleWays2, Part1_3
-from .models import Page1Recogn, Page1TimeMarsh
+from .models import Part1, Page1BezRazdel, Page1BezSostav, Page1OneWay1,Page1OneWay2, Page1CoupleWays1, Page1CoupleWays2, Part1_3
+from .models import Page1Recogn, Page1TimeMarsh, Page1TimeRazv
 
 class Part1Serializer(serializers.ModelSerializer):
     class Meta:
@@ -10,6 +10,21 @@ class Part1Serializer(serializers.ModelSerializer):
 class Page1BezRazdelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page1BezRazdel
+        fields = '__all__'
+
+class Page1BezSostavSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page1BezSostav
+        fields = '__all__'
+
+class Page1TimeMarshSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page1TimeMarsh
+        fields = '__all__'
+
+class Page1TimeRazvSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page1TimeRazv
         fields = '__all__'
 
 class Page1OneWay1Serializer(serializers.ModelSerializer):
@@ -36,10 +51,7 @@ class Page1RecognSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page1Recogn
         fields = '__all__'
-class Page1TimeMarshSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Page1TimeMarsh
-        fields = '__all__'
+
 
 class Part1_3Serializer(serializers.ModelSerializer):
     class Meta:
