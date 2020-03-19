@@ -19,9 +19,9 @@ urlpatterns = [
     path('Page1Lots/', TemplateView.as_view(template_name='Page1/Page1Lots.html')),
     path('Page1ChangeBD/', TemplateView.as_view(template_name='Page1/Page1ChangeBD.html')),
 
-    path('Page1OneWay1/', TemplateView.as_view(template_name='Page1/Razdel1/Page1OneWay1.html')),
-    path('Page1OneWay2/', TemplateView.as_view(template_name='Page1/Razdel1/Page1OneWay2.html')),
-    path('Page1RazOneSostav/', TemplateView.as_view(template_name='Page1/Razdel1/Page1RazOneSostav.html')),
+    path('Page1Razdel/Page1OneWay1/', TemplateView.as_view(template_name='Page1/Razdel1/Page1OneWay1.html')),
+    path('Page1Razdel/Page1OneWay2/', TemplateView.as_view(template_name='Page1/Razdel1/Page1OneWay2.html')),
+    path('Page1Razdel/Page1RazOneSostav/', TemplateView.as_view(template_name='Page1/Razdel1/Page1RazOneSostav.html')),
 
     path('Page1CoupleWays1/', TemplateView.as_view(template_name='Page1/RazdelCouple/Page1CoupleWays1.html')),
     path('Page1CoupleWays2/', TemplateView.as_view(template_name='Page1/RazdelCouple/Page1CoupleWays2.html')),
