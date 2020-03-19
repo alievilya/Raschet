@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1ee85f07-ebf9-41fa-bf28-f96f71cedd0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1OneFinal.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1OneFinal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1RazOneSostav1.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1RazOneSostav1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1RazOneSostav2.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1RazOneSostav2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1Recogn1.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1Recogn1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1Recogn2.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1Recogn2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1TimeMarsh1.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1TimeMarsh1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1TimeRazv1.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1TimeRazv1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1TimeRazv2.html" beforeDir="false" afterPath="$PROJECT_DIR$/part1/templates/Page1/Razdel1/Page1TimeRazv2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +92,7 @@
       <workItem from="1583355219320" duration="3422000" />
       <workItem from="1583419351321" duration="15239000" />
       <workItem from="1583870089040" duration="11200000" />
-      <workItem from="1584644830516" duration="4250000" />
+      <workItem from="1584644830516" duration="5251000" />
     </task>
     <servers />
   </component>
