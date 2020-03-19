@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Состав узла связи</title>
+    {% load static %}
+    <link href=" {% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href=" {% static 'css/style.css'%}" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+
+    <!--  <script src="Page1.js"></script>-->
+</head>
+<body style="background-color: forestgreen">
+
+<div class="container text-center" style="background-color: white; margin-top:7% ">
+
+    <h1 style="color:#812390">
+        Состав узла связи
+    </h1>
+    <div id="Page1BezSostav">
+        <div class="row">
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="1"> ЦКО </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="2"> ПРЦ </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="3"> ПДРЦ </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="4"> ТФЦ </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="5"> ТГЦ </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="6"> ЦАСУ </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="7"> ГрМСПС </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="8"> ГТО </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="9"> ЦЭС </button>
+            <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="10"> ПУУС </button>
+        </div>
+
+        <!--        CKO-->
+        <div class="container text-left">
+            <div v-if="abbrVal==1">
+                Центр каналообразования
+                <input type="radio" id="twoGroups" value=2 v-model="NumGroups">
+                <label for="twoGroups">
+                    <p style="color: #0c5460">
+                        2 Группы
+                    </p>
+                </label>
+                <input type="radio" id="threeGroups" value=3 v-model="NumGroups">
+                <label for="threeGroups">
+                    <p style="color: #0c5460">
+                        3 Группы
+                    </p>
+                </label>
+                <br>
+
+                <div v-if="NumGroups==2">
+                    <button class="btn btn-secondary" style="margin-left:2%" v-on:click=NomerGrupp=1> Гр 1 </button>
+                    <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=2> Гр 2 </button>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div v-for="Stanc in AllStancCKO ">
+                                <div v-for="El in Stanc" style="margin-top:1%">
+                                    <input type="checkbox" id="El_name1" value=El.boolPicked v-model="El.boolPicked">
+                                    <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                        ${El_name1 = El.name}
+                                    </button>
+                                    ${El.boolPicked}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm" >
+                            <div v-show="visible">
+                                ${Stanc = AllStancCKO[typeVal-1]}
+                            </div>
+                            <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                                Название: ${Dict1.name = El.name}<br>
+                                Кол-во машин: ${Dict1.NumMachines = El.NumMachines}<br>
+                                Трудозатраты День: ${Dict1.TrudDay = El.TrudDay}<br>
+                                Трудозатраты Ночь: ${Dict1.TrudNight = El.TrudNight}<br>
+                                <div class="stepper stepper--style-2 js-spinner" >
+                                    Количество аппаратных:
+                                    <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                           id = "El.NumAppar1" v-model="El.NumAppar" placeholder="введите значение">
+                                </div>
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                    Количество л/с в аппаратных:
+                                    <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                           id = "El.NumLS1" v-model="El.NumLS" placeholder="введите значение">
+                                </div>
+                                <div v-show="visible">
+                                    ${Dict1.NumAppar = El.NumAppar}
+                                    ${Dict1.NumLS = El.NumLS}
+                                    ${Dict1.boolPicked = El.boolPicked}
+                                    ${Dict1.QDay = Dict1.NumAppar* Dict1.TrudDay }
+                                    ${Dict1.QNight = Dict1.NumAppar* Dict1.TrudNight  }
+                                    ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                    ${el_id = El.id}
+
+                                    <div v-if="Dict1.boolPicked==true">
+                                        ${Qdayfull[el_id] = Dict1.QDay / (Dict1.NumLS* Kir) }
+                                        ${Qnightfull[el_id] = Dict1.QNight / (Dict1.NumLS* Kir) }
+                                    </div>
+                                    <div v-else>
+                                        ${Qdayfull[el_id] = 0 }
+                                        ${Qnightfull[el_id] = 0}
+                                    </div>
+                                    ${Qdayfull}
+                                    ${ SumDay = Qdayfull.reduce((a,b)=>a+b) }
+                                    ${ SumNight = Qnightfull.reduce((a,b)=>a+b) }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${Dict1}
+                    sumDay = ${sumDay = Math.round(SumDay)}
+                    sumNight = ${sumNight = Math.round(SumNight)}
+                </div>
+                <div class="col-lg-6">
+
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+
+            </div>
+            <div v-else-if="NumGroups==3">
+                <button class="btn btn-secondary" style="margin-left:2%" v-on:click=NomerGrupp=1> Гр 1 </button>
+                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=2> Гр 2 </button>
+                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=3> Гр 3 </button>
+            </div>
+            <div class="container text-left">
+                Kir = ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+            </div>
+        </div>
+
+        <!--        PRC-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==2">
+                Приемный радиоцентр
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancPRC">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name2" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name2 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancPRC[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict2.name = El.name}<br>
+                            Кол-во машин: ${Dict2.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict2.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict2.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar2" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS2" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict2.NumAppar = El.NumAppar}
+                                ${Dict2.NumLS = El.NumLS}
+                                ${Dict2.boolPicked = El.boolPicked}
+                                ${Dict2.QDay = Dict2.NumAppar* Dict2.TrudDay }
+                                ${Dict2.QNight = Dict2.NumAppar* Dict2.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict2.boolPicked==true">
+                                    ${Qdayfull2[el_id] = Dict2.QDay / (Dict2.NumLS* Kir) }
+                                    ${Qnightfull2[el_id] = Dict2.QNight / (Dict2.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull2[el_id] = 0 }
+                                    ${Qnightfull2[el_id] = 0}
+                                </div>
+                                ${Qdayfull}
+                                ${ SumDay = Qdayfull2.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull2.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                ${Dict2}
+                sumDay2 = ${sumDay2 = Math.round(SumDay)}
+                sumNight2 = ${sumNight2 = Math.round(SumNight)}
+
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        PDRC-->
+        <div class="container text-left">
+            <div v-if="abbrVal==3">
+                Передающий радиоцентр
+                <input type="radio" id="twoGroups2" value=2 v-model="NumGroups">
+                <label for="twoGroups">
+                    <p style="color: #0c5460">
+                        2 Группы
+                    </p>
+                </label>
+                <input type="radio" id="threeGroups2" value=3 v-model="NumGroups">
+                <label for="threeGroups">
+                    <p style="color: #0c5460">
+                        3 Группы
+                    </p>
+                </label>
+                <br>
+
+                <div v-if="NumGroups==2">
+                    <button class="btn btn-secondary" style="margin-left:2%" v-on:click=NomerGrupp=1> Гр 1 </button>
+                    <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=2> Гр 2 </button>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div v-for="Stanc in AllStancPDRC ">
+                                <div v-for="El in Stanc" style="margin-top:1%">
+                                    <input type="checkbox" id="El_name3" value=El.boolPicked v-model="El.boolPicked">
+                                    <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                        ${El_name3 = El.name}
+                                    </button>
+                                    ${El.boolPicked}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm" >
+                            <div v-show="visible">
+                                ${Stanc = AllStancPDRC[typeVal-1]}
+                            </div>
+                            <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                                Название: ${Dict3.name = El.name}<br>
+                                Кол-во машин: ${Dict3.NumMachines = El.NumMachines}<br>
+                                Трудозатраты День: ${Dict3.TrudDay = El.TrudDay}<br>
+                                Трудозатраты Ночь: ${Dict3.TrudNight = El.TrudNight}<br>
+                                <div class="stepper stepper--style-2 js-spinner" >
+                                    Количество аппаратных:
+                                    <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                           id = "El.NumAppar3" v-model="El.NumAppar" placeholder="введите значение">
+                                </div>
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                    Количество л/с в аппаратных:
+                                    <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                           id = "El.NumLS3" v-model="El.NumLS" placeholder="введите значение">
+                                </div>
+                                <div v-show="visible">
+                                    ${Dict3.NumAppar = El.NumAppar}
+                                    ${Dict3.NumLS = El.NumLS}
+                                    ${Dict3.boolPicked = El.boolPicked}
+                                    ${Dict3.QDay = Dict3.NumAppar* Dict3.TrudDay }
+                                    ${Dict3.QNight = Dict3.NumAppar* Dict3.TrudNight  }
+                                    ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                    ${el_id = El.id}
+
+                                    <div v-if="Dict3.boolPicked==true">
+                                        ${Qdayfull3[el_id] = Dict3.QDay / (Dict3.NumLS* Kir) }
+                                        ${Qnightfull3[el_id] = Dict3.QNight / (Dict3.NumLS* Kir) }
+                                    </div>
+                                    <div v-else>
+                                        ${Qdayfull3[el_id] = 0 }
+                                        ${Qnightfull3[el_id] = 0}
+                                    </div>
+                                    ${Qdayfull3}
+                                    ${ SumDay = Qdayfull3.reduce((a,b)=>a+b) }
+                                    ${ SumNight = Qnightfull3.reduce((a,b)=>a+b) }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    ${Dict3}
+                    sumDay3 = ${sumDay3 = Math.round(SumDay)}
+                    sumNight3 = ${sumNight3 = Math.round(SumNight)}
+                </div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+
+            <div v-else-if="NumGroups==3">
+                <button class="btn btn-secondary" style="margin-left:2%" v-on:click=NomerGrupp=1> Гр 1 </button>
+                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=2> Гр 2 </button>
+                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=NomerGrupp=3> Гр 3 </button>
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        TFC-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==4">
+                Телефонный центр
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancTFC">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name4" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name4 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancTFC[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict4.name = El.name}<br>
+                            Кол-во машин: ${Dict4.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict4.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict4.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar4" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS4" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict4.NumAppar = El.NumAppar}
+                                ${Dict4.NumLS = El.NumLS}
+                                ${Dict4.boolPicked = El.boolPicked}
+                                ${Dict4.QDay = Dict4.NumAppar* Dict4.TrudDay }
+                                ${Dict4.QNight = Dict4.NumAppar* Dict4.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict4.boolPicked==true">
+                                    ${Qdayfull4[el_id] = Dict4.QDay / (Dict4.NumLS* Kir) }
+                                    ${Qnightfull4[el_id] = Dict4.QNight / (Dict4.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull4[el_id] = 0 }
+                                    ${Qnightfull4[el_id] = 0}
+                                </div>
+                                ${Qdayfull4}
+                                ${ SumDay = Qdayfull4.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull4.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${Dict4}
+                sumDay4 = ${sumDay4 = Math.round(SumDay)}
+                sumNight4 = ${sumNight4 = Math.round(SumNight)}
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        TGC-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==5">
+                Телеграфный центр
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancTGC">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name5" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name5 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancTGC[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict5.name = El.name}<br>
+                            Кол-во машин: ${Dict5.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict5.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict5.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar5" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS5" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict5.NumAppar = El.NumAppar}
+                                ${Dict5.NumLS = El.NumLS}
+                                ${Dict5.boolPicked = El.boolPicked}
+                                ${Dict5.QDay = Dict5.NumAppar* Dict5.TrudDay }
+                                ${Dict5.QNight = Dict5.NumAppar* Dict5.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict5.boolPicked==true">
+                                    ${Qdayfull5[el_id] = Dict5.QDay / (Dict5.NumLS* Kir) }
+                                    ${Qnightfull5[el_id] = Dict5.QNight / (Dict5.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull5[el_id] = 0 }
+                                    ${Qnightfull5[el_id] = 0}
+                                </div>
+                                ${Qdayfull5}
+                                ${ SumDay = Qdayfull5.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull5.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${Dict5}
+                sumDay5 = ${sumDay5 = Math.round(SumDay)}
+                sumNight5 = ${sumNight5 = Math.round(SumNight)}
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        CASU-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==6">
+                Центр АСУ
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancCACY">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name6" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name6 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancCACY[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict6.name = El.name}<br>
+                            Кол-во машин: ${Dict6.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict6.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict6.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar6" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS6" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict6.NumAppar = El.NumAppar}
+                                ${Dict6.NumLS = El.NumLS}
+                                ${Dict6.boolPicked = El.boolPicked}
+                                ${Dict6.QDay = Dict6.NumAppar* Dict6.TrudDay }
+                                ${Dict6.QNight = Dict6.NumAppar* Dict6.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict6.boolPicked==true">
+                                    ${Qdayfull6[el_id] = Dict6.QDay / (Dict6.NumLS* Kir) }
+                                    ${Qnightfull6[el_id] = Dict6.QNight / (Dict6.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull6[el_id] = 0 }
+                                    ${Qnightfull6[el_id] = 0}
+                                </div>
+                                ${Qdayfull6}
+                                ${ SumDay = Qdayfull6.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull6.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${Dict6}
+                sumDay6 = ${sumDay6 = Math.round(SumDay)}
+                sumNight6 = ${sumNight6 = Math.round(SumNight)}
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        GRMCPC-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==7">
+                Группа мобильных средств прямой связи
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancGRMCPC">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name7" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name7 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancGRMCPC[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict7.name = El.name}<br>
+                            Кол-во машин: ${Dict7.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict7.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict7.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar7" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS7" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict7.NumAppar = El.NumAppar}
+                                ${Dict7.NumLS = El.NumLS}
+                                ${Dict7.boolPicked = El.boolPicked}
+                                ${Dict7.QDay = Dict7.NumAppar* Dict7.TrudDay }
+                                ${Dict7.QNight = Dict7.NumAppar* Dict7.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict7.boolPicked==true">
+                                    ${Qdayfull7[el_id] = Dict7.QDay / (Dict7.NumLS* Kir) }
+                                    ${Qnightfull7[el_id] = Dict7.QNight / (Dict7.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull7[el_id] = 0 }
+                                    ${Qnightfull7[el_id] = 0}
+                                </div>
+                                ${Qdayfull7}
+                                ${ SumDay = Qdayfull7.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull7.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${Dict7}
+                sumDay7 = ${sumDay7 = Math.round(SumDay)}
+                sumNight7 = ${sumNight7 = Math.round(SumNight)}
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        CES-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==9">
+                Центр электропитающей системы
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancCEC">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name8" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name8 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancCEC[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict8.name = El.name}<br>
+                            Кол-во машин: ${Dict8.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict8.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict8.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar8" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS8" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict8.NumAppar = El.NumAppar}
+                                ${Dict8.NumLS = El.NumLS}
+                                ${Dict8.boolPicked = El.boolPicked}
+                                ${Dict8.QDay = Dict8.NumAppar* Dict8.TrudDay }
+                                ${Dict8.QNight = Dict8.NumAppar* Dict8.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict8.boolPicked==true">
+                                    ${Qdayfull8[el_id] = Dict8.QDay / (Dict8.NumLS* Kir) }
+                                    ${Qnightfull8[el_id] = Dict8.QNight / (Dict8.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull8[el_id] = 0 }
+                                    ${Qnightfull8[el_id] = 0}
+                                </div>
+                                ${Qdayfull8}
+                                ${ SumDay = Qdayfull8.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull8.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${Dict8}
+                sumDay8 = ${sumDay8 = Math.round(SumDay)}
+                sumNight8 = ${sumNight8 = Math.round(SumNight)}
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <!--        PUUS-->
+        <div class="container text-left">
+
+            <div v-if="abbrVal==10">
+                Пункт управления узлом связи
+                <br>
+                <div class="row">
+                    <div class="col-sm">
+                        <div v-for="Stanc in AllStancPYYC">
+                            <div v-for="El in Stanc" style="margin-top:1%">
+                                <input type="checkbox" id="El_name9" value=El.boolPicked v-model="El.boolPicked">
+                                <button class="btn btn-secondary" style="margin-left:1%" v-on:click=typeVal=El.id>
+                                    ${El_name9 = El.name}
+                                </button>
+                                ${El.boolPicked}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm" >
+                        <div v-show="visible">
+                            ${Stanc = AllStancPYYC[typeVal-1]}
+                        </div>
+                        <div v-for="El in Stanc" style="margin-top:1%; font-size: 27px; font-family:'DejaVu Sans'; color: #0f6674" >
+                            Название: ${Dict9.name = El.name}<br>
+                            Кол-во машин: ${Dict9.NumMachines = El.NumMachines}<br>
+                            Трудозатраты День: ${Dict9.TrudDay = El.TrudDay}<br>
+                            Трудозатраты Ночь: ${Dict9.TrudNight = El.TrudNight}<br>
+                            <div class="stepper stepper--style-2 js-spinner" >
+                                Количество аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumAppar9" v-model="El.NumAppar" placeholder="введите значение">
+                            </div>
+                            <div class="stepper stepper--style-2 js-spinner" style="margin-top:0.3%;">
+                                Количество л/с в аппаратных:
+                                <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                                       id = "El.NumLS9" v-model="El.NumLS" placeholder="введите значение">
+                            </div>
+                            <div v-show="visible">
+                                ${Dict9.NumAppar = El.NumAppar}
+                                ${Dict9.NumLS = El.NumLS}
+                                ${Dict9.boolPicked = El.boolPicked}
+                                ${Dict9.QDay = Dict9.NumAppar* Dict9.TrudDay }
+                                ${Dict9.QNight = Dict9.NumAppar* Dict9.TrudNight  }
+                                ${Kir = BezRazdelKir[BezRazdelKir.length-1].Kir}
+                                ${el_id = El.id}
+
+                                <div v-if="Dict9.boolPicked==true">
+                                    ${Qdayfull9[el_id] = Dict9.QDay / (Dict9.NumLS* Kir) }
+                                    ${Qnightfull9[el_id] = Dict9.QNight / (Dict9.NumLS* Kir) }
+                                </div>
+                                <div v-else>
+                                    ${Qdayfull9[el_id] = 0 }
+                                    ${Qnightfull9[el_id] = 0}
+                                </div>
+                                ${Qdayfull9}
+                                ${ SumDay = Qdayfull9.reduce((a,b)=>a+b) }
+                                ${ SumNight = Qnightfull9.reduce((a,b)=>a+b) }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ${Dict9}
+                sumDay9 = ${sumDay9 = Math.round(SumDay)}
+                sumNight9 = ${sumNight9 = Math.round(SumNight)}
+                <div class="col-lg-6">
+                </div>
+            </div>
+            <div class="col-lg-6">
+            </div>
+            <div class="container text-left">
+            </div>
+        </div>
+
+        <div v-show="visible">
+
+            ${ SumTimeDay = [sumDay,sumDay2,sumDay3,sumDay4,sumDay5, sumDay6, sumDay7, sumDay8,sumDay9].reduce((a,b)=>a+b) }
+            ${ SumTimeNight = [sumNight,sumNight2,sumNight3,sumNight4,sumNight5, sumNight6, sumNight7, sumNight8,sumNight9].reduce((a,b)=>a+b) }
+        </div>
+
+        Время развертывания днём: ${BezSostav.SumTimeDay = SumTimeDay} мин.
+        Время развертывания ночью: ${BezSostav.SumTimeNight = SumTimeNight} мин.
+        <div class="container text-right" style="margin-bottom:1%">
+            <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Recogn/" v-on:click="setPost(BezSostav)" >Далее</a>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="js/stepper.min.js"></script>
+<!-- vue.js files -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+    const url_br = "http://127.0.0.1:8000/api/page1_br/";
+    const url_bs = "http://127.0.0.1:8000/api/page1_bs/";
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+
+    new Vue({
+        el: '#Page1BezSostav',
+        delimiters: ['${','}'],
+        data : {
+            BezSostav:{SumTimeDay: 0, SumTimeNight: 0},
+            Raschet: '',
+            Kir: 0,
+            BezRazdelKir:{},
+            visible: false,
+            abbrVal: 0,
+            typeVal: 0,
+            NumGroups: 2,
+            NomerGrupp:1,
+            names:[],
+            ind:'',
+            values:[],
+            Dict1:{},
+            Dict2:{},
+            Dict3:{},
+            Dict4:{},
+            Dict5:{},
+            Dict6:{},
+            Dict7:{},
+            Dict8:{},
+            Dict9:{},
+            sumDay: 0, sumDay2: 0, sumNight2: 0, sumDay3: 0, sumNight3: 0,
+            sumDay4: 0, sumNight4: 0, sumDay5: 0, sumNight5: 0,
+            sumDay6: 0, sumNight6: 0, sumDay7: 0, sumNight7: 0,
+            sumDay8: 0, sumNight8: 0, sumDay9: 0, sumNight9: 0,
+            sumNight: 0,
+            Qday:[], Qdayfull: [], Qnightfull:[],
+            Qdayfull2:[], Qnightfull2:[],
+            Qdayfull3:[], Qnightfull3:[],
+            Qdayfull4:[], Qnightfull4:[],
+            Qdayfull5:[], Qnightfull5:[],
+            Qdayfull6:[], Qnightfull6:[],
+            Qdayfull7:[], Qnightfull7:[],
+            Qdayfull8:[], Qnightfull8:[],
+            Qdayfull9:[], Qnightfull9:[],
+            SumTimeDay: 0, SumTimeNight: 0,
+            El:{},
+            el_id: 0,
+            Sum: 0,
+            AllStancCKO:[
+                [{name:'П-260-Т',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 280,
+                    TrudNight: 330,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'Р-441УВ',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:1,
+                    TrudDay: 440,
+                    TrudNight: 480,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'Р-419П1',
+                    id:3,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 360,
+                    TrudNight: 410,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'Р-423-АМ',
+                    id:4,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 150,
+                    TrudNight: 190,
+                    NumAppar: 1,
+                    NumLS:3,
+                }],
+                [{name:'П-266К',
+                    id:5,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 420,
+                    TrudNight: 525,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'Р-416ГМ',
+                    id:6,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 180,
+                    TrudNight: 230,
+                    NumAppar: 1,
+                    NumLS:3,
+                }],
+                [{name:'Р-431-АМ',
+                    id:7,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 150,
+                    TrudNight: 190,
+                    NumAppar: 1,
+                    NumLS:3,
+                }],
+            ],
+            AllStancPRC:[
+                [{name:'Р-161ПУ',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 450,
+                    TrudNight: 500,
+                    NumAppar: 1,
+                    NumLS:5,
+                }],
+                [{name:'Р-161-5ПРМ',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:1,
+                    TrudDay: 470,
+                    TrudNight: 530,
+                    NumAppar: 1,
+                    NumLS:5 ,
+                }],
+                [{name:'Р-176ПУ',
+                    id:3,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 300,
+                    TrudNight: 330,
+                    NumAppar: 1,
+                    NumLS:5,
+                }],
+                [{name:'Р-176-5АПРМ',
+                    id:4,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 400,
+                    TrudNight: 430,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'Р-161-15ПМ',
+                    id:5,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 450,
+                    TrudNight: 490,
+                    NumAppar: 1,
+                    NumLS:5,
+                }],
+            ],
+            AllStancPDRC:[
+                [{name:'Р-161У',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 360,
+                    TrudNight: 420,
+                    NumAppar: 1,
+                    NumLS:1,
+                }],
+                [{name:'Р-161-5ПРДМ',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:2,
+                    TrudDay: 430,
+                    TrudNight: 500,
+                    NumAppar: 2,
+                    NumLS:1 ,
+                }],
+                [{name:'Р-166',
+                    id:3,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 210,
+                    TrudNight: 240,
+                    NumAppar: 1,
+                    NumLS:1,
+                }],
+                [{name:'Р-176У',
+                    id:4,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 315,
+                    TrudNight: 340,
+                    NumAppar: 1,
+                    NumLS:1,
+                }],
+                [{name:'Р-176-1А',
+                    id:5,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 360,
+                    TrudNight: 400,
+                    NumAppar: 1,
+                    NumLS:1,
+                }],
+                [{name:'Р-176-5АПРДМ',
+                    id:6,
+                    boolPicked:false,
+                    NumMachines:2,
+                    TrudDay: 320,
+                    TrudNight: 370,
+                    NumAppar: 2,
+                    NumLS:1,
+                }],
+                [{name:'Р-161-15',
+                    id:7,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 450,
+                    TrudNight: 490,
+                    NumAppar: 1,
+                    NumLS:1,
+                }],
+            ],
+            AllStancTFC:[
+                [{name:'П-244И4',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 400,
+                    TrudNight: 440,
+                    NumAppar: 1,
+                    NumLS:5,
+                }],
+                [{name:'П-240И4',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:1,
+                    TrudDay: 280,
+                    TrudNight: 320,
+                    NumAppar: 1,
+                    NumLS:4 ,
+                }],
+                [{name:'МТК',
+                    id:3,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 105,
+                    TrudNight: 130,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'МК ЗВКС',
+                    id:4,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 200,
+                    TrudNight: 250,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'П-260-У',
+                    id:5,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 320,
+                    TrudNight: 380,
+                    NumAppar: 1,
+                    NumLS:3,
+                }],
+                [{name:'П-260-О',
+                    id:6,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 300,
+                    TrudNight: 360,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'П-252М2',
+                    id:7,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 360,
+                    TrudNight: 400,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+            ],
+            AllStancTGC:[
+                [{name:'К-8М',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 180,
+                    TrudNight: 220,
+                    NumAppar: 1,
+                    NumLS:5,
+                }],
+                [{name:'П-238ТК1',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:1,
+                    TrudDay: 170,
+                    TrudNight: 210,
+                    NumAppar: 1,
+                    NumLS:5 ,
+                }],
+            ],
+            AllStancCACY:[
+                [{name:'83Т104',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 120,
+                    TrudNight: 170,
+                    NumAppar: 1,
+                    NumLS:5,
+                }],
+                [{name:'П-83Т212',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:2,
+                    TrudDay: 200,
+                    TrudNight: 250,
+                    NumAppar: 2,
+                    NumLS:4,
+                }],
+            ],
+            AllStancGRMCPC:[
+                [{name:'Р441-ЛМ',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 160,
+                    TrudNight: 200,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+                [{name:'Р-166',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:1,
+                    TrudDay: 210,
+                    TrudNight: 240,
+                    NumAppar: 1,
+                    NumLS:3 ,
+                }],
+                [{name:'Р-176-1А',
+                    id:3,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 360,
+                    TrudNight: 400,
+                    NumAppar: 1,
+                    NumLS:3,
+                }],
+                [{name:'Р-419Л1',
+                    id:4,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 360,
+                    TrudNight: 410,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+            ],
+            AllStancCEC:[
+                [{name:'ЭД2*30',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 80,
+                    TrudNight: 100,
+                    NumAppar: 1,
+                    NumLS:2,
+                }],
+            ],
+            AllStancPYYC:[
+                [{name:'П-261',
+                    id:1,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 150,
+                    TrudNight: 190,
+                    NumAppar: 1,
+                    NumLS:3,
+                }],
+                [{name:'П-391ПМ',
+                    id:2,
+                    boolPicked: false,
+                    NumMachines:1,
+                    TrudDay: 100,
+                    TrudNight: 120,
+                    NumAppar: 1,
+                    NumLS:3 ,
+                }]  ,
+                [{name:'Р-149АКШ',
+                    id:3,
+                    boolPicked:false,
+                    NumMachines:1,
+                    TrudDay: 165,
+                    TrudNight: 200,
+                    NumAppar: 1,
+                    NumLS:4,
+                }],
+            ],
+        },
+
+
+        methods: {
+            async setPost(cur) {
+                try {
+                    let data = await axios.post(url_bs, cur);
+                    if (data.status == 'success') {
+                    } else {
+                        throw new Error(data.status);
+                    }
+                } catch (e) {
+                    this.error = e;
+                }
+            },
+            async loadDictionarysPreviewLinks(){
+                axios
+                    .get(url_br)
+                    .then(response => {
+                        this.BezRazdelKir = response.data;
+                    })
+                    .catch(function(e){
+                        this.error = e;
+                    });
+            },
+        },
+        mounted: function() {
+            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        },
+
+    });
+
+</script>
+
+</body>
+
+
+</html>

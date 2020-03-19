@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Рекогносцировка местности </title>
+    {% load static %}
+    <link href=" {% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href=" {% static 'css/style.css'%}" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+
+    <!--  <script src="Page1.js"></script>-->
+</head>
+<body style="background-color: forestgreen">
+<div class="container text-center" style="background-color: white; margin-top:7% ">
+
+    <h1 style="color:#812390">
+        Рекогносцировка местности
+    </h1>
+
+    <div id="Page1Recogn">
+        <div class="container text-left">
+            <input type="radio" id="Normativ" value=1 v-model="RasRec">
+            <label for="Normativ">
+                <h3 style="color: #0c5460">
+                    Нормативное время рекогносцировки
+                </h3>
+            </label>
+
+            <br>
+            <input type="radio" id="RaschetVremeni" value=2 v-model="RasRec">
+            <label for="RaschetVremeni">
+                <h3 style="color: #0c5460">
+                    Произвести расчет времени рекогносцировки
+                </h3>
+            </label>
+            <br>
+            <div v-if="RasRec==1">
+            <h3 style="color:#812390">
+                Время рекогносцировки:
+                    ${Trecogn.chasov = 0} ч. ${Trecogn.mins = 15} мин.
+            </h3>
+            </div>
+            <div v-else-if="RasRec==2">
+
+                <div class="row">
+                    <h3 style="color:#812390">
+                        Время рекогносцировки:
+                        ${Trecogn.chasov} ч. ${Trecogn.mins} мин.
+                    </h3>
+                    <div class="stepper stepper--style-2 js-spinner" style="margin-left:4%">
+                        <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                               id = "Trecogn.chasov" v-model="Trecogn.chasov" placeholder="введите значение"> час.
+                    </div>
+                    <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                        <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                               id = "Trecogn.mins" v-model="Trecogn.mins" placeholder="введите значение"> мин.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container text-right" style="margin-bottom:1%">
+            <a href="/mainmenu/part1/Page1BezSostav/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1TimeMarsh/" v-on:click="setPost(Trecogn)">Далее</a>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="js/stepper.min.js"></script>
+<!-- vue.js files -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+
+    const url = "http://127.0.0.1:8000/api/page1_btrec/"
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+
+    new Vue({
+        el: '#Page1Recogn',
+        delimiters: ['${','}'],
+        data : {
+            RasRec:1,
+            Trecogn: {chasov:0, mins: 15},
+            OneWay: 0,
+            ifRazdel: '',
+            NumChastey:'',
+            Dictionary: {},
+            cur:[],
+        },
+        methods: {
+            async setPost(cur) {
+                try {
+                    let data = await axios.post(url, cur);
+
+                    if (data.status == 'success') {
+
+                    } else {
+                        throw new Error(data.status);
+                    }
+
+                } catch (e) {
+                    this.error = e;
+                }
+            },
+            async loadDictionarysPreviewLinks(){
+                axios
+                    .get(url)
+                    .then(response => {
+                        this.cur = response.data;
+                    })
+                    .catch(function(e){
+                        this.error = e;
+                    });
+            },
+
+        },
+        mounted: function() {
+            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        },
+
+    });
+
+
+</script>
+</body>
+
+
+</html>
+
