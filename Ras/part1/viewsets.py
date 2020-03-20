@@ -67,8 +67,8 @@ class Page1RazOneSostav1ViewSet(viewsets.ModelViewSet):
     search_fields = ('Page1BezSostav_id', 'SumTimeDay', 'SumTimeNight')
 
 class Page1Recogn1ViewSet(viewsets.ModelViewSet):
-    queryset = Page1Recogn.objects.all()
-    serializer_class = Page1RecognSerializer
+    queryset = Page1Recogn1.objects.all()
+    serializer_class = Page1Recogn1Serializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('Page1Recogn_id', 'chasov', 'mins', 'Trecogn')
 

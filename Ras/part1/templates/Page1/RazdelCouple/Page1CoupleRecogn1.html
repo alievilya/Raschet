@@ -19,7 +19,7 @@
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Рекогносцировка местности основной частью
+        Рекогносцировка местности мобильной частью
     </h1>
 
     <div id="Page1Recogn">
@@ -40,10 +40,10 @@
             </label>
             <br>
             <div v-if="RasRec==1">
-            <h3 style="color:#812390">
-                Время рекогносцировки:
+                <h3 style="color:#812390">
+                    Время рекогносцировки:
                     ${Trecogn.chasov = 0} ч. ${Trecogn.mins = 15} мин.
-            </h3>
+                </h3>
             </div>
             <div v-else-if="RasRec==2">
 
@@ -65,8 +65,8 @@
 
         </div>
         <div class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1Razdel/Page1Recogn1/" class="btn btn-danger">Назад</a>
-            <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1TimeMarsh1/" v-on:click="setPost(Trecogn)">Далее</a>
+            <a href="/mainmenu/part1/Page1Razdel/Page1CoupleSostav2/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1CoupleRecogn2/" v-on:click="setPost(Trecogn)">Далее</a>
         </div>
 
     </div>
@@ -84,7 +84,7 @@
 
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/page1_onetrec/"
+    const url = "http://127.0.0.1:8000/api/page1_coupletrec/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({

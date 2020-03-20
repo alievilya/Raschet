@@ -72,7 +72,7 @@ class Page1CoupleWays1Serializer(serializers.ModelSerializer):
 
 class Page1RazCoupleSostav1Serializer(serializers.ModelSerializer):
     class Meta:
-        model = Page1RazOneSostav1
+        model = Page1RazCoupleSostav1
         fields = '__all__'
 
 class Page1Recogn2Serializer(serializers.ModelSerializer):

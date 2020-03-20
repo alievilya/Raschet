@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-ru" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Время марша </title>
+    {% load static %}
+    <link href=" {% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href=" {% static 'css/style.css'%}" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+
+    <!--  <script src="Page1.js"></script>-->
+</head>
+<body style="background-color: forestgreen">
+<div id="Page1TimeMarsh">
+    <div class="container text-center" style="background-color: white; margin-top:4.5% ">
+
+        <h1 style="color:#812390">
+            Расчёт времени совершения марша основной частью узла связи
+        </h1>
+
+        <div class="container text-left">
+            <div class="row">
+                <div class="col-sm" style="background-color: #f5f8f3">
+                    <h3 style="color:#c34b56; text-align: center">
+                        Участок: 1
+                    </h3>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460"> Протяженность участка </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2%">
+                                    <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                                           id = "Tmarsh.Dlinauch" v-model="Tmarsh.Dlinauch" placeholder="введите значение"> км.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">
+                                    Средняя скорость движения походных колонн </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                                    <input autofocus type="number" min="1" max="60" step="1" value="0" class="stepper__input"
+                                           id = "Tmarsh.Vsr" v-model="Tmarsh.Vsr" placeholder="введите значение">, км/ч
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460"> Дорожное покрытие </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "doroga"
+                                        v-model="Dictionary.doroga_sel">
+                                    <option v-for="dor in doroga" v-bind:value="dor.value">
+                                        ${ dor.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">Погодные условия </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "pogoda"
+                                        v-model="Dictionary.pogoda_sel">
+                                    <option v-for="pog in pogoda" v-bind:value="pog.value">
+                                        ${ pog.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">Местность </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "mestnost_selected"
+                                        v-model="Dictionary.mestnost_sel">
+                                    <option v-for="mesto in mestnost" v-bind:value="mesto.value">
+                                        ${ mesto.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color: #0c5460">Время суток </h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+
+                                <select class="form-control"
+                                        id = "vremya_sutok"
+                                        v-model="Dictionary.vremya_sutok_sel">
+                                    <option v-for="vremya in vremya_sutok" v-bind:value="vremya.value">
+                                        ${ vremya.text }
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color:#0c5460">
+                                    Глубина снега</h4>
+                            </div>
+                            <div class="col-sm" style="margin-right:1%">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2%">
+                                    <input autofocus type="number" min="0" max="200" step="1" value="0" class="stepper__input"
+                                           id = "Tmarsh.sneg" v-model="Tmarsh.sneg" placeholder="введите значение"> см.
+                                </div>
+                                <div v-show="visible">
+                                    ${Dictionary.sneg_sel = Tmarsh.sneg}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color:#0c5460">
+                                    Температура °С </h4>
+                            </div>
+                            <div class="col-sm">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                                    <input autofocus type="number" min="-60" max="60" step="1" value="0" class="stepper__input"
+                                           id = "Tmarsh.temperatura" v-model="Tmarsh.temperatura" placeholder="введите значение">
+                                </div>
+                                <div v-show="visible">
+                                    ${Dictionary.temp_sel = Tmarsh.temperatura}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--        ${Dictionary}-->
+
+                </div>
+                <div class="col-sm" style="background-color: #f5f8f3">
+                    <h3 style="color:#c34b56; text-align: center">
+                        Привалы
+                    </h3>
+
+                    <div class="container text-left" style="margin-top:1%">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color:#0c5460">
+                                    Интервал привалов </h4>
+                            </div>
+                            <div class="col-sm">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                                    <input autofocus type="number" min="1" max="1000" step="1" value="0" class="stepper__input"
+                                           id = "Tmarsh.interval_privalov" v-model="Tmarsh.interval_privalov" placeholder="введите значение"> ч.
+                                </div>
+                                <div v-show="visible">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm">
+                                <h4 style="color:#0c5460">
+                                    Длительность привалов </h4>
+                            </div>
+                            <div class="col-sm">
+                                <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                                    <input autofocus type="number" min="0" max="1000" step="1" value="0" class="stepper__input"
+                                           id = "Tmarsh.time_privalov" v-model="Tmarsh.time_privalov" placeholder="введите значение"> ч.
+                                </div>
+                                <div v-show="visible">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container text-center" style="margin-top:3%; background-color: #f3f3f9">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h3 style="color:#c34b56; text-align: center">
+                                    Время марша на участке (без привалов):
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:3%">
+                            <div class="col-sm">
+                                <h2 style="color:#8b43c3; text-align: center">
+                                    ${chasovbez} ч. ${minsbez} мин.
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container text-center" style="margin-top:3%; background-color: #f3f3f9">
+                        <div class="row">
+                            <div class="col-sm">
+                                <h3 style="color:#c34b56; text-align: center">
+                                    Время марша с учетом ${num_privalov} привалов:
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:3%">
+                            <div class="col-sm">
+                                <h2 style="color:#8b43c3; text-align: center">
+                                    ${chasov} ч. ${mins} мин.
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="container text-center" style="margin-top:3%; background-color: #f5f9f3">
+                <div class="row" >
+                    <h5 style="color:#812390">
+                        Время втягивания в новый район сосредоточения:
+                        ${Tsosr.chas} ч. ${Tsosr.min} мин.
+                    </h5>
+                    <div class="stepper stepper--style-2 js-spinner" style="margin-left:4%">
+                        <input autofocus type="number" min="0" max="100" step="1" value="0" class="stepper__input"
+                               id = "Tsosr.chasov" v-model="Tsosr.chas" placeholder="введите значение"> час.
+                    </div>
+                    <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
+                        <input autofocus type="number" min="0" max="60" step="1" value="0" class="stepper__input"
+                               id = "Tsosr.mins" v-model="Tsosr.min" placeholder="введите значение"> мин.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div v-show="visible">
+            <!--Шоссе-->
+            <div v-if="Dictionary.doroga_sel=='1'">
+                <!--        снег-->
+                <div v-if="Dictionary.sneg_sel >= 0 && Dictionary.sneg_sel < 30">
+                    ks=${Ks =0}
+                </div>
+                <div v-else-if="Dictionary.sneg_sel >= 30">
+                    ${Ks =0.15}
+                </div>
+                <!--        темпа-->
+                <div v-if="Dictionary.temp_sel > -8 && Dictionary.temp_sel < 36">
+                    ${Kt =0}
+                </div>
+                <div v-else-if="Dictionary.temp_sel >= 36">
+                    ${Kt =0.05}
+                </div>
+                <div v-else-if="Dictionary.temp_sel <= -8">
+                    ${Kt =0.15}
+                </div>
+                <!--местность-->
+                <div v-if="Dictionary.mestnost_sel=='1'">
+                    ${Km=0}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '3'">
+                    ${Km=0.1}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '2'">
+                    ${Km=0.05}
+                </div>
+                <!--погода-->
+                <div v-if="Dictionary.pogoda_sel=='3'">
+                    ${Kp=0.2}
+                </div>
+                <div v-else>
+                    ${Kp=0}
+                </div>
+                <!--ночь-->
+                <div v-if="Dictionary.vremya_sutok_sel=='2'">
+                    ${Kn=0.2}
+                </div>
+                <div v-else>
+                    ${Kn=0}
+                </div>
+            </div>
+            <!--Грунт-->
+            <div v-else-if="Dictionary.doroga_sel=='2'">
+                <!--        снег-->
+                <div v-if="Dictionary.sneg_sel >= 0 && Dictionary.sneg_sel < 30">
+                    ks=${Ks =0}
+                </div>
+                <div v-else-if="Dictionary.sneg_sel >= 30">
+                    ${Ks =0.1}
+                </div>
+                <!--        темпа-->
+                <div v-if="Dictionary.temp_sel > -8 && Dictionary.temp_sel < 36">
+                    ${Kt =0}
+                </div>
+                <div v-else-if="Dictionary.temp_sel >= 36">
+                    ${Kt =0.1}
+                </div>
+                <div v-else-if="Dictionary.temp_sel <= -8">
+                    ${Kt =0.1}
+                </div>
+                <!--местность-->
+                <div v-if="Dictionary.mestnost_sel=='1'">
+                    ${Km=0.05}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '3'">
+                    ${Km=0.15}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '2'">
+                    ${Km=0.1}
+                </div>
+                <!--погода-->
+                <div v-if="Dictionary.pogoda_sel=='3'">
+                    ${Kp=0.2}
+                </div>
+                <div v-else>
+                    ${Kp=0}
+                </div>
+                <!--ночь-->
+                <div v-if="Dictionary.vremya_sutok_sel=='2'">
+                    ${Kn=0.2}
+                </div>
+                <div v-else>
+                    ${Kn=0}
+                </div>
+            </div>
+            <!--    Проселочная-->
+            <div v-else-if="Dictionary.doroga_sel=='3'">
+                <!--        снег-->
+                <div v-if="Dictionary.sneg_sel >= 0 && Dictionary.sneg_sel < 30">
+                    ks=${Ks =0}
+                </div>
+                <div v-else-if="Dictionary.sneg_sel >= 30">
+                    ${Ks =0.15}
+                </div>
+                <!--        темпа-->
+                <div v-if="Dictionary.temp_sel > -8 && Dictionary.temp_sel < 36">
+                    ${Kt =0}
+                </div>
+                <div v-else-if="Dictionary.temp_sel >= 36">
+                    ${Kt =0.1}
+                </div>
+                <div v-else-if="Dictionary.temp_sel <= -8">
+                    ${Kt =0.15}
+                </div>
+                <!--местность-->
+                <div v-if="Dictionary.mestnost_sel=='1'">
+                    ${Km=0.1}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '3'">
+                    ${Km=0.35}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '2'">
+                    ${Km=0.2}
+                </div>
+                <!--погода-->
+                <div v-if="Dictionary.pogoda_sel=='3'">
+                    ${Kp=0.25}
+                </div>
+                <div v-else>
+                    ${Kp=0}
+                </div>
+                <!--ночь-->
+                <div v-if="Dictionary.vremya_sutok_sel=='2'">
+                    ${Kn=0.2}
+                </div>
+                <div v-else>
+                    ${Kn=0}
+                </div>
+            </div>
+            <!--Бездорожье-->
+            <div v-else-if="Dictionary.doroga_sel=='4'">
+                <!--        снег-->
+                <div v-if="Dictionary.sneg_sel >= 0 && Dictionary.sneg_sel < 30">
+                    ks=${Ks =0}
+                </div>
+                <div v-else-if="Dictionary.sneg_sel >= 30">
+                    ${Ks =0.2}
+                </div>
+                <!--        темпа-->
+                <div v-if="Dictionary.temp_sel > -8 && Dictionary.temp_sel < 36">
+                    ${Kt =0}
+                </div>
+                <div v-else-if="Dictionary.temp_sel >= 36">
+                    ${Kt =0.1}
+                </div>
+                <div v-else-if="Dictionary.temp_sel <= -8">
+                    ${Kt =0.2}
+                </div>
+                <!--местность-->
+                <div v-if="Dictionary.mestnost_sel=='1'">
+                    ${Km=0.15}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '3'">
+                    ${Km=0.40}
+                </div>
+                <div v-else-if="Dictionary.mestnost_sel == '2'">
+                    ${Km=0.25}
+                </div>
+                <!--погода-->
+                <div v-if="Dictionary.pogoda_sel=='3'">
+                    ${Kp=0.3}
+                </div>
+                <div v-else>
+                    ${Kp=0}
+                </div>
+                <!--ночь-->
+                <div v-if="Dictionary.vremya_sutok_sel=='2'">
+                    ${Kn=0.2}
+                </div>
+                <div v-else>
+                    ${Kn=0}
+                </div>
+            </div>
+            K = ${K = [Ks, Kt, Km, Kp, Kn].reduce((a,b)=>a+b) }
+        </div>
+
+        <div v-show="visible">
+            <p> K= ${ K = Math.floor(K * 1000) / 1000  } </p>
+            Tmbez = ${Tmbez = (Tmarsh.Dlinauch/Tmarsh.Vsr )*(1+K)}
+            ${chasovbez = Math.floor(Tmbez) } ч. ${ minsbez = Math.round((Tmbez - chasovbez)*60) } мин.
+            ${time_privalov = Math.round(Tmarsh.time_privalov)}
+
+            ${num_privalov = Math.floor(Tmbez/Tmarsh.interval_privalov)}
+            Tm = ${Tm = Tmarsh.Dlinauch/Tmarsh.Vsr*(1+K)+ num_privalov*time_privalov}
+            ${chasov = Math.floor(Tm) } ч. ${ mins = Math.round((Tm - chasov)*60) } мин.
+
+            ${TimeMarsh.Tmbez = Tmbez}
+            ${TimeMarsh.Tm = Tm}
+        </div>
+
+
+
+
+
+        <div class="container text-right" style="margin-bottom:1%">
+            <a href="/mainmenu/part1/Page1Razdel/Page1CoupleTimeMarsh1/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1CoupleTimeRazv1/" v-on:click="setPost(TimeMarsh)">Далее</a>
+            <!--            v-on:click="setPost(Trecogn)"-->
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/stepper.min.js"></script>
+    <!-- vue.js files -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</div>
+<script type="text/javascript">
+
+    const url = "http://127.0.0.1:8000/api/page1_coupletm/";
+    Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+
+    new Vue({
+        el: '#Page1TimeMarsh',
+        delimiters: ['${','}'],
+        data : {
+            RasRec:1,
+            TimeMarsh:{Tm: 0, Tmbez: 0},
+            Tmarsh: {Vsr:1, Dlinauch: 0, temperatura:0, sneg:0, interval_privalov:1, time_privalov:1},
+            Tsosr:{chas:0, min:0},
+            doroga:[
+                {text:"Шоссе", value:"1"},
+                {text:"Улучшенная грунтовая дорога", value:"2"},
+                {text:"Проселочная дорога", value:"3"},
+                {text:"Бездорожье", value:"4"},
+            ],
+            pogoda:[
+                {text:"Ясная", value:"1"},
+                {text:"Дождь", value:"2"},
+                {text:"Распутица", value:"3"},
+                {text:"Гололед", value:"3"},
+                {text:"Туман", value:"3"},
+                {text:"Снегопад", value:"3"},
+            ],
+            mestnost: [
+                {text:"Равнинная и ср. пересечённая", value:"1"},
+                {text:"Лесисто-болотистая (Р. Крайнего севера)", value:"2"},
+                {text:"Пустынно-песчаная", value:"2"},
+                {text:"Гористая (грунт 4 категории)", value:"3"},
+            ],
+            vremya_sutok:[
+                { text:"День", value:"1",},
+                { text:"Ночь", value:"2",},
+            ],
+            mestnost_sel: '',
+            vremya_sutok_sel:'',
+            pogoda_sel:'',
+            doroga_sel:'',
+            sneg_sel:'',
+            temp_sel:'',
+            Km:0, Kt:0, Kp:0,Kn:0, Ks:0, mins:0, chasov: 0, chasovbez:0, minsbez:0,
+            K: 0,
+            num_privalov:1,
+            Dictionary: {},
+            visible:false,
+            Tm:0, Tmbez:0,
+            cur:[],
+        },
+        methods: {
+            async setPost(cur) {
+                try {
+                    let data = await axios.post(url, cur);
+
+                    if (data.status == 'success') {
+
+                    } else {
+                        throw new Error(data.status);
+                    }
+
+                } catch (e) {
+                    this.error = e;
+                }
+            },
+            async loadDictionarysPreviewLinks(){
+                axios
+                    .get(url)
+                    .then(response => {
+                        this.cur = response.data;
+                    })
+                    .catch(function(e){
+                        this.error = e;
+                    });
+            },
+
+        },
+        mounted: function() {
+            this.loadDictionarysPreviewLinks(); //загружаем все ссылки из сервера
+        },
+
+    });
+
+
+</script>
+</body>
+
+
+</html>
+

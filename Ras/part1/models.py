@@ -70,12 +70,6 @@ class Page1OneWay1(models.Model):
 
 
 
-#class Page1OneWay2(models.Model):
-   # Page1OneWay2_id = models.AutoField(primary_key=True)
-    #Kir = models.FloatField(default = 0)
-    #OneWay2Kir = {"Page1OneWay2_id": Page1OneWay2_id, "Kir": Kir }
-
-
 
 class Page1CoupleWays1(models.Model):
     Page1CoupleWays1_id = models.AutoField(primary_key=True)

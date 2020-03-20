@@ -20,7 +20,7 @@
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Состав узла связи
+        Состав мобильной части полевого узла связи
     </h1>
     <div id="Page1BezSostav">
         <div class="row">
@@ -753,7 +753,7 @@
         Время развертывания днём: ${BezSostav.SumTimeDay = SumTimeDay} мин.
         Время развертывания ночью: ${BezSostav.SumTimeNight = SumTimeNight} мин.
         <div class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1Razdel/Page1OneWay2/" class="btn btn-danger">Назад</a>
+            <a href="/mainmenu/part1/Page1/" class="btn btn-danger">Назад</a>
             <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1RazOneSostav2/" v-on:click="setPost(BezSostav)" >Далее</a>
         </div>
 
@@ -775,8 +775,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
-    const url_br = "http://127.0.0.1:8000/api/page1_br/";
-    const url_bs = "http://127.0.0.1:8000/api/page1_bs/";
+    const url_br = "http://127.0.0.1:8000/api/page1_oneway/";
+    const url_bs = "http://127.0.0.1:8000/api/page1_onesost/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({

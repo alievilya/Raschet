@@ -131,7 +131,7 @@
                         ${Dictionary.sneg_sel = Pogoda.sneg}
                         ${Dictionary.wind_sel = Pogoda.wind}
                     </div>
-<!--                            ${Dictionary}-->
+                    <!--                            ${Dictionary}-->
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
                 <div v-else-if="Dictionary.temp_sel < -20">
                     ${Kt =0.25}
                 </div>
-<!--                sneg-->
+                <!--                sneg-->
                 <div v-if="Dictionary.sneg_sel >= 31 && Dictionary.sneg_sel <= 80">
                     ${Ks = 0.2}
                 </div>
@@ -318,8 +318,8 @@
         <br>
         Время свертывания: ${chasovsvert = Math.floor(Tsvert/60) } ч. ${ minssvert = Math.round(Tsvert- chasovsvert*60) } мин.
         <div class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1Razdel/Page1TimeRazv1/" class="btn btn-danger">Назад</a>
-            <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1OneFinal/" v-on:click="setPost(TimeRazv)">Далее</a>
+            <a href="/mainmenu/part1/Page1Razdel/Page1CoupleTimeRazv1/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1CoupleFinal/" v-on:click="setPost(TimeRazv)">Далее</a>
             <!--            v-on:click="setPost(Trecogn)"-->
         </div>
     </div>
@@ -340,8 +340,8 @@
 </div>
 <script type="text/javascript">
 
-    const url1 = "http://127.0.0.1:8000/api/page1_onesost/";
-    const url2 = "http://127.0.0.1:8000/api/page1_onetraz/";
+    const url1 = "http://127.0.0.1:8000/api/page1_couplesost/";
+    const url2 = "http://127.0.0.1:8000/api/page1_coupletraz/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({

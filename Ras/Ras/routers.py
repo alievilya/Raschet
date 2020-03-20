@@ -28,7 +28,7 @@ router.register(r'page1_oneway', Page1OneWay1ViewSet)
 router.register(r'page1_onesost', Page1RazOneSostav1ViewSet)
 router.register(r'page1_onetrec', Page1Recogn1ViewSet)
 router.register(r'page1_onetm', Page1TimeMarsh1ViewSet)
-router.register(r'page1_onetrazv', Page1TimeRazv1ViewSet)
+router.register(r'page1_onetraz', Page1TimeRazv1ViewSet)
 
 
 #router.register(r'page1_ow2', Page1OneWay2ViewSet)
@@ -37,7 +37,7 @@ router.register(r'page1_coupleway', Page1CoupleWays1ViewSet)
 router.register(r'page1_couplesost', Page1RazCoupleSostav1ViewSet)
 router.register(r'page1_coupletrec', Page1Recogn2ViewSet)
 router.register(r'page1_coupletm', Page1TimeMarsh2ViewSet)
-router.register(r'page1_coupletrazv', Page1TimeRazv2ViewSet)
+router.register(r'page1_coupletraz', Page1TimeRazv2ViewSet)
 
 #router.register(r'page1_cw1', Page1CoupleWays1ViewSet)
 #router.register(r'page1_cw2', Page1CoupleWays2ViewSet)

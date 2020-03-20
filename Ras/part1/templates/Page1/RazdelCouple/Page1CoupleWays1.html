@@ -20,7 +20,7 @@
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Введите количество связей и количество абонентов полевого узла связи
+        Введите количество связей и количество абонентов мобильной части полевого узла связи
     </h1>
 
 <div class="container text-left" style="margin-top:1%; margin-left:2.5%">
@@ -299,7 +299,7 @@
 </div>
     <div class="container text-right" style="margin-bottom:1%">
         <a href="/mainmenu/part1/Page1Razdel/" class="btn btn-danger">Назад</a>
-        <a class="btn btn-success" href="/mainmenu/part1/Page1CoupleWays2/" v-on:click="setPost(CoupleWays1Kir)">Далее</a>
+        <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1CoupleWays2/" v-on:click="setPost(CoupleWays1Kir)">Далее</a>
     </div>
 </div>
 
@@ -320,7 +320,7 @@
 </html>
 <script type="text/javascript">
 
-    const url = "http://127.0.0.1:8000/api/page1_cw1/"
+    const url = "http://127.0.0.1:8000/api/page1_coupleway/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({

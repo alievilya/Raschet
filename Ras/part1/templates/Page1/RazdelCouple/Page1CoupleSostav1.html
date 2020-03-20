@@ -20,7 +20,7 @@
 <div class="container text-center" style="background-color: white; margin-top:7% ">
 
     <h1 style="color:#812390">
-        Состав узла связи
+        Состав мобильной части полевого узла связи
     </h1>
     <div id="Page1BezSostav">
         <div class="row">
@@ -36,7 +36,7 @@
             <button class="btn btn-primary" style="margin-left:1%" v-on:click=abbrVal="10"> ПУУС </button>
         </div>
 
-<!--        CKO-->
+        <!--        CKO-->
         <div class="container text-left">
             <div v-if="abbrVal==1">
                 Центр каналообразования
@@ -135,7 +135,7 @@
             </div>
         </div>
 
-<!--        PRC-->
+        <!--        PRC-->
         <div class="container text-left">
 
             <div v-if="abbrVal==2">
@@ -210,7 +210,7 @@
             </div>
         </div>
 
-<!--        PDRC-->
+        <!--        PDRC-->
         <div class="container text-left">
             <div v-if="abbrVal==3">
                 Передающий радиоцентр
@@ -306,7 +306,7 @@
             </div>
         </div>
 
-<!--        TFC-->
+        <!--        TFC-->
         <div class="container text-left">
 
             <div v-if="abbrVal==4">
@@ -379,7 +379,7 @@
             </div>
         </div>
 
-<!--        TGC-->
+        <!--        TGC-->
         <div class="container text-left">
 
             <div v-if="abbrVal==5">
@@ -452,7 +452,7 @@
             </div>
         </div>
 
-<!--        CASU-->
+        <!--        CASU-->
         <div class="container text-left">
 
             <div v-if="abbrVal==6">
@@ -525,7 +525,7 @@
             </div>
         </div>
 
-<!--        GRMCPC-->
+        <!--        GRMCPC-->
         <div class="container text-left">
 
             <div v-if="abbrVal==7">
@@ -598,7 +598,7 @@
             </div>
         </div>
 
-<!--        CES-->
+        <!--        CES-->
         <div class="container text-left">
 
             <div v-if="abbrVal==9">
@@ -671,7 +671,7 @@
             </div>
         </div>
 
-<!--        PUUS-->
+        <!--        PUUS-->
         <div class="container text-left">
 
             <div v-if="abbrVal==10">
@@ -746,15 +746,15 @@
 
         <div v-show="visible">
 
-        ${ SumTimeDay = [sumDay,sumDay2,sumDay3,sumDay4,sumDay5, sumDay6, sumDay7, sumDay8,sumDay9].reduce((a,b)=>a+b) }
-        ${ SumTimeNight = [sumNight,sumNight2,sumNight3,sumNight4,sumNight5, sumNight6, sumNight7, sumNight8,sumNight9].reduce((a,b)=>a+b) }
+            ${ SumTimeDay = [sumDay,sumDay2,sumDay3,sumDay4,sumDay5, sumDay6, sumDay7, sumDay8,sumDay9].reduce((a,b)=>a+b) }
+            ${ SumTimeNight = [sumNight,sumNight2,sumNight3,sumNight4,sumNight5, sumNight6, sumNight7, sumNight8,sumNight9].reduce((a,b)=>a+b) }
         </div>
 
         Время развертывания днём: ${BezSostav.SumTimeDay = SumTimeDay} мин.
         Время развертывания ночью: ${BezSostav.SumTimeNight = SumTimeNight} мин.
         <div class="container text-right" style="margin-bottom:1%">
-            <a href="/mainmenu/part1/Page1BezRazdel/" class="btn btn-danger">Назад</a>
-            <a class="btn btn-success" href="/mainmenu/part1/Page1Recogn/" v-on:click="setPost(BezSostav)" >Далее</a>
+            <a href="/mainmenu/part1/Page1Razdel/Page1CoupleWays2/" class="btn btn-danger">Назад</a>
+            <a class="btn btn-success" href="/mainmenu/part1/Page1Razdel/Page1CoupleSostav2/" v-on:click="setPost(BezSostav)" >Далее</a>
         </div>
 
 
@@ -775,8 +775,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script type="text/javascript">
-    const url_br = "http://127.0.0.1:8000/api/page1_br/";
-    const url_bs = "http://127.0.0.1:8000/api/page1_bs/";
+    const url = "http://127.0.0.1:8000/api/page1_coupleway/";
+    const url_bs = "http://127.0.0.1:8000/api/page1_couplesost/";
     Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
     new Vue({
@@ -1199,7 +1199,7 @@
             },
             async loadDictionarysPreviewLinks(){
                 axios
-                    .get(url_br)
+                    .get(url)
                     .then(response => {
                         this.BezRazdelKir = response.data;
                     })
