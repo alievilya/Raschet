@@ -296,10 +296,10 @@
         <div v-show="visible">
 
             <div v-if="Dictionary.vremya_sutok_sel==1">
-                Tr = ${Tr = BezSostav[BezSostav.length-1]["SumTimeDay"]}
+                Tr = ${Tr = BezSostav[BezSostav.length-2]["SumTimeDay"]}
             </div>
             <div v-else-if="Dictionary.vremya_sutok_sel==2">
-                Tr = ${Tr = BezSostav[BezSostav.length-1]["SumTimeNight"]}
+                Tr = ${Tr = BezSostav[BezSostav.length-2]["SumTimeNight"]}
             </div>
             <div v-else>
                 Tr = ${Tr = 0}

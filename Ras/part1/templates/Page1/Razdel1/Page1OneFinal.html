@@ -24,19 +24,23 @@
         <div v-show="visible">
 
 
-            TimeMarsh = ${Tm = TimeMarsh[TimeMarsh.length-1]["Tm"]}
-            TimeMarsh = ${Tmbez = TimeMarsh[TimeMarsh.length-1]["Tmbez"]}
-            TimeMarsh = ${Tmfull = Tm*60 }
-            TimeMarsh = ${Tmfullbez = Tmbez*60 }
+            TimeMarsh = ${Tm1 = TimeMarsh[TimeMarsh.length-1]["Tm"]}
+            TimeMarsh = ${Tmbez1 = TimeMarsh[TimeMarsh.length-1]["Tmbez"]}
+            TimeMarsh = ${Tmfull1 = Tm1*60 }
+            TimeMarsh = ${Tmfullbez1 = Tmbez1*60 }
 
-            Trecogn = ${rec_chasov = Trecogn[Trecogn.length-1]["chasov"]}
-            Trecogn = ${rec_mins = Trecogn[Trecogn.length-1]["mins"]}
-            Trecogn = ${Trec = rec_chasov*60 + rec_mins}
+            Trecogn = ${rec_chasov1 = Trecogn[Trecogn.length-2]["chasov"]}
+            Trecogn = ${rec_mins1 = Trecogn[Trecogn.length-2]["mins"]}
+            Trecogn = ${Trec1 = rec_chasov1*60 + rec_mins1}
+            TimeRazv = ${Trazv1 = TimeRazv[TimeRazv.length-2]["Trazv"]}
+            TimeRazv = ${Tsvert1 = TimeRazv[TimeRazv.length-2]["Tsvert"]}
 
-            TimeRazv = ${Trazv = TimeRazv[TimeRazv.length-1]["Trazv"]}
-            TimeRazv = ${Tsvert = TimeRazv[TimeRazv.length-1]["Tsvert"]}
 
-
+            Trecogn = ${rec_chasov2 = Trecogn[Trecogn.length-1]["chasov"]}
+            Trecogn = ${rec_mins2 = Trecogn[Trecogn.length-1]["mins"]}
+            Trecogn = ${Trec2 = rec_chasov2*60 + rec_mins2}
+            TimeRazv = ${Trazv2 = TimeRazv[TimeRazv.length-1]["Trazv"]}
+            TimeRazv = ${Tsvert2 = TimeRazv[TimeRazv.length-1]["Tsvert"]}
 
         </div>
 
@@ -45,8 +49,12 @@
 
         <div class="row">
 
-            Время функционирования УС:
-            ${Tfunc.hours} ч. ${Tfunc.mins} мин.
+            <h5 style="color: #3563f9">Время функционирования УС:
+            </h5>
+            <h5 style="color: #000000">
+                ${Tfunc.hours} ч. ${Tfunc.mins} мин.
+            </h5>
+
 
             <div class="stepper stepper--style-2 js-spinner" style="margin-left:2% ">
                 <input autofocus type="number" min="0" max="1000" step="1" value="0" class="stepper__input"
@@ -62,35 +70,171 @@
                 Tf = ${Tf = Tf_hours*60 + Math.floor(Tf_mins)}
             </div>
         </div>
-        <div v-show="visible">
-            ${vals = [Tmfull, Tmfullbez, Trec, Trazv, Tf, Tsvert]}
+        <br>
+        <div class="row">
+
+            <div class="col-md-6">
+
+            <button class="btn btn-warning" style="margin-left:1%" v-on:click=showGraph=true> Вывести графики </button>
+            </div>
+            <div class="col-md-6">
+            <button class="btn btn-warning" style="margin-left:1%" v-on:click=showInfo=true> Вывести результаты расчета </button>
+            </div>
         </div>
 
-        Время марша с учетом привалов: ${marsh_chasov = Math.floor(Tm) } ч. ${ marsh_mins = Math.round((Tm - marsh_chasov)*60) } мин.
+
+        <div v-show="visible">
+            ${vals1 = [Tmfull1, Tmfullbez1, Trec1, Trazv1, Tf, Tsvert1]}
+            ${vals2 = [Tmfull1, Tmfullbez1, Trec2, Trazv2, Tf, Tsvert2]}
+            ${maximum1 = Math.max.apply(null, vals1)}
+            ${maximum1 = maximum1 + maximum1*0.05}
+            ${maximum2 = Math.max.apply(null, vals2)}
+            ${maximum2 = maximum2 + maximum2*0.05}
+
+            ${ SumTime1 = vals1.reduce((a,b)=>a+b) }
+            ${ SumTime2 = vals2.reduce((a,b)=>a+b) }
+
+            Время сумма1: ${chasovsum1 = Math.floor(SumTime1/60) } ч. ${ minssum1 = Math.round(SumTime1 - chasovsum1*60) } мин.
+            Время сумма1: ${chasovsum2 = Math.floor(SumTime2/60) } ч. ${ minssum2 = Math.round(SumTime2 - chasovsum2*60) } мин.
+        </div>
+
+        <h3 style="color: #8b43c3">
+            Мобильная часть
+        </h3>
+        <div v-show="showGraph">
+
+
+            <graph-bar
+                    :width="900"
+                    :height="500"
+                    :axis-min="0"
+                    :axis-max="maximum1"
+                    :labels="['Марш', 'Марш без привалов', 'Рекогнесцировка', 'Развертывание', 'Функционирвоание','Свертывание']"
+                    :values="vals1"> минут
+
+            </graph-bar>
+        </div>
+        <div v-show="showInfo" style="background-color: rgba(44,204,245,0.11); ">
+        Время марша с учетом привалов: ${marsh_chasov = Math.floor(Tm1) } ч. ${ marsh_mins = Math.round((Tm1 - marsh_chasov)*60) } мин.
         <br>
-        Время марша без учета привалов: ${marsh_chasovbez = Math.floor(Tmbez) } ч. ${ marsh_minsbez = Math.round((Tmbez - marsh_chasovbez)*60) } мин.
+        Время марша без учета привалов: ${marsh_chasovbez = Math.floor(Tmbez1) } ч. ${ marsh_minsbez = Math.round((Tmbez1 - marsh_chasovbez)*60) } мин.
         <br>
         Время рекогносцировки:
-        ${ rec_chasov } ч. ${rec_mins } мин.
+        ${ rec_chasov1 } ч. ${rec_mins1 } мин.
         <br>
-        Время развертывания: ${chasovrazv = Math.floor(Trazv/60) } ч. ${ minsrazv = Math.round(Trazv- chasovrazv*60) } мин.
+        Время развертывания: ${chasovrazv1 = Math.floor(Trazv1/60) } ч. ${ minsrazv1 = Math.round(Trazv1 - chasovrazv1*60) } мин.
         <br>
-        Время свертывания: ${chasovsvert = Math.floor(Tsvert/60) } ч. ${ minssvert = Math.round(Tsvert- chasovsvert*60) } мин.
-
+        Время свертывания: ${chasovsvert1 = Math.floor(Tsvert1/60) } ч. ${ minssvert1 = Math.round(Tsvert1 - chasovsvert1*60) } мин.
         <br>
-        Время функционирования:${Tfunc.hours} ч. ${Tfunc.mins } мин.
+        Время функционирования: ${Tfunc.hours} ч. ${Tfunc.mins } мин.
+        <br>
+            <h5 style="color: #5a68a8">
+                Суммарное время выполнения задачи узлом связи: ${chasovsum1} ч. ${minssum1 } мин.
+            </h5>
+            <h5 style="color: #5a68a8">
+                Дата и время окончания выполнения задачи узлом связи: ${dayMob}.${monMob} в ${chitogMob}:${minitogMob }
+            </h5>
+
+        </div>
+        <h3 style="color: #8b43c3">
+            Основная часть
+        </h3>
+        <div v-show="showGraph">
+
+            <graph-bar
+                    :width="900"
+                    :height="500"
+                    :axis-min="0"
+                    :axis-max="maximum2"
+                    :labels="['Марш', 'Марш без привалов', 'Рекогнесцировка', 'Развертывание', 'Функционирвоание','Свертывание']"
+                    :values="vals2"> минут
+
+            </graph-bar>
+        </div>
+        <div v-show="showInfo" style="background-color: rgba(44,204,245,0.11)">
+        Время марша с учетом привалов: ${marsh_chasov = Math.floor(Tm1) } ч. ${ marsh_mins = Math.round((Tm1 - marsh_chasov)*60) } мин.
+        <br>
+        Время марша без учета привалов: ${marsh_chasovbez = Math.floor(Tmbez1) } ч. ${ marsh_minsbez = Math.round((Tmbez1 - marsh_chasovbez)*60) } мин.
+        <br>
+        Время рекогносцировки:
+        ${ rec_chasov2 } ч. ${rec_mins2 } мин.
+        <br>
+        Время развертывания: ${chasovrazv2 = Math.floor(Trazv2/60) } ч. ${ minsrazv2 = Math.round(Trazv2 - chasovrazv2*60) } мин.
+        <br>
+        Время свертывания: ${chasovsvert2 = Math.floor(Tsvert2/60) } ч. ${ minssvert2 = Math.round(Tsvert2 - chasovsvert2*60) } мин.
+        <br>
+        Время функционирования: ${Tfunc.hours} ч. ${Tfunc.mins } мин.
+        <br>
+            <h5 style="color: #5a68a8">
+            Суммарное время выполнения задачи узлом связи: ${chasovsum2} ч. ${minssum2 } мин.
+            </h5>
+
+            <h5 style="color: #5a68a8">
+                Дата и время окончания выполнения задачи узлом связи: ${day2}.${mon} в ${chitog2}:${minitog2 }
+            </h5>
+        </div>
 
 
-        <graph-bar
-                :width="800"
-                :height="400"
-                :axis-min="0"
-                :axis-max="1000"
-                :labels="['Тмарша', 'Тмбез', 'Трек', 'Тразв', 'Тфунк','Тсверт']"
-                :values="vals"> мин.
+        <h5 style="color: #383ca8">
+            Ввод времени начала выполнения задач
+        </h5>
+        <input id="date" type="datetime-local" v-model="startday">
+        <div v-show="visible">
+            ${min1 = startday[startday.length-2]}
+            ${min2 = startday[startday.length-1]}
+            ${ch1 = startday[startday.length-5]}
+            ${ch2 = startday[startday.length-4]}
 
-        </graph-bar>
+            ${day1 = startday[startday.length-8]}
+            ${day2 = startday[startday.length-7]}
+            ${day = Math.floor(day1)*10 + Math.floor(day2)}
 
+            ${mon1 = startday[startday.length-11]}
+            ${mon2 = startday[startday.length-10]}
+            ${mon = Math.floor(mon1)*10 + Math.floor(mon2)}
+            ${ch = Math.floor(ch1)*10 + Math.floor(ch2)}
+            ${min = Math.floor(min1)*10 + Math.floor(min2)}
+
+
+            ${chitog2 = ch + chasovsum2}
+            ${minitog2 = min + minssum2}
+            ${chislo_dney = Math.trunc(chitog2/24)}
+            ${chislo_chasov = Math.trunc(minitog2/60)}
+            ${chitog2 = chitog2-24*chislo_dney}
+            ${day2 = day + chislo_dney}
+            ${chislo_mes = Math.trunc(day2/31)}
+            <div v-if="chislo_mes > 0">
+                ${day2 = 1}
+                ${mon = mon + chislo_mes}
+            </div>
+            ${minitog2 = minitog2 - 60*chislo_chasov}
+            ${chitog2 = chitog2+chislo_chasov}
+
+
+            ${chitogMob = ch + chasovsum1}
+            ${minitogMob = min + minssum1}
+            ${chislo_dneyMob = Math.trunc(chitogMob/24)}
+            ${chislo_chasovMob = Math.trunc(minitogMob/60)}
+            ${chislo_mesMob = Math.trunc(dayMob/31)}
+            ${monMob = mon}
+            ${dayMob = day}
+            <div v-if="chislo_chasovMob> 0">
+                ${minitogMob = minitogMob - 60*chislo_chasovMob}
+                ${chitogMob = chitogMob + chislo_chasovMob}
+            </div>
+            <div v-if="chislo_dneyMob> 0">
+                ${chitogMob = chitogMob-24*chislo_dneyMob}
+                ${dayMob = day + chislo_dneyMob}
+
+            </div>
+            <div v-if="chislo_mesMob > 0">
+                ${dayMob = 1}
+                ${monMob = monMob + chislo_mesMob}
+            </div>
+
+
+
+        </div>
 
 
         <div class="container text-right" style="margin-bottom:1%">
@@ -109,10 +253,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="js/stepper.min.js"></script>
-    <!-- vue.js files -->
-    <!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>-->
-    <!--    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>-->
-    <!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 
 </div>
 
@@ -127,19 +267,40 @@
         el: '#Page1Final',
         delimiters: ['${','}'],
         data : {
-            marsh_chasov:0, marsh_mins:0, Tm: 0, Tmbez:0, Tmfull:0, Tmfullbez: 0, Trazv:0, Tsvert:0,
+            startday: 0, min1:0, min2:0, min:0, ch1:0, ch2:0, ch:0,
+            chitog1:0, minitog1:0,
+            chitog2:0, minitog2:0, chislo_chasov:0, chislo_mes:0,
+
+            chitogMob:0, minitogMob:0, chislo_chasovMob:0, chislo_mesMob:0, chislo_dneyMob:0,
+            monMob:0, dayMob:0,
+            day1:0, day2:0, day:0, chislo_dney:0, mon:0, mon1: 0, mon2: 0,
+            marsh_chasov:0, marsh_mins:0, Tm1: 0, Tmbez1:0,
+            Tmfull1:0, Tmfullbez1: 0, Trec1:0, Trazv1:0, Tsvert1:0,
+            Trec2:0, Trazv2:0, Tsvert2:0,
             marsh_chasovbez:0, marsh_minsbez: 0,
-            chasovrazv: 0, chasovsvert:0,
-            minsrazv: 0, minssvert:0,
-            rec_mins: 0, rec_chasov:0,
-            Trec:0,
+            chasovrazv1: 0, chasovsvert1:0,
+            minsrazv1: 0, minssvert1:0,
+            chasovrazv2: 0, chasovsvert2:0,
+            minsrazv2: 0, minssvert2:0,
+            rec_mins1: 0, rec_chasov1:0,
+            rec_mins2: 0, rec_chasov2:0,
             Tf_mins:0, Tf_hours:0,
+            chasovsum1: 0, minssum1: 0,
+            chasovsum2: 0, minssum2: 0,
             Tf:0,
+            SumTime1:0,
+            SumTime2:0,
+            visible:false,
+            showInfo:false,
+            showGraph:false,
             Trecogn:{},
             TimeMarsh:{},
             TimeRazv:{},
             Tfunc:{hours:0, mins:0},
-            vals:[],
+            vals1:[],
+            maximum1:0,
+            maximum2: 0,
+            vals2:[],
         },
         methods: {
             async setPost(cur) {
