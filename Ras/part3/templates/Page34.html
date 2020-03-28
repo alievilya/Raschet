@@ -8,13 +8,13 @@
     </h3>
 
     <ul>
-    <div v-show="!visible">
+    <div v-show="visible">
         VsegoElements = ${VsegoElements = Out1[Out1.length-1]["Elements"]}
         Smax = ${Smax = Out2[Out2.length-1]["Smax"]}
 
     </div>
         <div v-for="N, id in VsegoElements">
-            <div v-show="!visible">
+            <div v-show="visible">
             Sci = ${Sci[id] = Out2[Out2.length-VsegoElements-1+N]["Sc"]}
             <div v-if="Smax < Sci[id]">
                 Pporazh${id} = ${Pporazh[id] = Smax/Sci[id]}
@@ -22,7 +22,7 @@
             <div v-else>
                 Pporazh${id} = ${Pporazh[id] = 1}
             </div>
-
+            <div v-show="visible">
             Pvskrel${id} = ${Pvskrel[id] = 1 - Math.exp((-1)*Out3[Out3.length-VsegoElements-1+N]["Nvapp"]/Out3[Out3.length-VsegoElements-1+N]["Nap"])}
             Pdost${id} = ${Pdost[id] = (1- Out3[Out3.length-VsegoElements-1+N]["Peffpvo"])*(1 - Out3[Out3.length-VsegoElements-1+N]["Peffreb"])}
 
@@ -35,9 +35,12 @@
             </div>
             ${ann}
             ${Pfixed}
+            </div>
+            <h5 style="color: #383ca8">
+                для ${id+1}-го узла связи = ${Pfixed[id]}
+            </h5>
 
-            <li>для ${id+1}-го узла связи = ${Pfixed[id]}
-            </li>
+
         </div>
 
 
@@ -52,6 +55,7 @@
             Гистограмма распределения для ${VsegoElements}-х элементов
         </h3>
     </div>
+
     <graph-bar
             :width="800"
             :height="400"
@@ -59,9 +63,6 @@
             :axis-max="1"
             :labels="ann"
             :values="Pfixed">
-        <!--        <note :text="'Результат гистограмм'"></note>-->
-        <!--        <tooltip :names="ann" :position="'left'"></tooltip>-->
-        <!--        <legends :names="ann" :filter="true"></legends>-->
     </graph-bar>
     <div class="text-center">
         <a href="/mainmenu" class="btn btn-primary">Главное меню</a>

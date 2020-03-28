@@ -1,72 +1,113 @@
 {% extends 'mainframe2.html' %}
 
 {% block content %}
-<h4 style="color: #634290" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
-    xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">Nвскр.апп - количество вскрытых противником аппаратных (станций, КШМ, ШМ, АПЕ);
+<h4 style="color: #634290; text-align: left">
+    Nвскр.апп - количество вскрытых противником аппаратных (станций, КШМ, ШМ, АПЕ);
+    <br>
     Nапп - общее количество аппаратных (станций, КШМ, ШМ, АПЕ), входящих в состав элемента (модуля);
+    <br>
     Pэфф.пво - эффективность действия группировки ПВО;
+    <br>
     Pэфф.рэб - эффективность действия группировки РЭБ.</h4>
 
 
 <div id="part3_3">
     <div class="container text-center">
+        <h3 style="color: #2aabd2">
+            Число элементов = ${Elements = Out1[Out1.length-1]["Elements"]}
+        </h3>
+        <div class="container text-left">
+            <div v-show="counter+1<=Elements">
 
-        Число элементов = ${Elements = Out1[Out1.length-1]["Elements"]}
+            <div class="row" >
 
-        <div v-for="N, i in Elements">
+                <div class="col-lg-2" style="color: #0f6674">
+                    <h2>Номер </h2>
+                </div>
+                <div class="col-lg-2" style="color: #0f6674">
+                    <h2>Nвскр.апп</h2>
+                </div>
+                <div class="col-lg-2" style="color: #0f6674">
+                    <h2>Nапп </h2>
+                </div>
+                <div class="col-lg-2" style="color: #0f6674">
+                    <h2>Pэфф.пво </h2>
+                </div>
+                <div class="col-lg-2" style="color: #0f6674">
+                    <h2>Pэфф.рэб </h2>
+                </div>
+            </div>
+            </div>
 
-            <div class="container text-left">
+        </div>
+        <div v-for="N in Elements">
+            <div v-show="counter+1==N">
+
+            <div class="container text-left" style="margin-top: 1.6%">
                 <div class="row">
-                        <div class="col-lg-2">
-                        <h2>Элемент номер ${N} </h2>
+                    <div class="col-lg-2" style="align-content: center">
+                    <h2 style="color: #2aabd2"> Эл-т ${N} </h2>
                     </div>
 
-                    <div class="col-lg-2">
-                        <form role="form">
-                            <input class="form-control"
-                                   id = "Dictionary3.Nvapp[id]" v-model="Dictionary3.Nvapp" placeholder="введите значение">
+                    <div class="col-lg-2" style="align-content: center">
+
+                        <div class="stepper stepper--style-2 js-spinner" >
+                            <input autofocus type="number" min="0" max="10000" step="1" value="0" class="stepper__input"
+                                   id = "Dictionary3.Nvapp[id]" v-model="Dictionary3.Nvapp" placeholder="вводите">
+                        </div>
+                        <div v-show="visible">
                             <p> Nvapp= ${ Nvapp[id] = Dictionary3.Nvapp} </p>
+                        </div>
 
-                        </form>
                     </div>
 
-                    <div class="col-lg-2">
-                        <form role="form">
-                            <input class="form-control"
-                                   id = "Nap" v-model="Dictionary3.Nap" placeholder="введите значение">
+                    <div class="col-lg-2" >
+
+                        <div class="stepper stepper--style-2 js-spinner" style="margin-left:2%; align-self: center">
+                            <input autofocus type="number" min="0" max="10000" step="1" value="0" class="stepper__input"
+                                   id = "Dictionary3.Napp[id]" v-model="Dictionary3.Napp" placeholder="вводите">
+                        </div>
+                        <div v-show="visible">
                             <p> Nap= ${ Nap[id] = Dictionary3.Nap} </p>
-                        </form>
+                        </div>
                     </div>
 
-                    <div class="col-lg-2">
-                        <form role="form">
-                            <input class="form-control"
-                                   id = "Peffpvo" v-model="Dictionary3.Peffpvo" placeholder="введите значение">
+                    <div class="col-lg-2" style="align-content: center">
+
+                        <div class="stepper stepper--style-2 js-spinner" style="margin-left:2%; align-self: center">
+                            <input autofocus type="number" min="0" max="10000" step="1" value="0" class="stepper__input"
+                                   id = "Dictionary3.Peffpvo[id]" v-model="Dictionary3.Peffpvo" placeholder="вводите">
+                        </div>
+                        <div v-show="visible">
                             <p> Peffpvo= ${ Peffpvo[id] = Dictionary3.Peffpvo} </p>
-                        </form>
+                        </div>
                     </div>
 
                     <div class="col-lg-2">
-                        <form role="form">
-                            <input class="form-control"
-                                   id = "Peffreb" v-model="Dictionary3.Peffreb" placeholder="введите значение">
+                        <div class="stepper stepper--style-2 js-spinner" style="margin-left:2%; align-self: center">
+                            <input autofocus type="number" min="0" max="10000" step="1" value="0" class="stepper__input"
+                                   id = "Dictionary3.Peffreb[id]" v-model="Dictionary3.Peffreb" placeholder="вводите">
+                        </div>
+                        <div v-show="visible">
                             <p> Peffreb= ${ Peffreb[id] = Dictionary3.Peffreb} </p>
-                        </form>
+                        </div>
                     </div>
 
                     <div class="col-lg-2">
-                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="setPost(Dictionary3, id)">Добавить</a>
-                        <!--                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="poppush(result, Dictionary2.Napp)">пушить</a>-->
-
+                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="setPost(Dictionary3, id); counter=counter+1">Добавить</a>
 
                     </div>
-                    <!--                    ${result[id]}-->
-                    <!--                    ${pushing(res2, )}-->
+
                 </div>
                 Out 3 =${Dictionary3}
             </div>
+            </div>
         </div>
-
+        <div v-show="counter+1>Elements">
+            <h2 style="color: #2d8f30">
+                Нажмите Далее
+            </h2>
+        </div>
         <div class="container text-right">
             <a href="/mainmenu/part3/page2" class="btn btn-danger">Назад</a>
             <a class="btn btn-success" href="/mainmenu/part3/Page4" >Далее</a>

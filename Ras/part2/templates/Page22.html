@@ -8,38 +8,72 @@
 
 <div id="part2_2">
     <div class="container text-center">
-        Число элементов = ${Nel = res1[res1.length-1]["Nel"]}
+        <h3 style="color: #2aabd2">
+            Число элементов = ${Nel = res1[res1.length-1]["Nel"]}
+        </h3>
+
+        <div class="container text-left">
+            <div v-show="counter+1<=Nel">
+                <div class="row">
+
+                    <div class="col-lg-6" style="color: #0f6674">
+                        <h2>Номер </h2>
+                    </div>
+                    <div class="col-lg-2" style="color: #0f6674">
+                        <h2>Nвскр.апп</h2>
+                    </div>
+                    <div class="col-lg-2" style="color: #0f6674">
+                        <h2>Nапп </h2>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
         <div v-for="N in Nel">
+            <div v-show="counter+1==N">
             <div class="container text-left">
                 <div class="row">
                     <div class="col-lg-6">
-                        <h2>Элемент номер ${N} </h2>
+                        <h2 style="color: #2aabd2">Элемент номер ${N} </h2>
                     </div>
                     <div class="col-lg-2">
-                        <form role="form">
-                            <input class="form-control"
-                                   id = "Dictionary2.Nvskrap" v-model="Dictionary2.Nvskrap" placeholder="введите значение"
-                                   :key="N">
+
+                        <div class="stepper stepper--style-2 js-spinner" >
+                            <input autofocus type="number" min="0" max="10000" step="1" value="0" class="stepper__input"
+                                   id = "Dictionary2.Nvskrap" v-model="Dictionary2.Nvskrap" placeholder="вводите">
+                        </div>
+                        <div v-show="visible">
                             <p> Nvskrap= ${ Nvskrap[id] = Dictionary2.Nvskrap} </p>
-                        </form>
+                        </div>
                     </div>
 
                     <div class="col-lg-2">
-                        <form role="form">
-                            <input class="form-control"
-                                   id = "Napp" v-model="Dictionary2.Napp" placeholder="введите значение">
-                            <p> Napp = ${ Dictionary2.Napp } </p>
-                        </form>
+
+                        <div class="stepper stepper--style-2 js-spinner" >
+                            <input autofocus type="number" min="0" max="10000" step="1" value="0" class="stepper__input"
+                                   id = "Dictionary2.Napp" v-model="Dictionary2.Napp" placeholder="вводите">
+                        </div>
+                        <div v-show="visible">
+                            <p> Nvskrap= ${ Napp[id] = Dictionary2.Napp} </p>
+                        </div>
                     </div>
                     <div class="col-lg-2">
-                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="setPost(Dictionary2, id)">Добавить</a>
+                        <a class="btn btn-primary" style="color: #ffffff" v-on:click="setPost(Dictionary2, id); counter=counter+1">Добавить</a>
                     </div>
 
                 </div>
 <!--                res 2 =${Dictionary2}-->
 
             </div>
+            </div>
 
+        </div>
+        <div v-show="counter+1>Nel">
+            <h2 style="color: #2d8f30">
+                Нажмите Далее
+            </h2>
         </div>
 
         <div class="container text-right">

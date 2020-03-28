@@ -101,17 +101,19 @@
         el: '#part2_2',
         delimiters: ['${','}'],
         data : {
+            counter:0,
             massive: [],
             Napp: '',
             Nvskrap: '',
             types: ['Napp',
                 'Nvskrap'],
             loading: true,
+            Nel:0,
             Dictionary2: {},
             res1: [],
             res2: [],
             search_term: '',
-            visible: true,
+            visible: false,
             state: true,
         },
         methods: {
@@ -119,10 +121,7 @@
                 try {
                     let data = await axios.post(url2, res2);
                     this.state = !(state);
-                    // if (state == false ){
-                    //     N1 = 0;
-                    //     N2 = 0;
-                    // }
+
                     if (data.status == 'success') {
 
                     } else {
