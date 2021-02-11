@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "apexcharts": "^3.15.6",
+    "apexcharts": "^3.24.0",
     "stepper.js": "^1.0.4",
     "vue-graph": "^0.8.7",
     "vue-svg-charts": "^0.0.6"
